@@ -31,6 +31,7 @@ export { NovoFormModule } from './src/elements/form/Form.module';
 export { NovoFormExtrasModule } from './src/elements/form/extras/FormExtras.module';
 export { NovoCategoryDropdownModule } from './src/elements/category-dropdown/CategoryDropdown.module';
 export { NovoMultiPickerModule } from './src/elements/multi-picker/MultiPicker.module';
+import { NovoQuillModule } from './src/elements/quill/Quill.module';
 
 // Export all services
 export { NovoToastService } from './src/elements/toast/ToastService';
