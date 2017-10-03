@@ -104,17 +104,27 @@ export class NovoDynamicFormElement implements OnChanges, OnInit {
 
     public ngOnChanges(changes?: SimpleChanges): void {
         this.form.layout = this.layout;
-
-        if (!(this.fieldsets && this.fieldsets.length) && this.controls && this.controls.length) {
-            this.fieldsets = [{
-                controls: this.controls
-            }];
-            this.numControls = this.controls.length;
-        } else if (this.fieldsets) {
+        let requiredFields: Array<any> = [];
+        let nonRequiredFields: Array<any> = [];
+        this.fieldsets.forEach(fieldset => {
+            fieldset.controls.forEach(control => {
+                if (control.required) {
+                    requiredFields.push(control);
+                } else {
+                    nonRequiredFields.push(control);
+                }
+            });
+        });
+        this.allFieldsRequired = requiredFields.length === this.numControls;
+        this.allFieldsNotRequired = nonRequiredFields.length === this.numControls;
+        if (this.allFieldsNotRequired && this.hideNonRequiredFields) {
             this.fieldsets.forEach(fieldset => {
-                this.numControls = this.numControls + fieldset.controls.length;
+                fieldset.controls.forEach(control => {
+                    this.form.controls[control.key].hidden = false;
+                });
             });
         }
+        this.form.fieldsets = [...this.fieldsets];
     }
 
     public getId(fieldset): string {
