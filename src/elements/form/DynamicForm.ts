@@ -70,9 +70,9 @@ export class NovoFieldsetElement {
                 <ng-content select="form-title"></ng-content>
                 <ng-content select="form-subtitle"></ng-content>
             </header>
-            <novo-nav id="FormSections" *ngIf="fieldsets && fieldsets.length > 1" theme="white">
-                <span *ngFor="let fieldset of fieldsets">
-                    <novo-tab *ngIf="fieldset.sectionHeaderId" scrollTo [scrollTargetSelector]="getId(fieldset)">
+            <novo-nav id="FormSections" *ngIf="form.fieldsets && form.fieldsets.length > 1" theme="white">
+                <span *ngFor="let fieldset of form.fieldsets">
+                    <novo-tab *ngIf="fieldset.sectionHeaderId" scrollOffSet="40" scrollTo [scrollTargetSelector]="getId(fieldset)">
                             <i class="bhi-section"></i> {{fieldset.title || 'Top'}}
                     </novo-tab>
                 </span>
