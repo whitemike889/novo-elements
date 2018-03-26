@@ -19,7 +19,7 @@ import {
 // APP
 import { OutsideClick } from '../../utils/outside-click/OutsideClick';
 import { KeyCodes } from '../../utils/key-codes/KeyCodes';
-import { Helpers } from '../../utils/Helpers';
+import { calcPositionOffset, findAncestor, swallowEvent } from '../../utils/Helpers';
 
 @Component({
   selector: 'novo-dropdown-container',
@@ -41,7 +41,7 @@ export class NovoDropdownContainer implements DoCheck {
   ngDoCheck() {
     if (this.isVisible && this.position) {
       const element = this.element.nativeElement;
-      const position = Helpers.calcPositionOffset(this.position, element, this.side);
+      const position = calcPositionOffset(this.position, element, this.side);
       if (position) {
         this.renderer.setStyle(element, 'top', position.top);
         this.renderer.setStyle(element, 'left', position.left);
@@ -156,7 +156,7 @@ export class NovoDropdownElement extends OutsideClick implements OnInit, OnDestr
     let button = this.element.nativeElement.querySelector('button');
     button.addEventListener('click', this.clickHandler);
     if (this.parentScrollSelector) {
-      this.parentScrollElement = Helpers.findAncestor(this.element.nativeElement, this.parentScrollSelector);
+      this.parentScrollElement = findAncestor(this.element.nativeElement, this.parentScrollSelector);
     }
   }
 
@@ -210,7 +210,7 @@ export class NovoDropdownElement extends OutsideClick implements OnInit, OnDestr
 
   @HostListener('keydown', ['$event'])
   public onKeyDown(event: KeyboardEvent): void {
-    Helpers.swallowEvent(event);
+    swallowEvent(event);
 
     if (this.active && event.keyCode === KeyCodes.ESC) {
       // active & esc hit -- close

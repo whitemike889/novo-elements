@@ -59,7 +59,7 @@ import {
   ValueDemoComponent,
   AceEditorDemoComponent,
 } from './pages/elements';
-import { PipesDemoComponent, UtilsDemoComponent, AppBridgeDemoComponent, SecurityDemoComponent } from './pages/utils';
+import { UtilsDemoComponent, AppBridgeDemoComponent, SecurityDemoComponent } from './pages/utils';
 import {
   ModalSuccessDemo,
   ModalWarningDemo,
@@ -127,7 +127,6 @@ export function provideAppBridgeService(http) {
     EditorDemoComponent,
     TipWellDemoComponent,
     UtilsDemoComponent,
-    PipesDemoComponent,
     ModalSuccessDemo,
     ModalWarningDemo,
     ModalErrorDemo,

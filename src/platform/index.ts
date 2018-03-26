@@ -97,7 +97,7 @@ export {
   RemoteActivityTableService,
   StaticActivityTableService,
 } from './elements/simple-table/table-source';
-export { ActivityTableRenderers } from './elements/simple-table/activity-table-renderers';
+export * from './elements/simple-table/activity-table-renderers';
 export { NovoActivityTableState } from './elements/simple-table/state';
 export { NovoSimpleTableModule } from './elements/simple-table/simple-table.module';
 export { NovoCommonModule } from './elements/common/common.module';
@@ -176,7 +176,7 @@ export {
   findByCountryId,
   findByCountryName,
 } from './utils/countries/Countries';
-export { Helpers } from './utils/Helpers';
+export * from './utils/Helpers';
 export { ComponentUtils } from './utils/component-utils/ComponentUtils';
 export {
   CalendarEventTimesChangedEvent,
@@ -208,7 +208,6 @@ export {
 // Providers
 export { NovoElementProviders } from './novo-elements.providers';
 // Pipes
-export { PluralPipe } from './pipes/plural/Plural';
 export { DecodeURIPipe } from './pipes/decode-uri/DecodeURI';
 export { GroupByPipe } from './pipes/group-by/GroupBy';
 export { RenderPipe } from './elements/value/Render';

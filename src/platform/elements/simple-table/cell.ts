@@ -1,10 +1,24 @@
-import { Directive, ElementRef, Input, Renderer2, HostBinding, Component, ChangeDetectionStrategy, ChangeDetectorRef, Optional, OnInit, OnDestroy, HostListener, ViewChild } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  Renderer2,
+  HostBinding,
+  Component,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Optional,
+  OnInit,
+  OnDestroy,
+  HostListener,
+  ViewChild,
+} from '@angular/core';
 import { CdkCell, CdkCellDef, CdkColumnDef, CdkHeaderCell, CdkHeaderCellDef, DataSource } from '@angular/cdk/table';
 import { Subscription } from 'rxjs/Subscription';
 
 import { NovoSelection } from './sort';
 import { SimpleTableColumn, SimpleTableActionColumn, SimpleTableActionColumnOption } from './interfaces';
-import { Helpers } from '../../utils/Helpers';
+import { swallowEvent } from '../../utils/Helpers';
 import { NovoLabelService } from '../../services/novo-label-service';
 
 /** Workaround for https://github.com/angular/angular/issues/17849 */
@@ -82,7 +96,13 @@ export class NovoSimpleCheckboxHeaderCell extends _NovoHeaderCell implements OnD
   public selectAll: boolean = false;
   private selectAllSubscription: Subscription;
 
-  constructor(columnDef: CdkColumnDef, elementRef: ElementRef, renderer: Renderer2, ref: ChangeDetectorRef, @Optional() private _selection: NovoSelection) {
+  constructor(
+    columnDef: CdkColumnDef,
+    elementRef: ElementRef,
+    renderer: Renderer2,
+    ref: ChangeDetectorRef,
+    @Optional() private _selection: NovoSelection,
+  ) {
     super(columnDef, elementRef);
     renderer.setAttribute(elementRef.nativeElement, 'data-automation-id', `novo-checkbox-column-header-${columnDef.cssClassFriendlyName}`);
     renderer.addClass(elementRef.nativeElement, `novo-checkbox-column-${columnDef.cssClassFriendlyName}`);
@@ -147,7 +167,7 @@ export class NovoSimpleCell<T> extends _NovoCell implements OnInit {
   }
 
   public onClick(event: MouseEvent): void {
-    Helpers.swallowEvent(event);
+    swallowEvent(event);
     if (this.column.onClick) {
       this.column.onClick(this.row);
     }

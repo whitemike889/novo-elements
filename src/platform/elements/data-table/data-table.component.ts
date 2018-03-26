@@ -25,7 +25,6 @@ import { DataTableSource } from './data-table.source';
 import { NovoLabelService } from '../../services/novo-label-service';
 import { DataTableState } from './state/data-table-state.service';
 import { NovoTemplate } from '../common/novo-template/novo-template.directive';
-import { Helpers } from '../../utils/Helpers';
 import { StaticDataTableService } from './services/static-data-table.service';
 
 @Component({

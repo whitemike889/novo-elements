@@ -1,7 +1,7 @@
 import { Directive } from '@angular/core';
 
 import { DataTableState } from '../state/data-table-state.service';
-import { Helpers } from '../../../utils/Helpers';
+import { isBlank } from '../../../utils/Helpers';
 
 @Directive({
   selector: '[novoDataTableSortFilter]',
@@ -11,7 +11,7 @@ export class NovoDataTableSortFilter {
 
   public filter(id: string, value: any, transform: Function): void {
     let filter;
-    if (!Helpers.isBlank(value)) {
+    if (!isBlank(value)) {
       filter = { id, value, transform };
     } else {
       filter = undefined;

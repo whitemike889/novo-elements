@@ -24,7 +24,7 @@ import {
 import { NovoDataTableSortFilter } from '../sort-filter/sort-filter.directive';
 import { NovoLabelService } from '../../../services/novo-label-service';
 import { DataTableState } from '../state/data-table-state.service';
-import { Helpers } from '../../../utils/Helpers';
+import { isObject } from '../../../utils/Helpers';
 
 @Component({
   selector: '[novo-data-table-cell-config]',
@@ -85,7 +85,7 @@ export class NovoDataTableCellHeader<T> implements IDataTableSortFilter, OnInit,
 
     let transforms: { filter?: Function; sort?: Function } = {};
 
-    if (column.filterable && Helpers.isObject(column.filterable)) {
+    if (column.filterable && isObject(column.filterable)) {
       this.config.filterConfig = column.filterable as IDataTableColumnFilterConfig;
       if (!this.config.filterConfig.type) {
         this.config.filterConfig = { type: 'text' };
@@ -97,7 +97,7 @@ export class NovoDataTableCellHeader<T> implements IDataTableSortFilter, OnInit,
       this.config.filterConfig = { type: 'text' };
     }
 
-    if (column.sortable && Helpers.isObject(column.sortable)) {
+    if (column.sortable && isObject(column.sortable)) {
       if ((column.sortable as IDataTableColumnSortConfig).transform) {
         transforms.sort = (column.sortable as IDataTableColumnSortConfig).transform;
       }

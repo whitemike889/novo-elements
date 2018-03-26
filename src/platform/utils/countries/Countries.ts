@@ -11039,56 +11039,27 @@ export const COUNTRIES = [{
     states: []
 }];
 
-/**
- * Gets all countries
- * @returns {string[]}
- */
 export function getCountries() {
     return COUNTRIES.map(country => country.name);
 }
 
-/**
- * Gets a country by country ID
- * @param {number} id - ID of country to find
- * @returns {object|undefined}
- */
 export function findByCountryId(id) {
     return COUNTRIES.find(country => country.id === id);
 }
 
-/**
- * Gets a country by country name
- * @param {string} name - Name of country to find
- * @returns {object|undefined}
- */
 export function findByCountryName(name) {
     return COUNTRIES.find(country => country.name === name.trim());
 }
 
-/**
- * Gets a country by country code
- * @param {string} code - Code of country to find
- * @returns {object|undefined}
- */
 export function findByCountryCode(code) {
     return COUNTRIES.find(country => country.code === code.trim());
 }
 
-/**
- * Gets states by country name
- * @param {string} name - Name of the country to search by
- * @returns {string[]}
- */
 export function getStateObjects(name) {
     const foundCountry = COUNTRIES.find(country => country.name === name.trim());
     return foundCountry && foundCountry.states || [];
 }
 
-/**
- * Gets state names by country name
- * @param {string} name - Name of the country to search by
- * @returns {string[]}
- */
 export function getStates(name) {
     return getStateObjects(name).map(state => state.name);
 }

@@ -19,7 +19,7 @@ import { TAB, ENTER, ESCAPE } from '@angular/cdk/keycodes';
 import { NovoOverlayTemplate } from '../overlay/Overlay';
 import { KeyCodes } from '../../utils/key-codes/KeyCodes';
 import { NovoLabelService } from '../../services/novo-label-service';
-import { Helpers } from '../../utils/Helpers';
+import { isEmpty } from '../../utils/Helpers';
 
 // Value accessor for the component (supports ngModel)
 const SELECT_VALUE_ACCESSOR = {
@@ -288,7 +288,7 @@ export class NovoSelectElement implements OnInit, OnChanges {
     this.model = model;
     if (this.options) {
       let item = this.filteredOptions.find((i) => i.value === model);
-      if (!item && !Helpers.isEmpty(model)) {
+      if (!item && !isEmpty(model)) {
         item = {
           label: model,
           value: model,

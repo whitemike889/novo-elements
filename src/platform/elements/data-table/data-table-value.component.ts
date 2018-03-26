@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, OnInit, HostListener, HostBinding, 
 
 import { NovoLabelService } from '../../services/novo-label-service';
 import { IDataTableColumn, IDataTableCell } from './interfaces';
-import { Helpers } from '../../utils/Helpers';
 
 @Component({
   selector: 'novo-data-table-value',

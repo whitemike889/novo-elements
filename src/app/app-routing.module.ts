@@ -89,7 +89,6 @@ const routes: Routes = [
 
   // Utils
   { path: 'utils', component: UtilsDemoComponent, data: { title: 'Utils', section: 'utils' } },
-  { path: 'pipes', component: PipesDemoComponent, data: { title: 'Pipes', section: 'utils' } },
   { path: 'app-bridge', component: AppBridgeDemoComponent, data: { title: 'App Bridge', section: 'utils' } },
   { path: 'field-interactions', component: FieldInteractionsDemoComponent, data: { title: 'Field Interactions', section: 'utils' } },
   { path: 'security', component: SecurityDemoComponent, data: { title: 'Security', section: 'utils' } },

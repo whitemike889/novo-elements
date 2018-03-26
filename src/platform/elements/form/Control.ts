@@ -1,8 +1,16 @@
 // NG2
 import {
-    Component, Input, Output, ElementRef, EventEmitter,
-    OnInit, OnDestroy, Directive, HostListener, AfterContentInit,
-    AfterViewInit
+  Component,
+  Input,
+  Output,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+  Directive,
+  HostListener,
+  AfterContentInit,
+  AfterViewInit,
 } from '@angular/core';
 // Vendor
 import { Observable } from 'rxjs/Observable';
@@ -10,48 +18,48 @@ import { Observable } from 'rxjs/Observable';
 import { NovoFormGroup } from './FormInterfaces';
 import { OutsideClick } from '../../utils/outside-click/OutsideClick';
 import { NovoLabelService } from '../../services/novo-label-service';
-import { Helpers } from '../../utils/Helpers';
+import { isBlank, isEmpty, isFunction } from '../../utils/Helpers';
 import { KeyCodes } from '../../utils/key-codes/KeyCodes';
 import { DateFormatService } from '../../services/date-format/DateFormat';
 import { FieldInteractionApi } from './FieldInteractionApi';
 
 export interface IMaskOptions {
-    mask: any;
-    keepCharPositions: boolean;
-    guide: boolean;
-};
+  mask: any;
+  keepCharPositions: boolean;
+  guide: boolean;
+}
 
 @Directive({
-    selector: 'textarea[autosize]'
+  selector: 'textarea[autosize]',
 })
 export class NovoAutoSize implements AfterContentInit {
-    @HostListener('input', ['$event.target'])
-    onInput(textArea: HTMLTextAreaElement): void {
-        this.adjust();
-    }
+  @HostListener('input', ['$event.target'])
+  onInput(textArea: HTMLTextAreaElement): void {
+    this.adjust();
+  }
 
-    constructor(public element: ElementRef) { }
+  constructor(public element: ElementRef) {}
 
-    ngAfterContentInit(): void {
-        setTimeout(() => {
-            this.adjust();
-        });
-    }
+  ngAfterContentInit(): void {
+    setTimeout(() => {
+      this.adjust();
+    });
+  }
 
-    adjust(): void {
-        let hasValue = this.element.nativeElement.value.length !== 0;
-        this.element.nativeElement.style.overflow = 'hidden';
-        if (hasValue) {
-            this.element.nativeElement.style.height = Math.min((this.element.nativeElement.scrollHeight - 11), 300) + 'px';
-        } else {
-            this.element.nativeElement.style.height = '14px';
-        }
+  adjust(): void {
+    let hasValue = this.element.nativeElement.value.length !== 0;
+    this.element.nativeElement.style.overflow = 'hidden';
+    if (hasValue) {
+      this.element.nativeElement.style.height = Math.min(this.element.nativeElement.scrollHeight - 11, 300) + 'px';
+    } else {
+      this.element.nativeElement.style.height = '14px';
     }
+  }
 }
 
 @Component({
-    selector: 'novo-custom-control-container',
-    template: `
+  selector: 'novo-custom-control-container',
+  template: `
         <div class="novo-control-container" [hidden]="form.controls[control.key].hidden || form.controls[control.key].type === 'hidden' || form.controls[control.key].controlType === 'hidden'">
             <!--Label (for horizontal)-->
             <label [attr.for]="control.key" *ngIf="form.layout !== 'vertical' && form.controls[control.key].label">{{ form.controls[control.key].label }}</label>
@@ -92,11 +100,11 @@ export class NovoAutoSize implements AfterContentInit {
                 </div>
             </div>
         </div>
-    `
+    `,
 })
 export class NovoCustomControlContainerElement {
-    @Input() control;
-    @Input() form: NovoFormGroup;
+  @Input() control;
+  @Input() form: NovoFormGroup;
 }
 
 @Component({
@@ -275,12 +283,17 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
 
   maskOptions: IMaskOptions;
 
-  constructor(element: ElementRef, public labels: NovoLabelService, private dateFormatService: DateFormatService, private fieldInteractionApi: FieldInteractionApi) {
+  constructor(
+    element: ElementRef,
+    public labels: NovoLabelService,
+    private dateFormatService: DateFormatService,
+    private fieldInteractionApi: FieldInteractionApi,
+  ) {
     super(element);
   }
 
   get showFieldMessage() {
-    return !this.errors && !this.maxLengthMet && Helpers.isBlank(this.control.description);
+    return !this.errors && !this.maxLengthMet && isBlank(this.control.description);
   }
 
   get showCount() {
@@ -306,7 +319,10 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
   ngOnInit() {
     // Make sure to initially format the time controls
     if (this.control && this.form.controls[this.control.key].value) {
-      if (this.form.controls[this.control.key].controlType === 'textbox' || this.form.controls[this.control.key].controlType === 'text-area') {
+      if (
+        this.form.controls[this.control.key].controlType === 'textbox' ||
+        this.form.controls[this.control.key].controlType === 'text-area'
+      ) {
         this.characterCount = this.form.controls[this.control.key].value.length;
       }
     }
@@ -347,11 +363,11 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
       }
     }
     if (this.form.controls[this.control.key] && this.form.controls[this.control.key].subType === 'percentage') {
-      if (!Helpers.isEmpty(this.form.controls[this.control.key].value)) {
+      if (!isEmpty(this.form.controls[this.control.key].value)) {
         this.percentValue = Number((this.form.controls[this.control.key].value * 100).toFixed(6).replace(/\.?0*$/, ''));
       }
       this.percentChangeSubscription = this.form.controls[this.control.key].displayValueChanges.subscribe((value) => {
-        if (!Helpers.isEmpty(value)) {
+        if (!isEmpty(value)) {
           this.percentValue = Number((value * 100).toFixed(6).replace(/\.?0*$/, ''));
         }
       });
@@ -359,7 +375,7 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
   }
 
   executeInteraction(interaction) {
-    if (interaction.script && Helpers.isFunction(interaction.script)) {
+    if (interaction.script && isFunction(interaction.script)) {
       setTimeout(() => {
         this.fieldInteractionApi.form = this.form;
         this.fieldInteractionApi.currentKey = this.control.key;
@@ -408,7 +424,7 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
   }
 
   get hasValue() {
-    return !Helpers.isEmpty(this.form.value[this.control.key]);
+    return !isEmpty(this.form.value[this.control.key]);
   }
 
   get focused() {
@@ -420,7 +436,7 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
   }
 
   get tooltipPosition() {
-    if (Helpers.isBlank(this.form.controls[this.control.key].tooltipPosition)) {
+    if (isBlank(this.form.controls[this.control.key].tooltipPosition)) {
       return 'right';
     }
     return this.form.controls[this.control.key].tooltipPosition;
@@ -433,7 +449,11 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
     }
 
     // Controls that always have the label active
-    return ['tiles', 'checklist', 'checkbox', 'address', 'file', 'editor', 'ace-editor', 'radio', 'text-area', 'quick-note'].indexOf(this.form.controls[this.control.key].controlType) !== -1;
+    return (
+      ['tiles', 'checklist', 'checkbox', 'address', 'file', 'editor', 'ace-editor', 'radio', 'text-area', 'quick-note'].indexOf(
+        this.form.controls[this.control.key].controlType,
+      ) !== -1
+    );
   }
 
   get requiresExtraSpacing() {
@@ -477,7 +497,7 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
   }
 
   modelChangeWithRaw(event) {
-    if (Helpers.isEmpty(event.value)) {
+    if (isEmpty(event.value)) {
       this._focused = false;
       this._enteredText = '';
     }
@@ -486,7 +506,7 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
   }
 
   modelChange(value) {
-    if (Helpers.isEmpty(value)) {
+    if (isEmpty(value)) {
       this._focused = false;
       this._enteredText = '';
     }
@@ -501,7 +521,10 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
     // Types
     if (this.form.controls[this.control.key].subType === 'number' && !(NUMBERS_ONLY.test(key) || UTILITY_KEYS.includes(key))) {
       event.preventDefault();
-    } else if (~['currency', 'float', 'percentage'].indexOf(this.form.controls[this.control.key].subType) && !(NUMBERS_WITH_DECIMAL.test(key) || UTILITY_KEYS.includes(key))) {
+    } else if (
+      ~['currency', 'float', 'percentage'].indexOf(this.form.controls[this.control.key].subType) &&
+      !(NUMBERS_WITH_DECIMAL.test(key) || UTILITY_KEYS.includes(key))
+    ) {
       event.preventDefault();
     }
     // Max Length
@@ -512,8 +535,8 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
 
   handlePercentChange(event: KeyboardEvent) {
     let value = event.target['value'];
-    let percent = Helpers.isEmpty(value) ? null : Number((value / 100).toFixed(6).replace(/\.?0*$/, ''));
-    if (!Helpers.isEmpty(percent)) {
+    let percent = isEmpty(value) ? null : Number((value / 100).toFixed(6).replace(/\.?0*$/, ''));
+    if (!isEmpty(percent)) {
       this.change.emit(percent);
       this.form.controls[this.control.key].setValue(percent);
     } else {

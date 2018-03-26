@@ -1,7 +1,7 @@
 // NG2
 import { ElementRef, HostListener, Input, ChangeDetectorRef } from '@angular/core';
 // APP
-import { Helpers } from '../../../../utils/Helpers';
+import { interpolate } from '../../../../utils/Helpers';
 // Vendor
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
@@ -71,7 +71,7 @@ export class BasePickerResults {
     this.search(this.term).subscribe(
       (results: any) => {
         if (shouldReset) {
-            this.matches = [];
+          this.matches = [];
         }
         if (this.isStatic) {
           this.matches = this.filterData(results);
@@ -110,7 +110,10 @@ export class BasePickerResults {
             // Arrays are returned immediately
             resolve(this.structureArray(options));
           } else if (term && term.length >= (this.config.minSearchLength || 1)) {
-            if ((options.hasOwnProperty('reject') && options.hasOwnProperty('resolve')) || Object.getPrototypeOf(options).hasOwnProperty('then')) {
+            if (
+              (options.hasOwnProperty('reject') && options.hasOwnProperty('resolve')) ||
+              Object.getPrototypeOf(options).hasOwnProperty('then')
+            ) {
               this.isStatic = false;
               // Promises (ES6 or Deferred) are resolved whenever they resolve
               options.then(this.structureArray.bind(this)).then(resolve, reject);
@@ -151,14 +154,6 @@ export class BasePickerResults {
     );
   }
 
-  /**
-   * @name structureArray
-   * @param collection - the data once getData resolves it
-   * @returns { Array }
-   *
-   * @description This function structures an array of nodes into an array of objects with a
-   * 'name' field by default.
-   */
   structureArray(collection: any): any {
     let dataArray = collection.data ? collection.data : collection;
     if (dataArray && (typeof dataArray[0] === 'string' || typeof dataArray[0] === 'number')) {
@@ -172,9 +167,9 @@ export class BasePickerResults {
     return dataArray.map((data) => {
       let value = this.config.field ? data[this.config.field] : data.value || data;
       if (this.config.valueFormat) {
-        value = Helpers.interpolate(this.config.valueFormat, data);
+        value = interpolate(this.config.valueFormat, data);
       }
-      let label = this.config.format ? Helpers.interpolate(this.config.format, data) : data.label || String(value);
+      let label = this.config.format ? interpolate(this.config.format, data) : data.label || String(value);
       return { value, label, data };
     });
   }

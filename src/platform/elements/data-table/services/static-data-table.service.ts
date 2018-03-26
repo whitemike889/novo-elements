@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of'; // TODO - new RXJS
+import 'rxjs/add/observable/of';
 
 import { IDataTableService } from '../interfaces';
-import { Helpers } from '../../../utils/Helpers';
+import { isString, filterByField, sortByField, isBlank } from '../../../utils/Helpers';
 
 export class StaticDataTableService<T> implements IDataTableService<T> {
   constructor(private data: T[] = []) {}
@@ -21,13 +21,13 @@ export class StaticDataTableService<T> implements IDataTableService<T> {
         ret = ret.filter((item) => Object.keys(item).some((key) => `${item[key]}`.toLowerCase().includes(globalSearch.toLowerCase())));
       }
       if (filter) {
-        let value = Helpers.isString(filter.value) ? filter.value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') : filter.value;
-        ret = ret.filter(Helpers.filterByField(filter.id, value));
+        let value = isString(filter.value) ? filter.value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') : filter.value;
+        ret = ret.filter(filterByField(filter.id, value));
       }
       if (sort) {
-        ret = ret.sort(Helpers.sortByField(sort.id, sort.value === 'desc'));
+        ret = ret.sort(sortByField(sort.id, sort.value === 'desc'));
       }
-      if (!Helpers.isBlank(page) && !Helpers.isBlank(pageSize)) {
+      if (!isBlank(page) && !isBlank(pageSize)) {
         ret = ret.slice(page * pageSize, (page + 1) * pageSize);
       }
     }

@@ -20,12 +20,6 @@ export class NovoDragulaService {
   events: Array<string> = ['cancel', 'cloned', 'drag', 'dragend', 'drop', 'out', 'over', 'remove', 'shadow', 'dropModel', 'removeModel'];
   bags: Array<any> = [];
 
-  /**
-   * @name add
-   * @param name
-   * @param drake
-   * @returns {*}
-   */
   add(name, drake) {
     let bag = this.find(name);
     if (bag) {
@@ -46,11 +40,6 @@ export class NovoDragulaService {
     return bag;
   }
 
-  /**
-   * @name find
-   * @param name
-   * @returns {*}
-   */
   find(name) {
     for (let i = 0; i < this.bags.length; i++) {
       if (this.bags[i].name === name) {
@@ -60,10 +49,6 @@ export class NovoDragulaService {
     return null;
   }
 
-  /**
-   * @name destroy
-   * @param name
-   */
   destroy(name) {
     let bag = this.find(name);
     let i = this.bags.indexOf(bag);
@@ -71,21 +56,11 @@ export class NovoDragulaService {
     bag.drake.destroy();
   }
 
-  /**
-   * @name setOptions
-   * @param name
-   * @param options
-   */
   setOptions(name, options) {
     let bag = this.add(name, dragula(options));
     this.handleModels(name, bag.drake);
   }
 
-  /**
-   * @name handleModels
-   * @param name
-   * @param drake
-   */
   handleModels(name, drake) {
     let dragElm;
     let dragIndex;
@@ -126,10 +101,6 @@ export class NovoDragulaService {
     });
   }
 
-  /**
-   * @name setupEvents
-   * @param bag
-   */
   setupEvents(bag) {
     bag.initEvents = true;
     let that = this;
@@ -144,12 +115,6 @@ export class NovoDragulaService {
     this.events.forEach(emitter);
   }
 
-  /**
-   * @name domIndexOf
-   * @param child
-   * @param parent
-   * @returns {*}
-   */
   domIndexOf(child, parent) {
     return Array.prototype.indexOf.call(parent.children, child);
   }
