@@ -377,7 +377,7 @@ novo-dropdown-container.table-dropdown {
     }
     item > span {
       display: inline-block;
-      max-width: calc(100% - rem(20px));
+      max-width: calc(100% - 20px);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

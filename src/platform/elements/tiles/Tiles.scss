@@ -11,7 +11,7 @@ novo-tiles {
     position: absolute;
   }
   & > .tile-container {
-    display: inline-block; //height: calc(2.5rem + rem(4px));
+    display: inline-block;
     text-align: center;
     background-color: #f4f4f4;
     border: $border-properties;

@@ -65,7 +65,7 @@ novo-toast.toast-container > .close-icon {
 
 novo-toast.toast-container .toast-content {
   float: left;
-  width: calc(100% - rem(47px));
+  width: calc(100% - 47px);
   flex-direction: column;
   display: flex;
   h5 + p {
@@ -261,7 +261,7 @@ novo-toast.growlBottomLeft,
 novo-toast.growlTopLeft {
   left: -100%;
   right: auto;
-  width: calc(100% - rem(30px));
+  width: calc(100% - 30px);
   @include ease('all', 'swift-ease-in-out');
   &.animate {
     left: rem(15px);
@@ -282,7 +282,7 @@ novo-toast.growlBottomRight,
 novo-toast.growlTopRight {
   right: -100%;
   left: auto;
-  width: calc(100% - rem(30px));
+  width: calc(100% - 30px);
   @include ease('all', 'swift-ease-in-out');
   &.animate {
     right: rem(15px);
