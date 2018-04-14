@@ -15,10 +15,10 @@ novo-table {
   }
   > header {
     novo-table-header {
-      padding: 10px;
+      padding: rem(10px);
       button {
-        height: 39px;
-        margin-right: 10px;
+        height: rem(39px);
+        margin-right: rem(10px);
         &:last-child {
           margin-right: 0;
         }
@@ -39,17 +39,17 @@ novo-table {
         }
       }
       > novo-table-actions {
-        padding: 10px;
+        padding: rem(10px);
         display: flex;
         align-items: center;
         > * {
-          margin-right: 10px;
+          margin-right: rem(10px);
           &:last-child {
             margin-right: 0;
           }
         }
         > button {
-          height: 39px;
+          height: rem(39px);
         }
       }
     }
@@ -118,17 +118,17 @@ novo-table {
         text-align: left;
         padding: $table-condensed-cell-padding;
         button {
-          padding: 5px !important;
+          padding: rem(5px) !important;
           width: inherit !important;
           height: inherit !important;
         }
         .th-title {
-          padding: 5px 5px 5px 0;
+          padding: rem(5px) rem(5px) rem(5px) 0;
         }
         vertical-align: middle;
         &.checkbox {
           text-align: center;
-          padding-bottom: 15px;
+          padding-bottom: rem(15px);
           > novo-checkbox {
             justify-content: center;
           }
@@ -145,7 +145,7 @@ novo-table {
       .th-group {
         novo-dropdown.column-filters {
           novo-dropdown-container {
-            left: -80px;
+            left: -rem(80px);
           }
         }
       }
@@ -158,7 +158,7 @@ novo-table {
     th:first-child {
       novo-dropdown {
         novo-dropdown-container {
-          left: -90px !important;
+          left: -rem(90px) !important;
         }
       }
     }
@@ -174,13 +174,13 @@ novo-table {
     font-weight: $table-header-font-weight;
     color: $table-header-font-color;
     vertical-align: bottom;
-    border-bottom: 1px solid #f4f4f4;
-    border-top: 1px solid #f4f4f4;
-    border-right: 1px solid #f4f4f4;
+    border-bottom: rem(1px) solid #f4f4f4;
+    border-top: rem(1px) solid #f4f4f4;
+    border-right: rem(1px) solid #f4f4f4;
     padding: 0.75rem;
     &.over {
       background: #eee;
-      border-right: 2px double #000 !important;
+      border-right: rem(2px) double #000 !important;
       * {
         pointer-events: none;
       }
@@ -200,14 +200,14 @@ novo-table {
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: 10px 10px 10px 5px;
-        border-radius: 3px;
+        padding: rem(10px) rem(10px) rem(10px) rem(5px);
+        border-radius: rem(3px);
         font-weight: $table-header-font-weight;
         &.sortable {
           cursor: pointer;
           label {
             cursor: pointer; // chrome user agent style will override this unless explicitly set on the element
-            margin-right: 10px;
+            margin-right: rem(10px);
           }
         }
         &:hover {
@@ -229,10 +229,10 @@ novo-table {
           opacity: 0.3;
           transition: all 200ms ease-in-out;
           i {
-            font-size: 0.8em;
+            font-size: 0.8rem;
             margin: 0;
             &.bhi-arrow-down {
-              padding-top: 5px;
+              padding-top: rem(5px);
             }
           }
           &.asc {
@@ -262,7 +262,7 @@ novo-table {
     }
   }
   > tbody + tbody {
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: rem(1px) solid rgba(0, 0, 0, 0.12);
   }
   .table-message {
     tr,
@@ -288,12 +288,12 @@ novo-table {
   .no-matching-records,
   .table-empty-message {
     color: $grey;
-    margin: 40px 0;
+    margin: rem(40px) 0;
     vertical-align: middle;
   }
   .table-error-message {
     color: $grey;
-    margin: 40px 0;
+    margin: rem(40px) 0;
     vertical-align: middle;
   }
   .table-loading {
@@ -318,15 +318,15 @@ novo-table {
 }
 
 novo-dropdown-container.table-dropdown {
-  right: -15px;
-  min-width: 230px;
-  max-width: 230px;
-  max-height: 500px;
+  right: -rem(15px);
+  min-width: rem(230px);
+  max-width: rem(230px);
+  max-height: rem(500px);
   overflow-x: hidden;
   overflow-y: auto;
   button[theme][theme='dialogue'][icon] i {
     padding: inherit;
-    padding-left: 5px;
+    padding-left: rem(5px);
     height: inherit;
     width: inherit;
     display: inline-block;
@@ -334,7 +334,7 @@ novo-dropdown-container.table-dropdown {
   }
   list {
     item.filter-search {
-      padding: 10px 0;
+      padding: rem(10px) 0;
       width: 100%;
       height: auto;
       flex-direction: column;
@@ -348,36 +348,36 @@ novo-dropdown-container.table-dropdown {
         align-items: center;
         justify-content: space-between;
         width: 90%;
-        font-size: 0.9em;
+        font-size: 0.9rem;
         margin: 0 auto;
         span {
           text-transform: uppercase;
           font-weight: $table-header-font-weight;
         }
         button {
-          padding: 0 5px;
+          padding: 0 rem(5px);
           i {
             height: auto !important;
             width: auto !important;
-            font-size: 0.9em;
+            font-size: 0.9rem;
           }
         }
       }
       input {
         border: none;
-        border-bottom: 2px solid #bebebe;
+        border-bottom: rem(2px) solid #bebebe;
         width: 90%;
         margin: 0 auto;
         background: transparent;
         &:focus {
           outline: none;
-          border-bottom: 2px solid $ocean;
+          border-bottom: rem(2px) solid $ocean;
         }
       }
     }
     item > span {
       display: inline-block;
-      max-width: calc(100% - 20px);
+      max-width: calc(100% - rem(20px));
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -385,14 +385,14 @@ novo-dropdown-container.table-dropdown {
   }
   .calender-container {
     height: 100%;
-    min-height: 200px;
+    min-height: rem(200px);
     width: 100%;
     background: #fff;
     > div {
       color: $positive;
-      line-height: 3em;
-      font-size: 0.9em;
-      padding-left: 5px;
+      line-height: 3rem;
+      font-size: 0.9rem;
+      padding-left: rem(5px);
       cursor: pointer;
     }
     novo-date-picker {
@@ -400,7 +400,7 @@ novo-dropdown-container.table-dropdown {
         width: 100%;
         height: 100%;
         box-shadow: none;
-        padding: 0 5px 10px;
+        padding: 0 rem(5px) rem(10px);
         .calendar-top {
           display: none;
         }
@@ -418,14 +418,14 @@ novo-dropdown-container.table-dropdown {
     tr {
       td,
       th {
-        border-bottom: 1px solid $table-border-color;
+        border-bottom: rem(1px) solid $table-border-color;
       }
     }
   }
   > thead > tr {
     > td,
     > th {
-      border-bottom-width: 2px;
+      border-bottom-width: rem(2px);
     }
   }
 }
@@ -461,14 +461,14 @@ novo-dropdown-container.table-dropdown {
   right: 0;
   top: 0;
   bottom: 0;
-  width: 6px;
+  width: rem(6px);
   cursor: col-resize;
 }
 
 novo-table {
   &[dark] {
     .table > thead > tr > th {
-      border-right: 1px solid rgba(#f4f4f4, 0.04);
+      border-right: rem(1px) solid rgba(#f4f4f4, 0.04);
     }
     .table-striped:not(.table-details) {
       > tbody tr:nth-of-type(odd) {
@@ -505,7 +505,7 @@ novo-table {
           novo-select {
             div[type='button'] {
               color: $white;
-              border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+              border-bottom: rem(1px) solid rgba(255, 255, 255, 0.15);
               i {
                 color: $white !important;
               }
@@ -535,7 +535,7 @@ novo-table {
           novo-select {
             div[type='button'] {
               color: $white;
-              border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+              border-bottom: rem(1px) solid rgba(255, 255, 255, 0.15);
               i {
                 color: $white !important;
               }
@@ -565,7 +565,7 @@ novo-table {
           novo-select {
             div[type='button'] {
               color: $white;
-              border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+              border-bottom: rem(1px) solid rgba(255, 255, 255, 0.15);
               i {
                 color: $white !important;
               }
@@ -597,7 +597,7 @@ novo-table {
         novo-select {
           div[type='button'] {
             color: $white;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: rem(1px) solid rgba(255, 255, 255, 0.15);
             i {
               color: $white !important;
             }

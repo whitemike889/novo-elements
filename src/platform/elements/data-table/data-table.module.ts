@@ -12,6 +12,7 @@ import { NovoSearchBoxModule } from '../search/SearchBox.module';
 import { NovoDatePickerModule } from '../date-picker/DatePicker.module';
 import { NovoCommonModule } from '../common/common.module';
 import { NovoSelectModule } from '../select/Select.module';
+import { NovoTooltipModule } from '../tooltip/Tooltip.module';
 
 import { NovoDataTable } from './data-table.component';
 import { NovoDataTableCell } from './cells/data-table-cell.component';
@@ -53,6 +54,7 @@ import { NovoDataTableRowDef } from './rows/defs/data-table-row-def.directive';
     NovoSearchBoxModule,
     NovoCommonModule,
     NovoSelectModule,
+    NovoTooltipModule,
   ],
   declarations: [
     DataTableInterpolatePipe,

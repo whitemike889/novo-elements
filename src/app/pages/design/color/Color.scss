@@ -41,9 +41,9 @@ color {
 
             > * {
                 transition: all 120ms ease-in-out;
-                padding: 15px;
-                margin: 15px;
-                border-radius: 3px;
+                padding: rem(15px);
+                margin: rem(15px);
+                border-radius: rem(3px);
 
                 &:hover {
                     transform: scale(1.7);
@@ -52,7 +52,7 @@ color {
             }
             @each $entity, $color in $entity-colors {
                 .bb-#{$entity} {
-                    $randNum: random(20) + 25px;
+                    $randNum: random(20) + rem(25px);
                     background: $color;
                     width: $randNum;
                     height: $randNum;
@@ -60,7 +60,7 @@ color {
             }
             @each $analytics, $color in $analytics-colors {
                 .bb-#{$analytics} {
-                    $randNum: random(20) + 25px;
+                    $randNum: random(20) + rem(25px);
                     background: $color;
                     width: $randNum;
                     height: $randNum;
@@ -80,12 +80,12 @@ color {
 
             .block {
                 text-align: center;
-                height: 150px;
+                height: rem(150px);
                 width: 25%;
-                min-width: 200px;
+                min-width: rem(200px);
                 position: relative;
-                padding-top: 140px;
-                margin-bottom: 95px;
+                padding-top: rem(140px);
+                margin-bottom: rem(95px);
 
                 &:active,
                 &:focus,
@@ -111,14 +111,14 @@ color {
                 }
 
                 .color-square {
-                    height: 130px;
+                    height: rem(130px);
                     width: 90%;
                     position: absolute;
                     top: 0;
                     left: 5%;
                     background: white;
                     transition: all 80ms ease-in-out;
-                    border-radius: 2px;
+                    border-radius: rem(2px);
                     cursor: pointer;
                 }
 
@@ -130,7 +130,7 @@ color {
                     transform: translate(-50%, -50%);
                     opacity: 0.85;
                     font-weight: 600;
-                    padding: 7px 0;
+                    padding: rem(7px) 0;
                     cursor: pointer;
 
                     &:after {
@@ -138,15 +138,15 @@ color {
                         position: absolute;
                         color: rgba(255, 255, 255, 0.4);
                         left: 50%;
-                        top: 40px;
-                        font-size: 10px;
+                        top: rem(40px);
+                        font-size: rem(10px);
                         text-transform: uppercase;
                         transform: translateX(-50%);
                         width: 100%;
                     }
 
                     span {
-                        font-size: 0.9em;
+                        font-size: 0.9rem;
                         opacity: 0.45;
                     }
                 }
@@ -184,8 +184,8 @@ color {
                             position: absolute;
                             color: rgba($dark, 0.4);
                             left: 50%;
-                            top: 40px;
-                            font-size: 10px;
+                            top: rem(40px);
+                            font-size: rem(10px);
                             text-transform: uppercase;
                             transform: translateX(-50%);
                             width: 100%;

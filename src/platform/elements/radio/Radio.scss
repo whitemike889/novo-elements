@@ -13,18 +13,18 @@ novo-radio-group {
         }
         &:first-child {
             button {
-                border-top-left-radius: 3px;
-                border-bottom-left-radius: 3px;
+                border-top-left-radius: rem(3px);
+                border-bottom-left-radius: rem(3px);
             }
         }
         &:last-child {
             button {
-                border-top-right-radius: 3px;
-                border-bottom-right-radius: 3px;
-                border-right-width: 1px !important;
+                border-top-right-radius: rem(3px);
+                border-bottom-right-radius: rem(3px);
+                border-right-width: rem(1px) !important;
                 border-right-style: solid !important;
                 &[theme="icon"] {
-                    border-right-width: 0px !important;
+                    border-right-width: 0 !important;
                 }
             }
         }
@@ -32,7 +32,7 @@ novo-radio-group {
 }
 
 novo-radio {
-    margin-right: 10px;
+    margin-right: rem(10px);
     &.vertical {
         display: block;
     }
@@ -43,7 +43,7 @@ novo-radio {
         &:focus+label {
             i {
                 &:before {
-                    text-shadow: 0px 0px 20px rgba(74, 137, 220, 0.50);
+                    text-shadow: 0 0 rem(20px) rgba(74, 137, 220, 0.50);
                 }
                 &.bhi-radio-empty,
                 &.bhi-radio-filled {
@@ -58,7 +58,7 @@ novo-radio {
             display: inline;
         }
         i {
-            margin-right: 5px;
+            margin-right: rem(5px);
             transition: all 200ms ease-in-out;
             &.bhi-checkbox-empty,
             &.bhi-radio-empty {

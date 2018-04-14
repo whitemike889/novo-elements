@@ -1,8 +1,8 @@
 select-demo {
     .example.select-demo {
-        padding: 20px 30px;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
+        padding: rem(20px) rem(30px);
+        border-top-right-radius: rem(3px);
+        border-top-left-radius: rem(3px);
         display: flex;
         flex-direction: row;
         flex-shrink: 0;
@@ -14,17 +14,17 @@ select-demo {
         & > * {
             flex-shrink: 0;
             flex-grow: 0;
-            margin-right: 20px;
+            margin-right: rem(20px);
         }
 
         label {
-            margin-bottom: 10px;
+            margin-bottom: rem(10px);
             display: block;
         }
 
         .caption {
-            font-size: 0.9em;
-            margin-right: 5px;
+            font-size: 0.9rem;
+            margin-right: rem(5px);
         }
     }
 }

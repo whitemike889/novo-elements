@@ -1,11 +1,11 @@
 tabs-demo {
     .example {
         header {
-            padding-top: 50px;
+            padding-top: rem(50px);
         }
 
         novo-nav-outlet {
-            padding: 25px;
+            padding: rem(25px);
         }
     }
 
@@ -21,16 +21,16 @@ tabs-demo {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        padding: 20px;
+        padding: rem(20px);
 
         novo-nav-outlet {
-            padding: 0 25px;
+            padding: 0 rem(25px);
         }
     }
 
     .example.button-tab-demo {
         header {
-            padding: 20px;
+            padding: rem(20px);
 
             &.color {
                 background: $positive;

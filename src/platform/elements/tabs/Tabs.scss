@@ -9,21 +9,21 @@ novo-nav {
     &.condensed {
         novo-tab,
         novo-tab-link {
-            font-size: 12px;
+            font-size: rem(12px);
             .novo-tab-link {
-                padding: 8px 12px;
+                padding: rem(8px) rem(12px);
             }
         }
     }
     novo-tab,
     novo-tab-link {
-        font-size: 14px;
+        font-size: rem(14px);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100%;
-        min-height: 45px;
+        min-height: rem(45px);
         position: relative;
         &.disabled {
             .novo-tab-link {
@@ -37,7 +37,7 @@ novo-nav {
             }
         }
         .novo-tab-link {
-            padding: 10px 20px;
+            padding: rem(10px) rem(20px);
             color: #fff;
             opacity: 0.7;
             font-weight: 400;
@@ -51,7 +51,7 @@ novo-nav {
             position: absolute;
             bottom: 0;
             width: 0;
-            height: 3px;
+            height: rem(3px);
             display: block;
             background: transparent;
             transition: all 220ms ease-in-out;
@@ -78,10 +78,10 @@ novo-nav {
     }
     &[type="button-bar"] {
         display: inline-flex;
-        border-radius: 3px;
-        border: 2px solid #fff;
+        border-radius: rem(3px);
+        border: rem(2px) solid #fff;
         novo-tab-button {
-            padding: 15px 20px;
+            padding: rem(15px) rem(20px);
             cursor: pointer;
             transition: all 120ms ease-in-out;
             &.disabled {
@@ -119,7 +119,7 @@ novo-nav {
             }
         }
         &[type="button-bar"] {
-            border: 2px solid #fff;
+            border: rem(2px) solid #fff;
             novo-tab-button {
                 color: rgba(255, 255, 255, .75);
                 &.active {
@@ -180,7 +180,7 @@ novo-nav {
             }
         }
         &[type="button-bar"] {
-            border: 2px solid $light;
+            border: rem(2px) solid $light;
             novo-tab-button {
                 color: $dark;
                 opacity: 0.75;
@@ -211,8 +211,8 @@ novo-nav {
             width: 100%;
             flex-direction: row;
             align-items: center;
-            height: 50px;
-            min-width: 150px;
+            height: rem(50px);
+            min-width: rem(150px);
             justify-content: space-between;
             transition: all 120ms ease-in-out;
             &:first-of-type {}
@@ -231,7 +231,7 @@ novo-nav {
             .indicator {
                 order: 1;
                 position: relative;
-                width: 4px;
+                width: rem(4px);
                 height: 0;
                 display: block;
                 background: transparent;
@@ -272,9 +272,9 @@ novo-nav-outlet {
     display: block;
     novo-nav-header {
         display: block;
-        padding: 8px;
-        border: 1px solid #333;
-        margin: 8px;
+        padding: rem(8px);
+        border: rem(1px) solid #333;
+        margin: rem(8px);
     }
     novo-nav-content {
         display: none;

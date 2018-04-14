@@ -1,9 +1,9 @@
 picker-demo {
     .picker-demo {
-        padding: 10px;
+        padding: rem(10px);
     }
 
     div.selected-value {
-        margin-bottom: 10px;
+        margin-bottom: rem(10px);
     }
 }

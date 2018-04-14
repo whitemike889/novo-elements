@@ -1,7 +1,7 @@
 novo-slider {
     display: block;
     width: 100%;
-    max-width: 1000px;
+    max-width: rem(1000px);
     margin: 0 auto;
     position: relative;
     overflow: hidden;
@@ -22,7 +22,7 @@ novo-slider {
     }
 
     .slides {
-        min-height: 250px;
+        min-height: rem(250px);
         transition: all 200ms ease-in-out;
         width: 100%;
         display: flex;
@@ -46,7 +46,7 @@ novo-slider {
     .controls {
         width: 100%;
         position: absolute;
-        bottom: 10px;
+        bottom: rem(10px);
 
         button {
             position: absolute;
@@ -54,11 +54,11 @@ novo-slider {
             transform: translateY(-50%);
 
             &[icon="previous"] {
-                left: 10px;
+                left: rem(10px);
             }
             &[icon="next"],
             &[icon="check"] {
-                right: 10px;
+                right: rem(10px);
             }
         }
     }
@@ -70,12 +70,12 @@ novo-slider {
         justify-content: center;
         width: 100%;
         background: rgba(#fff, .05);
-        padding: 20px;
+        padding: rem(20px);
 
         .indicator-circle {
-            width: 8px;
-            height: 8px;
-            margin: 0 5px;
+            width: rem(8px);
+            height: rem(8px);
+            margin: 0 rem(5px);
             border-radius: 50%;
             background: #D8D8D8;
             opacity: .2;

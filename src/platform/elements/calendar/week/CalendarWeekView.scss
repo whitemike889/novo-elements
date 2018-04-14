@@ -3,18 +3,18 @@
 
     .cal-day-headers {
         display: flex;
-        border: 1px solid #e1e1e1;
+        border: rem(1px) solid #e1e1e1;
     }
 
     .cal-day-headers .cal-header {
         flex: 1;
         text-align: center;
-        padding: 5px;
+        padding: rem(5px);
         background-color: $off-white;
     }
 
     .cal-day-headers .cal-header:not(:last-child) {
-        border-right: 1px solid #e1e1e1;
+        border-right: rem(1px) solid #e1e1e1;
     }
 
     .cal-day-headers .cal-header:hover,
@@ -31,7 +31,7 @@
         position: absolute;
 
         &:nth-child(n + 2) {
-            border-left: 1px solid $dark;
+            border-left: rem(1px) solid $dark;
         }
 
         novo-calendar-week-event {
@@ -39,26 +39,26 @@
 
             .cal-event {
                 height: inherit;
-                font-size: 12px;
-                min-height: 30px;
+                font-size: rem(12px);
+                min-height: rem(30px);
                 display: flex;
                 flex-flow: column;
                 background-color: $off-white;
 
                 .cal-event-ribbon {
-                    min-height:4px;
+                    min-height:rem(4px);
                     width: 100%;
                 }
                 .cal-event-title {
-                    padding: 0px 0px 0px 10px;
-                    line-height: 26px;
+                    padding: 0 0 0 rem(10px);
+                    line-height: rem(26px);
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
                 .cal-event-description {
-                    font-size: 10px;
-                    line-height: 13px;
-                    padding: 0px 0px 0px 10px;
+                    font-size: rem(10px);
+                    line-height: rem(13px);
+                    padding: 0 0 0 rem(10px);
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }

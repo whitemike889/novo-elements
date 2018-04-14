@@ -7,13 +7,13 @@ novo-dropdown-cell,
         background: inherit;
         text-transform: inherit;
         border-radius: 0;
-        border-bottom: 1px solid #DEDEDE;
+        border-bottom: rem(1px) solid #DEDEDE;
         padding: 0;
         width: 100% !important;
-        max-width: 200px;
+        max-width: rem(200px);
         i {
-            font-size: 10px;
-            margin-right: -5px;
+            font-size: rem(10px);
+            margin-right: -rem(5px);
             color: #A0A0A0;
         }
         .flex-wrapper {
@@ -33,14 +33,14 @@ novo-dropdown-cell,
         }
     }
     list {
-        max-height: 400px;
+        max-height: rem(400px);
         display: block;
         overflow: auto;
-        padding: 5px 0;
+        padding: rem(5px) 0;
     }
     item {
-        height: 30px !important;
-        padding: 0 16px !important;
+        height: rem(30px) !important;
+        padding: 0 rem(16px) !important;
         span {
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -53,6 +53,6 @@ novo-dropdown-cell,
         }
     }
     dropdown-item-header {
-        padding: 0 10px !important;
+        padding: 0 rem(10px) !important;
     }
 }

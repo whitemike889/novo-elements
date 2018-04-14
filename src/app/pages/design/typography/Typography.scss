@@ -10,7 +10,7 @@ typography {
 
     & > section {
         & > h2 {
-            margin-top: 50px;
+            margin-top: rem(50px);
         }
     }
 
@@ -19,7 +19,7 @@ typography {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 35px 0;
+            margin: rem(35px) 0;
 
             div {
             }
@@ -31,7 +31,7 @@ typography {
 
         &.line-height {
             div {
-                margin: 35px 0;
+                margin: rem(35px) 0;
             }
         }
 
@@ -50,59 +50,59 @@ typography {
                     }
 
                     hr {
-                        height: 2px;
+                        height: rem(2px);
                         background: $light;
                         border: none;
                     }
 
                     span {
-                        padding: 10px;
-                        border: 2px solid $carnation;
-                        border-radius: 6px;
-                        margin-right: 10px;
+                        padding: rem(10px);
+                        border: rem(2px) solid $carnation;
+                        border-radius: rem(6px);
+                        margin-right: rem(10px);
                     }
                 }
 
                 &.too-short {
-                    margin: 35px 0;
+                    margin: rem(35px) 0;
 
                     .ruler {
                         hr {
-                            width: 14em;
+                            width: 14rem;
                         }
                     }
                 }
 
                 &.just-right {
-                    margin: 35px 0;
+                    margin: rem(35px) 0;
 
                     .ruler {
                         hr {
-                            width: 33em;
+                            width: 33rem;
                         }
 
                         span {
                             background: $carnation;
                             color: #fff;
-                            border: 2px solid darken($carnation, 5%);
+                            border: rem(2px) solid darken($carnation, 5%);
                         }
                     }
                 }
 
                 &.too-long {
-                    margin: 35px 0;
+                    margin: rem(35px) 0;
 
                     .ruler {
                         hr {
-                            width: 80em;
+                            width: 80rem;
                         }
 
                         span {
-                            margin-right: 40px;
+                            margin-right: rem(40px);
                         }
 
                         p {
-                            text-indent: -10px;
+                            text-indent: -rem(10px);
                         }
                     }
                 }
@@ -111,15 +111,15 @@ typography {
     }
 
     .example {
-        padding: 20px;
+        padding: rem(20px);
 
         div.type-group {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
-            border-bottom: 2px solid #f1f1f1;
-            padding: 15px;
+            border-bottom: rem(2px) solid #f1f1f1;
+            padding: rem(15px);
             overflow: hidden;
 
             h1,
@@ -136,14 +136,14 @@ typography {
             }
 
             span {
-                margin: 5px 0;
+                margin: rem(5px) 0;
                 opacity: 0.65;
             }
         }
 
         hr {
             border: none;
-            height: 1px;
+            height: rem(1px);
             background: #f4f4f4;
             display: block;
         }

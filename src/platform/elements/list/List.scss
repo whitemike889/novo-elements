@@ -12,7 +12,7 @@ novo-list {
             novo-list-item {
                 background: $color;
                 color: #fff;
-                border-bottom: 1px solid rgba(#fff, .1);
+                border-bottom: rem(1px) solid rgba(#fff, .1);
                 i {
                     color: #fff;
                 }
@@ -33,7 +33,7 @@ novo-list {
             novo-list-item {
                 background: $color;
                 color: #fff;
-                border-bottom: 1px solid rgba(#fff, .1);
+                border-bottom: rem(1px) solid rgba(#fff, .1);
                 i {
                     color: #fff;
                 }
@@ -52,8 +52,8 @@ novo-list {
 
 novo-list-item {
     background: #fff;
-    border-bottom: 1px solid #f4f4f4;
-    padding: 15px;
+    border-bottom: rem(1px) solid #f4f4f4;
+    padding: rem(15px);
     display: flex;
     flex-direction: row;
     &:last-child {
@@ -68,8 +68,8 @@ novo-list-item {
         display: flex;
         align-items: center;
         item-avatar {
-            margin-right: 0.5em;
-            font-size: 20px;
+            margin-right: 0.5rem;
+            font-size: rem(20px);
             i {
                 @each $entity,
                 $color in $entity-colors {
@@ -93,11 +93,11 @@ novo-list-item {
         }
     }
     .avatar item-content {
-        margin-left: 2.7em;
+        margin-left: 2.7rem;
     }
     item-content {
         display: flex;
-        margin-left: 0.2em;
+        margin-left: 0.2rem;
         >* {
             color: rgba(#434343, .65);
         }
@@ -133,7 +133,7 @@ novo-list-item {
         flex: 1;
         text-align: right;
         i {
-            line-height: 1.4em;
+            line-height: 1.4rem;
         }
     }
 }

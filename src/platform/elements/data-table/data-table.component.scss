@@ -1,15 +1,15 @@
 $table-bg-accent: #f4f4f4;
-$novo-row-horizontal-padding: 20px;
+$novo-row-horizontal-padding: rem(20px);
 $table-header-font-weight: 400;
-$breakpoint: 1000px;
+$breakpoint: rem(1000px);
 
 cdk-table {
   display: block;
-  min-height: 300px;
+  min-height: rem(300px);
   flex: 1;
   &.empty {
-    min-height: 62px;
-    max-height: 62px;
+    min-height: rem(62px);
+    max-height: rem(62px);
   }
   > .novo-data-table-row:nth-of-type(odd) {
     .novo-data-table-cell,
@@ -52,22 +52,22 @@ cdk-table {
   flex-wrap: no-wrap;
   .novo-data-table-header-cell,
   .novo-data-table-checkbox-header-cell {
-    border-bottom: 1px solid $off-white;
+    border-bottom: rem(1px) solid $off-white;
   }
 }
 
 .novo-data-table-cell,
 .novo-data-table-header-cell {
-  min-width: 200px;
-  padding: 10px;
+  min-width: rem(200px);
+  padding: rem(10px);
   flex: 1;
   > i.label-icon {
-    margin-right: 0.5em;
+    margin-right: 0.5rem;
   }
   > span {
     display: block;
-    min-width: 180px;
-    max-width: 180px;
+    min-width: rem(180px);
+    max-width: rem(180px);
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -93,11 +93,11 @@ cdk-table {
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    padding: 0 5px;
+    padding: 0 rem(5px);
     novo-dropdown {
       button {
         padding: 0;
-        padding-left: 5px;
+        padding-left: rem(5px);
         &:hover,
         &:active,
         &:focus {
@@ -107,22 +107,22 @@ cdk-table {
     }
   }
   &.button-cell {
-    min-width: 40px;
-    max-width: 40px;
+    min-width: rem(40px);
+    max-width: rem(40px);
   }
   &.dropdown-cell {
-    min-width: 98px;
-    max-width: 98px;
+    min-width: rem(98px);
+    max-width: rem(98px);
     &.empty {
-      min-width: 39px;
-      max-width: 39px;
+      min-width: rem(39px);
+      max-width: rem(39px);
     }
   }
   i.data-table-icon {
     cursor: pointer;
-    font-size: 1.2em;
-    padding: 0.5em;
-    border-radius: 3px;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: rem(3px);
     &.disabled {
       pointer-events: none;
       opacity: 0.7;
@@ -137,7 +137,7 @@ cdk-table {
 }
 
 .novo-data-table-header-cell {
-  border-left: 1px solid $off-white;
+  border-left: rem(1px) solid $off-white;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -147,7 +147,7 @@ cdk-table {
   }
   > label {
     display: inline-block;
-    padding-right: 10px;
+    padding-right: rem(10px);
     overflow: hidden;
     text-overflow: ellipsis;
     &.sort-disabled {
@@ -155,7 +155,7 @@ cdk-table {
     }
   }
   > div {
-    width: 55px;
+    width: rem(55px);
     display: flex;
     flex: 0;
   }
@@ -163,15 +163,15 @@ cdk-table {
     display: inline-block;
   }
   &.button-header-cell {
-    min-width: 40px;
-    max-width: 40px;
+    min-width: rem(40px);
+    max-width: rem(40px);
   }
   &.dropdown-header-cell {
-    min-width: 98px;
-    max-width: 98px;
+    min-width: rem(98px);
+    max-width: rem(98px);
     &.empty {
-      min-width: 39px;
-      max-width: 39px;
+      min-width: rem(39px);
+      max-width: rem(39px);
     }
   }
 }
@@ -182,8 +182,8 @@ cdk-table {
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  max-width: 40px;
-  padding: 0 10px;
+  max-width: rem(40px);
+  padding: 0 rem(10px);
   div.data-table-checkbox {
     display: flex;
     cursor: pointer;
@@ -211,31 +211,31 @@ novo-data-table {
   flex-direction: column;
   flex: 1;
   &.loading {
-    min-height: 300px;
+    min-height: rem(300px);
   }
   header {
-    padding: 5px;
+    padding: rem(5px);
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    border-bottom: 1px solid $off-white;
+    border-bottom: rem(1px) solid $off-white;
     > [novo-data-table-custom-header] {
       flex: 1;
     }
     > novo-search {
-      padding-right: 10px;
+      padding-right: rem(10px);
       display: none;
       @media (min-width: $breakpoint) {
         display: flex;
       }
       > input {
-        padding: 8.5px;
-        font-size: 1.1em;
-        height: 35px;
+        padding: 8rem (5px);
+        font-size: 1.1rem;
+        height: rem(35px);
       }
       &.active > button[theme='fab'] {
-        height: 35px;
-        min-height: 35px;
+        height: rem(35px);
+        min-height: rem(35px);
       }
     }
     > div.novo-data-table-actions {
@@ -243,7 +243,7 @@ novo-data-table {
       align-items: center;
       justify-content: flex-end;
       > * {
-        margin-right: 0.2em;
+        margin-right: 0.2rem;
         &:last-child {
           margin-right: 0;
         }
@@ -253,26 +253,26 @@ novo-data-table {
         display: flex;
         align-items: center;
         button {
-          margin-left: 3px;
+          margin-left: rem(3px);
         }
         button[theme][theme='icon'] {
-          height: 35px;
-          width: 35px;
-          font-size: 1.4em;
+          height: rem(35px);
+          width: rem(35px);
+          font-size: 1.4rem;
         }
         novo-dropdown {
           button[theme] {
             white-space: nowrap;
-            padding: 6px 5px 6px 15px !important;
+            padding: rem(6px) rem(5px) rem(6px) rem(15px) !important;
           }
         }
       }
     }
   }
   button[theme][theme='icon'] {
-    height: 30px;
-    width: 30px;
-    padding: 5px;
+    height: rem(30px);
+    width: rem(30px);
+    padding: rem(5px);
   }
   .novo-data-table-loading-mask {
     position: absolute;
@@ -301,7 +301,7 @@ novo-data-table {
   }
   .novo-data-table-empty-container,
   .novo-data-table-no-results-container {
-    padding: 2em;
+    padding: 2rem;
     flex: 1;
     display: flex;
     align-items: center;
@@ -312,12 +312,12 @@ novo-data-table {
     display: flex;
     flex: 1;
     .novo-data-table-custom-filter {
-      border-right: 1px solid $off-white;
+      border-right: rem(1px) solid $off-white;
       novo-date-picker {
         .calendar {
           box-shadow: none;
           .date-range-tabs {
-            height: 51px;
+            height: rem(51px);
           }
           .calendar-footer {
             display: none;
@@ -325,11 +325,11 @@ novo-data-table {
         }
       }
       div.period-selector {
-        padding: 1em;
+        padding: 1rem;
         .novo-form-control-label {
           display: block;
           max-width: 100%;
-          margin-bottom: 1em;
+          margin-bottom: 1rem;
         }
       }
     }
@@ -344,7 +344,7 @@ novo-data-table {
       &.empty-user-filtered {
         display: flex;
         flex-flow: column nowrap;
-        min-height: 250px;
+        min-height: rem(250px);
       }
     }
   }
@@ -356,14 +356,14 @@ novo-data-table-pagination {
     align-items: center;
     flex: 1;
     novo-tiles > .tile-container .tile {
-      padding: 7px 10px;
+      padding: rem(7px) rem(10px);
     }
     > .novo-data-table-pagination-size {
-      padding-right: 10px;
+      padding-right: rem(10px);
     }
     > .novo-data-table-range-label-long,
     > .novo-data-table-range-label-short {
-      padding-right: 10px;
+      padding-right: rem(10px);
     }
     > .novo-data-table-range-label-long {
       display: none;
@@ -378,7 +378,7 @@ novo-data-table-pagination {
       }
     }
     > button:first-of-type {
-      margin-right: 5px;
+      margin-right: rem(5px);
     }
     > button {
       span {
@@ -389,15 +389,15 @@ novo-data-table-pagination {
       }
     }
     > button[theme][theme='dialogue'][icon][side='left'] {
-      padding: 5px;
+      padding: rem(5px);
       @media (min-width: $breakpoint) {
-        padding: 5px 15px 5px 5px;
+        padding: rem(5px) rem(15px) rem(5px) rem(5px);
       }
     }
     > button[theme][theme='dialogue'][icon][side='right'] {
-      padding: 5px;
+      padding: rem(5px);
       @media (min-width: $breakpoint) {
-        padding: 5px 5px 5px 15px;
+        padding: rem(5px) rem(5px) rem(5px) rem(15px);
       }
     }
   }
@@ -406,20 +406,19 @@ novo-data-table-pagination {
     flex-flow: row nowrap;
     flex: 1;
     > * {
-      margin: auto 5px;
+      margin: auto rem(5px);
     }
     h5.rows {
       padding: 0;
-      font-size: 12px;
+      font-size: rem(12px);
       opacity: 0.75;
-      letter-spacing: 0.1px;
     }
     span.spacer {
       flex: 1;
     }
     novo-select {
-      max-width: 100px;
-      min-width: 100px;
+      max-width: rem(100px);
+      min-width: rem(100px);
       div[type='button'] {
         &:hover {
           i {
@@ -445,9 +444,9 @@ novo-data-table-pagination {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 2px;
+        width: rem(30px);
+        height: rem(30px);
+        border-radius: rem(2px);
         list-style-type: none;
         cursor: pointer;
         color: $company;
@@ -466,20 +465,20 @@ novo-data-table-pagination {
 }
 
 novo-dropdown-container.data-table-dropdown {
-  min-width: 230px;
-  max-width: 230px;
-  max-height: 500px;
+  min-width: rem(230px);
+  max-width: rem(230px);
+  max-height: rem(500px);
   overflow-x: hidden;
   overflow-y: auto;
   .header {
-    padding: 5px 10px 0px 10px;
+    padding: rem(5px) rem(10px) 0 rem(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     button {
-      padding: 3px;
+      padding: rem(3px);
       icon {
-        font-size: 0.8em;
+        font-size: 0.8rem;
       }
     }
   }
@@ -489,7 +488,7 @@ novo-dropdown-container.data-table-dropdown {
   }
   button[theme][theme='dialogue'][icon] i {
     padding: inherit;
-    padding-left: 5px;
+    padding-left: rem(5px);
     height: inherit;
     width: inherit;
     display: inline-block;
@@ -497,7 +496,7 @@ novo-dropdown-container.data-table-dropdown {
   }
   list {
     item.filter-search {
-      padding: 10px 0;
+      padding: rem(10px) 0;
       width: 100%;
       height: auto;
       flex-direction: column;
@@ -511,36 +510,36 @@ novo-dropdown-container.data-table-dropdown {
         align-items: center;
         justify-content: space-between;
         width: 90%;
-        font-size: 0.9em;
+        font-size: 0.9rem;
         margin: 0 auto;
         span {
           text-transform: uppercase;
           font-weight: $table-header-font-weight;
         }
         button {
-          padding: 0 5px;
+          padding: 0 rem(5px);
           i {
             height: auto !important;
             width: auto !important;
-            font-size: 0.9em;
+            font-size: 0.9rem;
           }
         }
       }
       input {
         border: none;
-        border-bottom: 2px solid #bebebe;
+        border-bottom: rem(2px) solid #bebebe;
         width: 90%;
         margin: 0 auto;
         background: transparent;
         &:focus {
           outline: none;
-          border-bottom: 2px solid $ocean;
+          border-bottom: rem(2px) solid $ocean;
         }
       }
     }
     item > span {
       display: inline-block;
-      max-width: calc(100% - 20px);
+      max-width: calc(100% - rem(20px));
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -548,14 +547,14 @@ novo-dropdown-container.data-table-dropdown {
   }
   .calender-container {
     height: 100%;
-    min-height: 200px;
+    min-height: rem(200px);
     width: 100%;
     background: #fff;
     > div {
       color: $positive;
-      line-height: 3em;
-      font-size: 0.9em;
-      padding-left: 5px;
+      line-height: 3rem;
+      font-size: 0.9rem;
+      padding-left: rem(5px);
       cursor: pointer;
     }
     novo-date-picker {
@@ -563,7 +562,7 @@ novo-dropdown-container.data-table-dropdown {
         width: 100%;
         height: 100%;
         box-shadow: none;
-        padding: 0 5px 10px;
+        padding: 0 rem(5px) rem(10px);
         .calendar-top {
           display: none;
         }

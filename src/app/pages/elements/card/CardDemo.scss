@@ -1,14 +1,14 @@
 card-demo {
     .example {
-        padding: 20px;
+        padding: rem(20px);
 
         > .actions {
             display: flex;
             align-items: center;
-            margin-top: 20px;
+            margin-top: rem(20px);
 
             > * {
-                margin-right: 5px;
+                margin-right: rem(5px);
             }
 
             > form-field {

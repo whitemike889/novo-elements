@@ -7,19 +7,19 @@ novo-entity-chips {
     align-items: center;
     flex-wrap: wrap;
     justify-content: flex-start;
-    border-bottom: 1px solid lighten($dark, 45%);
+    border-bottom: rem(1px) solid lighten($dark, 45%);
     transition: all 200ms ease-in-out;
     position: relative;
-    padding: 5px 20px 5px 0;
+    padding: rem(5px) rem(20px) rem(5px) 0;
     &.with-value {
-        margin-bottom: 20px;
+        margin-bottom: rem(20px);
     }
     &:hover {
-        border-bottom: 1px solid lighten($dark, 15%);
+        border-bottom: rem(1px) solid lighten($dark, 15%);
     }
     &.selected,
     &.selected:hover {
-        border-bottom: 1px solid $positive;
+        border-bottom: rem(1px) solid $positive;
         &+i {
             color: $positive;
         }
@@ -30,13 +30,13 @@ novo-entity-chips {
         align-items: center;
         justify-content: space-between;
         background: #EEEEEE;
-        border-radius: 4px;
-        padding: 0.3em 0.5em;
-        margin-right: 5px;
-        margin-bottom: 5px;
+        border-radius: rem(4px);
+        padding: 0.3rem 0.5rem;
+        margin-right: rem(5px);
+        margin-bottom: rem(5px);
         width: auto;
-        max-width: 180px;
-        border: 1px solid transparent;
+        max-width: rem(180px);
+        border: rem(1px) solid transparent;
         transition: all 200ms ease-in-out;
         span {
             vertical-align: middle;
@@ -45,19 +45,19 @@ novo-entity-chips {
             span {
                 color: $ocean;
                 cursor: pointer;
-                max-width: 115px;
+                max-width: rem(115px);
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 display: block;
             }
             i {
-                font-size: 0.8em;
+                font-size: 0.8rem;
             }
         }
         i.bhi-close {
-            margin-left: 10px;
-            font-size: 1.1em;
+            margin-left: rem(10px);
+            font-size: 1.1rem;
             cursor: pointer;
             color: darken(#eee, 15%);
             &:hover {
@@ -65,7 +65,7 @@ novo-entity-chips {
             }
         }
         &.selected {
-            border: 1px solid $positive;
+            border: rem(1px) solid $positive;
         }
     }
     .chip-input-container {
@@ -93,7 +93,7 @@ novo-entity-chips {
         flex: 1 100%;
         position: absolute;
         right: 0;
-        bottom: -20px;
+        bottom: -rem(20px);
         font-size: 0.9rem;
         color: $negative;
         cursor: pointer;
@@ -101,18 +101,18 @@ novo-entity-chips {
         align-items: center;
         i {
             font-size: 0.7rem;
-            padding-bottom: 2px;
-            margin-left: 5px;
+            padding-bottom: rem(2px);
+            margin-left: rem(5px);
         }
     }
     i.bhi-search {
         position: absolute;
-        bottom: 8px;
+        bottom: rem(8px);
         right: 0;
-        font-size: 1.1em;
+        font-size: 1.1rem;
         color: $dark;
         &.has-value {
-            bottom: 14px;
+            bottom: rem(14px);
         }
     }
 }
@@ -124,9 +124,9 @@ novo-entity-chips {
     &+i {
         position: absolute;
         right: 0;
-        bottom: 7px;
+        bottom: rem(7px);
     }
-    padding: 2px 0;
+    padding: rem(2px) 0;
     novo-picker {
         padding-bottom: 0;
         >input {
@@ -201,7 +201,7 @@ entity-chips {
         position: absolute;
         color: black;
         novo-list {
-            max-height: 450px;
+            max-height: rem(450px);
             overflow: auto;
             novo-list-item {
                 flex: 0 0;
@@ -228,10 +228,10 @@ entity-chips {
         .no-recents,
         .null-results {
             text-align: center;
-            padding: 1em 0 4em;
+            padding: 1rem 0 4rem;
             >i {
-                font-size: 3em;
-                margin: 0.5em;
+                font-size: 3rem;
+                margin: 0.5rem;
                 color: rgba(0, 0, 0, .3);
             }
             >h4,
@@ -246,7 +246,7 @@ entity-chips {
             >p {}
         }
         section {
-            box-shadow: 0.1em 0.1em 1em rgba(0, 0, 0, 0.25);
+            box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.25);
             z-index: 9;
             position: absolute;
             width: 100%;
@@ -261,11 +261,11 @@ entity-chips {
             top: 100%;
             left: 0;
             width: 100%;
-            min-width: 180px;
-            max-height: 450px;
+            min-width: rem(180px);
+            max-height: rem(450px);
             overflow: auto;
             z-index: 900;
-            border: 1px solid #4A89DC;
+            border: rem(1px) solid #4A89DC;
             transition: all 200ms ease-in-out;
             novo-list-item {
                 flex: 0 0;
@@ -279,12 +279,12 @@ entity-chips {
                         white-space: nowrap;
                     }
                     >p {
-                        min-width: 15em;
-                        font-size: .9em;
+                        min-width: 15rem;
+                        font-size: .9rem;
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         overflow: hidden;
-                        padding-right: 1em;
+                        padding-right: 1rem;
                     }
                 }
             }

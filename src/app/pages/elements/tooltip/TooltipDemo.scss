@@ -1,6 +1,6 @@
 tooltip-demo {
     .example.tooltip-demo {
-        padding: 20px 30px;
+        padding: rem(20px) rem(30px);
         display: flex;
         flex-direction: row;
         justify-content: space-around;

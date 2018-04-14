@@ -6,46 +6,46 @@ starting at line 82. >>
 // Main content container
 main.main-content {
     position: relative;
-    min-height: 300px;
-    margin: 0 0 0 300px; // Container class to center content
+    min-height: rem(300px);
+    margin: 0 0 0 rem(300px); // Container class to center content
     .container {
-        padding: 70px 5.5rem;
+        padding: rem(70px) 5.5rem;
         margin: 0 auto;
         h1 {
             small {
-                font-size: 14px;
+                font-size: rem(14px);
                 vertical-align: middle;
             }
         }
     } // Contains component demos
     .example {
-        margin-top: 10px;
-        border: 1px solid #E9EAEA;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
+        margin-top: rem(10px);
+        border: rem(1px) solid #E9EAEA;
+        border-top-right-radius: rem(3px);
+        border-top-left-radius: rem(3px);
         border-bottom: none;
         box-sizing: border-box;
         >* {
-            border-top-right-radius: 3px;
-            border-top-left-radius: 3px;
+            border-top-right-radius: rem(3px);
+            border-top-left-radius: rem(3px);
         }
     } // Contains code snippet
     pre {
-        margin: 0 0 35px;
+        margin: 0 0 rem(35px);
         box-sizing: border-box;
-        font-size: 0.9em;
+        font-size: 0.9rem;
         background: #F8F8F8;
-        border: 1px solid #E9EAEA;
+        border: rem(1px) solid #E9EAEA;
         color: #4C545A;
         code {
             border: none;
             width: 100%;
             display: block;
             box-sizing: border-box;
-            border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
-            line-height: 1.5em;
-            padding: 15px 25px;
+            border-bottom-left-radius: rem(3px);
+            border-bottom-right-radius: rem(3px);
+            line-height: 1.5rem;
+            padding: rem(15px) rem(25px);
             &.hljs {
                 background: #F9F9F9 !important;
             }
@@ -61,7 +61,7 @@ main.main-content {
             }
 
             img {
-                max-height: 250px;
+                max-height: rem(250px);
                 margin-top: auto;
                 margin-bottom: auto;
             }
@@ -73,18 +73,18 @@ main.main-content {
         }
         >aside {
             background: $background;
-            padding: 10px 20px;
-            border-radius: 3px;
+            padding: rem(10px) rem(20px);
+            border-radius: rem(3px);
             display: inline-block;
-            border: 2px solid darken($background, 2%);
+            border: rem(2px) solid darken($background, 2%);
             h6 {
                 color: $mint;
-                margin-bottom: 5px;
+                margin-bottom: rem(5px);
             }
             &.design-principle {
                 h6 {
-                    border-bottom: 1px solid darken($background, 5%);
-                    padding-bottom: 8px;
+                    border-bottom: rem(1px) solid darken($background, 5%);
+                    padding-bottom: rem(8px);
                     span {
                         font-weight: 300;
                     }
@@ -92,21 +92,21 @@ main.main-content {
                 .hint {
                     display: block;
                     color: darken($background, 50%);
-                    margin: 5px 0;
-                    padding: 10px;
-                    font-size: 0.9em;
-                    border-radius: 3px;
+                    margin: rem(5px) 0;
+                    padding: rem(10px);
+                    font-size: 0.9rem;
+                    border-radius: rem(3px);
                     background: darken($background, 5%);
-                    border: 1px solid darken($background, 10%);
+                    border: rem(1px) solid darken($background, 10%);
                     i {
-                        margin-right: 10px;
+                        margin-right: rem(10px);
                     }
                     >span {
                         display: block;
                     }
                     .link {
                         display: block;
-                        margin-top: 10px;
+                        margin-top: rem(10px);
                         font-weight: 400;
                         strong {
                             font-weight: 600;
@@ -119,7 +119,7 @@ main.main-content {
     .accepted,
     .not-accepted {
         display: block;
-        margin-top: 15px;
+        margin-top: rem(15px);
     }
     .not-accepted {
         color: $negative;
@@ -138,7 +138,7 @@ main.main-content {
         }
         &>section.design.container {
             article {
-                margin: 80px 0;
+                margin: rem(80px) 0;
             }
         }
     } // DEMO STYLES
@@ -154,25 +154,25 @@ main.main-content {
 
 multi-code-snippet {
     background: #F8F8F8;
-    border: 1px solid #E9EAEA;
+    border: rem(1px) solid #E9EAEA;
     display: block;
     label {
-        font-size: 0.8em;
+        font-size: 0.8rem;
         font-weight: 500;
-        padding: 5px 10px;
+        padding: rem(5px) rem(10px);
         text-transform: uppercase;
     }
     pre {
         margin: 0 !important;
-        font-size: 0.8em;
+        font-size: 0.8rem;
         color: #4C545A;
         border: none !important;
         code {
             border: none;
             width: 100%;
             display: block;
-            line-height: 1.5em;
-            padding: 15px 25px;
+            line-height: 1.5rem;
+            padding: rem(15px) rem(25px);
             &.hljs {
                 background: #F9F9F9 !important;
             }

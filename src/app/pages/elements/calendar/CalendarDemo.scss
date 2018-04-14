@@ -1,11 +1,11 @@
 calendar-demo {
     .example.calendar-demo {
-        padding: 20px;
+        padding: rem(20px);
         display: flex;
         flex-direction: row;
 
         > * {
-            padding: 20px;
+            padding: rem(20px);
         }
 
         > calendar {
@@ -18,7 +18,7 @@ calendar-demo {
     }
 
     .example.demo {
-        padding: 20px;
+        padding: rem(20px);
         // background: rgba(0, 0, 0, .45);
         background: $mint;
 
@@ -27,7 +27,7 @@ calendar-demo {
         }
 
         novo-calendar-date-change {
-            padding: 1px;
+            padding: rem(1px);
         }
 
         novo-tiles {
@@ -35,13 +35,13 @@ calendar-demo {
         }
 
         .cal-demo-content {
-            max-height: 400px;
+            max-height: rem(400px);
             overflow-y: scroll;
         }
     }
 
     .example.side-by-side-demo {
-        padding: 20px;
+        padding: rem(20px);
     }
 }
 
@@ -56,16 +56,16 @@ calendar-demo {
         color: #fff;
 
         > label {
-            margin-top: 15px;
+            margin-top: rem(15px);
             display: block;
             @extend .caption;
-            font-size: 0.9em;
+            font-size: 0.9rem;
         }
     }
 
      > novo-time-picker,
     > novo-date-picker {
-        margin-right: 5px;
+        margin-right: rem(5px);
 
         &:last-child {
             margin-right: 0;

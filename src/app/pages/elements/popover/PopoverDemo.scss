@@ -1,7 +1,7 @@
 popover-demo {
     .example.popover-demo {
         margin: auto;
-        padding: 20px 30px;
+        padding: rem(20px) rem(30px);
         position: relative;
         display: flex;
         span {

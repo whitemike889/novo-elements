@@ -6,18 +6,18 @@ skill-specialty-picker-results {
     z-index: 99;
     background: $white;
     &.active {
-        border: 1px solid $positive;
+        border: rem(1px) solid $positive;
     }
     novo-list {
         list-style: none;
         padding: 0;
         margin: 0;
-        max-height: 330px;
+        max-height: rem(330px);
         overflow-y: auto;
         overflow-x: hidden;
         novo-list-item {
             cursor: pointer;
-            padding: 10px 16px;
+            padding: rem(10px) rem(16px);
             box-sizing: border-box;
             display: block;
             item-content {
@@ -31,8 +31,8 @@ skill-specialty-picker-results {
             }
             span {
                 display: inline-block;
-                min-width: 100px;
-                margin: 2px 0;
+                min-width: rem(100px);
+                margin: rem(2px) 0;
             }
             &.active,
             &:focus,
@@ -49,7 +49,7 @@ skill-specialty-picker-results {
         }
     }
     section {
-        box-shadow: .1em .1em 1em rgba(0, 0, 0, 0.25);
+        box-shadow: .1rem .1rem 1rem rgba(0, 0, 0, 0.25);
         z-index: 9;
         position: absolute;
         width: 100%;

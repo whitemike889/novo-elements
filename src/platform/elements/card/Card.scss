@@ -2,19 +2,19 @@ novo-card {
   .novo-card {
     background-color: $white;
     box-shadow: $whiteframe-shadow-z3;
-    border-radius: 0.4em;
+    border-radius: 0.4rem;
     position: relative;
     overflow-x: hidden;
     &.loading {
-      min-height: 200px;
+      min-height: rem(200px);
     }
     div.card-loading-container {
       position: absolute;
-      top: 43px;
+      top: rem(43px);
       left: 0;
       right: 0;
       bottom: 0;
-      border-radius: 0.4em;
+      border-radius: 0.4rem;
       background: $white;
       display: flex;
       flex-direction: column;
@@ -27,7 +27,7 @@ novo-card {
       flex-flow: row nowrap;
       align-items: center;
       justify-content: space-between;
-      padding: 0.5em;
+      padding: 0.5rem;
       .title {
         display: flex;
         align-items: center;
@@ -35,18 +35,18 @@ novo-card {
         flex: 1;
         i.bhi-move {
           color: $light;
-          margin-right: 0.3em;
+          margin-right: 0.3rem;
           cursor: pointer;
         }
         h3 {
-          font-size: 1.3em;
+          font-size: 1.3rem;
           padding: 0;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
           width: 100%;
           i {
-            font-size: 1.2em;
+            font-size: 1.2rem;
             &.bhi-info {
               color: $light;
             }
@@ -57,10 +57,10 @@ novo-card {
         color: lighten($dark, 15%);
         white-space: nowrap;
         button {
-          height: 30px;
-          width: 30px;
-          padding: 5px;
-          font-size: 1.2em;
+          height: rem(30px);
+          width: rem(30px);
+          padding: rem(5px);
+          font-size: 1.2rem;
           text-transform: none;
         }
       }
@@ -69,23 +69,23 @@ novo-card {
       button {
         font-size: 1.05rem;
         i {
-          font-size: 1.05em;
+          font-size: 1.05rem;
         }
       }
     }
     main {
-      padding: 0 0.8em 0.8em;
+      padding: 0 0.8rem 0.8rem;
       background-color: $white;
       p.card-message {
-        padding: 20px 0;
+        padding: rem(20px) 0;
         max-width: inherit;
         text-align: center;
-        line-height: 25px;
+        line-height: rem(25px);
         color: lighten($grey, 10%);
         i {
           display: block;
-          font-size: 24px;
-          margin: 0 0 0.5em;
+          font-size: rem(24px);
+          margin: 0 0 0.5rem;
           color: lighten($grey, 20%);
         }
       }

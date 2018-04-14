@@ -1,23 +1,23 @@
 form-demo {
     .example.form-demo {
-        padding: 20px;
+        padding: rem(20px);
         .dynamic {
-            margin-top: 20px;
+            margin-top: rem(20px);
         }
     }
     .dynamic-demo-footer {
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        padding-top: 20px;
-        margin-bottom: 20px;
+        padding-top: rem(20px);
+        margin-bottom: rem(20px);
         &>button {
-            margin-left: 10px;
+            margin-left: rem(10px);
         }
     }
     .final-value {
         color: #afafaf;
-        padding: 10px;
+        padding: rem(10px);
         background: #f4f4f4;
     }
 }

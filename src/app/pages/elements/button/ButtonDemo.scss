@@ -1,8 +1,8 @@
 buttons-demo {
     .example.buttons-demo {
-        padding: 20px 30px;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
+        padding: rem(20px) rem(30px);
+        border-top-right-radius: rem(3px);
+        border-top-left-radius: rem(3px);
         display: flex;
         flex-direction: row;
         flex-shrink: 0;
@@ -13,7 +13,7 @@ buttons-demo {
         & > * {
             flex-shrink: 0;
             flex-grow: 0;
-            margin-right: 15px;
+            margin-right: rem(15px);
         }
         &.icons,
         &.header {
@@ -39,7 +39,7 @@ buttons-demo {
         }
         .inverse-color {
             background: $navigation;
-            padding: 10px;
+            padding: rem(10px);
         }
     }
 }

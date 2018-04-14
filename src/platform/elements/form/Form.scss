@@ -4,20 +4,20 @@
 @import './ControlGroup';
 .novo-form-control-label {
   color: $dark;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   flex: 1;
-  max-width: 130px;
-  min-width: 130px;
+  max-width: rem(130px);
+  min-width: rem(130px);
   font-weight: 500;
   transition: 200ms ease-out;
-  margin-right: 35px;
+  margin-right: rem(35px);
   text-transform: uppercase;
-  padding-top: 8px;
+  padding-top: rem(8px);
   word-break: word-break;
   overflow-wrap: break-word;
   &.encrypted {
-    max-width: 110px;
-    min-width: 110px;
+    max-width: rem(110px);
+    min-width: rem(110px);
   }
 }
 
@@ -27,7 +27,7 @@ novo-form {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  max-width: 715px;
+  max-width: rem(715px);
   .novo-form-container {
     display: flex;
     flex-direction: column;
@@ -39,21 +39,21 @@ novo-form {
       novo-fieldset-header {
         background: $off-white;
         box-sizing: content-box;
-        padding: 1em 1em 1em 3em;
-        margin-bottom: 2em;
+        padding: 1rem 1rem 1rem 3rem;
+        margin-bottom: 2rem;
         display: flex;
-        margin-left: -1.5em;
-        margin-right: -1.5em;
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
         i {
-          margin-right: 10px;
+          margin-right: rem(10px);
         }
         h6 {
           font-weight: 400;
           padding: 0;
           display: flex;
-          >i {
+          > i {
             display: flex;
-            margin-top: -3px; // Icon itself is not centered in the SVG
+            margin-top: -rem(3px); // Icon itself is not centered in the SVG
           }
         }
       }
@@ -62,8 +62,8 @@ novo-form {
       td.novo-form-row {
         width: 100%;
         &:first-child {
-          >novo-control,
-          >novo-custom-control-container {
+          > novo-control,
+          > novo-custom-control-container {
             margin-top: 0;
           }
         }
@@ -77,7 +77,7 @@ novo-form {
           height: auto;
           opacity: 1;
           .ng-touched.ng-invalid:not(.ng-pristine):not(.novo-control-container) {
-            border-bottom: 1px solid $negative !important;
+            border-bottom: rem(1px) solid $negative !important;
             &.valid-number {
               border-bottom: none !important;
             }
@@ -97,8 +97,8 @@ novo-form {
           &.time {
             .ng-touched.ng-invalid:not(.ng-pristine):not(.novo-control-container) {
               border-bottom: none !important;
-              >input {
-                border-bottom: 1px solid $negative !important;
+              > input {
+                border-bottom: rem(1px) solid $negative !important;
               }
             }
           }
@@ -106,7 +106,7 @@ novo-form {
             .ng-touched.ng-invalid:not(.ng-pristine):not(.novo-control-container) {
               border-bottom: none !important;
               input {
-                border-bottom: 1px solid $negative !important;
+                border-bottom: rem(1px) solid $negative !important;
               }
             }
           }
@@ -136,19 +136,19 @@ novo-form {
               }
             }
             chips {
-              border-bottom: 1px dashed lighten($dark, 30%) !important;
+              border-bottom: rem(1px) dashed lighten($dark, 30%) !important;
               input {
                 border: none !important;
               }
               novo-picker {
                 border: none;
-                >input.picker-input {
+                > input.picker-input {
                   border: none !important;
                 }
               }
               chip {
                 opacity: 0.4;
-                padding: 10px;
+                padding: rem(10px);
                 .bhi-close {
                   display: none;
                 }
@@ -173,27 +173,27 @@ novo-form {
             i.bhi-checkbox-empty,
             i.bhi-calendar {
               color: lighten($dark, 30%) !important;
-              top: -5px;
+              top: -rem(5px);
             }
           }
           novo-tip-well.active {
-            margin-bottom: 5px;
-            font-size: 1em !important;
-            >div {
+            margin-bottom: rem(5px);
+            font-size: 1rem !important;
+            > div {
               width: 100%;
             }
           }
           .field-message {
-            min-height: 24px;
+            min-height: rem(24px);
             margin-bottom: 0 !important;
           }
           .field-message,
           novo-tip-well.active {
-            font-size: 0.8em;
-            padding: 5px 0;
-            margin-left: 22px;
-            margin-bottom: 5px;
-            max-width: 530px;
+            font-size: 0.8rem;
+            padding: rem(5px) 0;
+            margin-left: rem(22px);
+            margin-bottom: rem(5px);
+            max-width: rem(530px);
             display: flex;
             justify-content: space-between;
             &[hidden] {
@@ -204,7 +204,7 @@ novo-form {
               margin-bottom: 0;
             }
             .character-count {
-              font-size: 12px;
+              font-size: rem(12px);
               color: $grey;
               &.error {
                 color: $negative;
@@ -214,27 +214,27 @@ novo-form {
               flex: 1;
               span.error-text {
                 color: $negative;
-                padding-bottom: 5px;
-                padding-right: 5px;
+                padding-bottom: rem(5px);
+                padding-right: rem(5px);
                 flex: 1;
                 display: flex;
               }
               .description {
                 display: flex;
-                padding-bottom: 5px;
+                padding-bottom: rem(5px);
                 flex: 1;
               }
             }
           }
           .error-message {
             color: $negative;
-            font-size: 0.8em;
-            padding: 5px 0;
+            font-size: 0.8rem;
+            padding: rem(5px) 0;
             flex-basis: 100%;
-            margin-left: 185px;
-            margin-bottom: 5px;
-            height: 2em;
-            max-width: 530px;
+            margin-left: rem(185px);
+            margin-bottom: rem(5px);
+            height: 2rem;
+            max-width: rem(530px);
             display: flex;
             justify-content: space-between;
             &[hidden] {
@@ -242,7 +242,7 @@ novo-form {
               visibility: hidden;
             }
             .character-count {
-              font-size: 12px;
+              font-size: rem(12px);
               color: $grey;
               &.error {
                 color: $negative;
@@ -252,7 +252,7 @@ novo-form {
               flex: 1;
             }
           }
-          >div.novo-control-container {
+          > div.novo-control-container {
             flex: 1;
             display: flex;
             flex-direction: row;
@@ -260,19 +260,19 @@ novo-form {
             align-items: flex-start;
             width: 100%;
             i.bhi-lock {
-              width: 20px;
+              width: rem(20px);
               color: $grey;
               font-weight: 500;
-              font-size: 1.2em;
-              padding-top: 6px;
+              font-size: 1.2rem;
+              padding-top: rem(6px);
             }
-            >label {
+            > label {
               @extend .novo-form-control-label;
             }
-            >div.novo-control-outer-container {
+            > div.novo-control-outer-container {
               display: flex;
               align-items: center;
-              max-width: 550px;
+              max-width: rem(550px);
               position: relative;
               width: 100%;
               i.loading {
@@ -281,13 +281,13 @@ novo-form {
                 justify-content: center;
                 position: absolute;
                 right: 0;
-                top: 3px;
+                top: rem(3px);
                 animation: rotate 1200ms linear infinite;
                 svg {
                   width: 100%;
                   height: 100%;
-                  max-width: 15px;
-                  max-height: 15px;
+                  max-width: rem(15px);
+                  max-height: rem(15px);
                   .spinner {
                     fill: $positive;
                   }
@@ -301,7 +301,7 @@ novo-form {
                   display: flex;
                   flex-direction: row;
                   align-items: center;
-                  >div.novo-control-input {
+                  > div.novo-control-input {
                     width: 100%;
                     position: relative;
                     &.control-disabled {
@@ -311,10 +311,10 @@ novo-form {
                       align-self: auto;
                     }
                     &.editor {
-                      margin-bottom: 10px;
+                      margin-bottom: rem(10px);
                     }
                     novo-quick-note {
-                      margin-bottom: 10px;
+                      margin-bottom: rem(10px);
                       textarea {
                         line-height: inherit;
                       }
@@ -323,10 +323,10 @@ novo-form {
                       }
                     }
                     input {
-                      font-size: 1em;
+                      font-size: 1rem;
                       background: transparent !important;
                       border: none;
-                      border-bottom: 1px solid lighten($dark, 45%);
+                      border-bottom: rem(1px) solid lighten($dark, 45%);
                       border-radius: 0;
                       outline: none;
                       height: 2rem;
@@ -338,27 +338,27 @@ novo-form {
                       transition: all 300ms;
                       color: #26282b;
                       &:hover {
-                        border-bottom: 1px solid lighten($dark, 15%);
+                        border-bottom: rem(1px) solid lighten($dark, 15%);
                       }
                       &:focus {
-                        border-bottom: 1px solid $positive;
+                        border-bottom: rem(1px) solid $positive;
                       }
                       &:invalid {
-                        border-bottom: 1px solid #da4453;
+                        border-bottom: rem(1px) solid #da4453;
                       }
                     }
                     textarea {
-                      font-size: 1em;
+                      font-size: 1rem;
                       height: 2rem;
                       background: transparent !important;
                       border: none;
-                      border-bottom: 1px solid lighten($dark, 45%);
+                      border-bottom: rem(1px) solid lighten($dark, 45%);
                       border-radius: 0;
                       outline: none;
                       width: 100%;
                       resize: vertical;
                       margin: 0;
-                      padding: 5px 0;
+                      padding: rem(5px) 0;
                       box-shadow: none;
                       box-sizing: content-box;
                       transition: all 300ms;
@@ -366,56 +366,56 @@ novo-form {
                       color: #26282b;
                       overflow-y: hidden;
                       &:hover {
-                        border-bottom: 1px solid lighten($dark, 15%);
+                        border-bottom: rem(1px) solid lighten($dark, 15%);
                       }
                       &:focus {
-                        border-bottom: 1px solid $positive;
+                        border-bottom: rem(1px) solid $positive;
                         overflow-y: auto !important;
                       }
                       &:invalid {
-                        border-bottom: 1px solid #da4453;
+                        border-bottom: rem(1px) solid #da4453;
                       }
                     }
                     textarea:not(.quick-note-textarea) {
                       transition: height 0;
                       background: transparent !important;
                     }
-                    >div.novo-control-input-with-label {
+                    > div.novo-control-input-with-label {
                       display: flex;
                       align-items: center;
                       input {
                         flex: 1;
                       }
                       label.input-label {
-                        padding-left: 5px;
+                        padding-left: rem(5px);
                         color: $dark;
                       }
                     }
-                    >div.novo-control-input-container {
+                    > div.novo-control-input-container {
                       font-size: 1rem;
                       flex: 1;
                       position: relative;
-                      >i.bhi-clock,
-                      >i.bhi-search,
-                      >i.bhi-times,
-                      >i.bhi-calendar {
+                      > i.bhi-clock,
+                      > i.bhi-search,
+                      > i.bhi-times,
+                      > i.bhi-calendar {
                         position: absolute;
                         right: 0;
                         top: 0;
-                        font-size: 1.2em;
+                        font-size: 1.2rem;
                       }
-                      >i.bhi-times {
+                      > i.bhi-times {
                         cursor: pointer;
-                        font-size: 1.1em;
+                        font-size: 1.1rem;
                       }
-                      >novo-time-picker,
-                      >novo-date-picker,
+                      > novo-time-picker,
+                      > novo-date-picker,
                       novo-date-time-picker {
                         position: absolute;
                         top: 100%;
                         left: 0;
                       }
-                      >div.date-time-container {
+                      > div.date-time-container {
                         position: absolute;
                         top: 100%;
                         left: 0;
@@ -424,16 +424,16 @@ novo-form {
                         background: #fff;
                         z-index: 9;
                         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-                        border-bottom-right-radius: 3px;
-                        border-bottom-left-radius: 3px;
-                        border-top-left-radius: 3px;
-                        border-top-right-radius: 3px;
+                        border-bottom-right-radius: rem(3px);
+                        border-bottom-left-radius: rem(3px);
+                        border-top-left-radius: rem(3px);
+                        border-top-right-radius: rem(3px);
                         novo-date-picker {
                           border-top-right-radius: 0;
                           border-bottom-right-radius: 0;
                           box-shadow: none;
-                          border-right: 1px solid rgba($light, 0.5);
-                          >.calendar {
+                          border-right: rem(1px) solid rgba($light, 0.5);
+                          > .calendar {
                             box-shadow: none;
                           }
                         }
@@ -452,28 +452,28 @@ novo-form {
                           }
                         }
                         .time-control {
-                          border-top: 1px solid #f4f4f4;
+                          border-top: rem(1px) solid #f4f4f4;
                           display: flex;
                           align-items: center;
                           justify-content: center;
                           .am-pm {
                             display: flex;
                             flex-direction: column;
-                            margin-left: 10px;
+                            margin-left: rem(10px);
                           }
                         }
                       }
                     }
                   }
                   i.required-indicator {
-                    height: 13px;
-                    width: 13px;
-                    font-size: 13px;
-                    margin-right: 10px;
+                    height: rem(13px);
+                    width: rem(13px);
+                    font-size: rem(13px);
+                    margin-right: rem(10px);
                     &.bhi-circle {
                       color: $grapefruit;
                       text-align: center;
-                      font-size: 7px;
+                      font-size: rem(7px);
                     }
                     &.bhi-check {
                       color: $grass;
@@ -485,7 +485,7 @@ novo-form {
                       display: inherit !important;
                       visibility: hidden;
                     }
-                    >h4 {
+                    > h4 {
                       font-weight: 500;
                     }
                   }
@@ -522,19 +522,19 @@ novo-form {
               input,
               textarea {
                 color: $light;
-                border-bottom: 1px solid rgba(lighten($dark, 12%), 0.25);
+                border-bottom: rem(1px) solid rgba(lighten($dark, 12%), 0.25);
                 background: transparent !important;
                 &:focus {
-                  border-bottom: 1px solid $ocean;
+                  border-bottom: rem(1px) solid $ocean;
                 }
               }
             }
             novo-select {
-              >div[type='button'] {
+              > div[type='button'] {
                 color: $light;
-                border-bottom: 1px solid rgba(lighten($dark, 12%), 0.25);
+                border-bottom: rem(1px) solid rgba(lighten($dark, 12%), 0.25);
                 &:focus {
-                  border-bottom: 1px solid $ocean;
+                  border-bottom: rem(1px) solid $ocean;
                 }
               }
             }
@@ -593,19 +593,19 @@ novo-form {
                 }
               }
               chips {
-                border-bottom: 1px dashed lighten($dark, 30%) !important;
+                border-bottom: rem(1px) dashed lighten($dark, 30%) !important;
                 input {
                   border: none !important;
                 }
                 novo-picker {
                   border-bottom: none;
-                  >input.picker-input {
+                  > input.picker-input {
                     border: none !important;
                   }
                 }
                 chip {
                   opacity: 0.4;
-                  padding: 10px;
+                  padding: rem(10px);
                   .bhi-close {
                     display: none;
                   }
@@ -630,16 +630,16 @@ novo-form {
               i.bhi-checkbox-empty,
               i.bhi-calendar {
                 color: lighten($dark, 30%) !important;
-                top: -5px;
+                top: -rem(5px);
               }
             }
             .novo-control-container {
               flex-direction: column;
               align-items: flex-start;
               position: relative;
-              margin-top: 16px;
+              margin-top: rem(16px);
               .novo-control-outer-container {
-                max-width: 550px;
+                max-width: rem(550px);
                 width: 100%;
                 .novo-control-inner-container {
                   position: relative;
@@ -648,10 +648,10 @@ novo-form {
                     position: relative;
                     i.required-indicator {
                       &.bhi-circle {
-                        padding-top: 2px;
+                        padding-top: rem(2px);
                       }
                       &.bhi-check {
-                        margin-top: -4px;
+                        margin-top: -rem(4px);
                       }
                       &.address {
                         display: none;
@@ -662,18 +662,18 @@ novo-form {
                       display: flex;
                     }
                     div.novo-control-input.address {
-                      margin-left: 20px;
+                      margin-left: rem(20px);
                     }
                   }
                 }
-                >label.novo-control-label {
-                  bottom: 20px;
+                > label.novo-control-label {
+                  bottom: rem(20px);
                   color: $dark;
-                  font-size: 0.9em;
+                  font-size: 0.9rem;
                   font-weight: 500;
                   text-transform: uppercase;
                   position: absolute;
-                  left: 22px;
+                  left: rem(22px);
                   pointer-events: none;
                   z-index: 1;
                   width: 100%;
@@ -684,11 +684,12 @@ novo-form {
                   overflow-x: hidden;
                   transform: translateY(0);
                   transform-origin: bottom left;
-                  transition: transform 400ms cubic-bezier(0.25, 0.8, 0.25, 1), scale 400ms cubic-bezier(0.25, 0.8, 0.25, 1), color 400ms cubic-bezier(0.25, 0.8, 0.25, 1), width 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+                  transition: transform 400ms cubic-bezier(0.25, 0.8, 0.25, 1), scale 400ms cubic-bezier(0.25, 0.8, 0.25, 1),
+                    color 400ms cubic-bezier(0.25, 0.8, 0.25, 1), width 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
                   &.novo-control-empty {
                     display: block;
                     cursor: text;
-                    top: 7px;
+                    top: rem(7px);
                     bottom: 0;
                   }
                   &.novo-control-extra-spacing,
@@ -700,7 +701,7 @@ novo-form {
                   &.novo-control-filled {
                     display: block;
                     transform: translateY(-100%);
-                    height: 1.5em;
+                    height: 1.5rem;
                     top: 0;
                   }
                 }
@@ -710,27 +711,27 @@ novo-form {
                 .file,
                 .select,
                 .tiles {
-                  margin-top: 0.5em;
+                  margin-top: 0.5rem;
                 }
               }
               novo-tip-well.active {
-                margin-bottom: 5px;
-                font-size: 1em !important;
-                >div {
+                margin-bottom: rem(5px);
+                font-size: 1rem !important;
+                > div {
                   width: 100%;
                 }
               }
               .field-message {
-                min-height: 24px;
+                min-height: rem(24px);
               }
               .field-message,
               novo-tip-well.active {
                 justify-content: space-between;
                 display: flex;
-                margin-left: 22px;
+                margin-left: rem(22px);
                 padding-left: 0;
                 .messages {
-                  min-height: 10px;
+                  min-height: rem(10px);
                 }
                 &.has-tip {
                   margin-bottom: 0;
@@ -745,7 +746,7 @@ novo-form {
 }
 
 novo-dynamic-form .novo-form-container form div.novo-form-row novo-control.address .field-message {
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 control-confirm-modal,
@@ -758,11 +759,11 @@ control-prompt-modal {
     align-items: center;
     justify-content: center;
     i {
-      font-size: 0.8em;
-      margin: 0 0.5em;
+      font-size: 0.8rem;
+      margin: 0 0.5rem;
     }
     label {
-      margin-right: 10px;
+      margin-right: rem(10px);
     }
   }
 }

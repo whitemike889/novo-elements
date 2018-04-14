@@ -8,14 +8,14 @@ layout {
 
         img {
             display: block;
-            margin: 40px auto 50px auto;
-            max-width: 600px;
-            max-height: 475px;
+            margin: rem(40px) auto rem(50px) auto;
+            max-width: rem(600px);
+            max-height: rem(475px);
             width: auto;
             height: auto;
 
             &.bowling-alley {
-                max-height: 400px;
+                max-height: rem(400px);
             }
         }
     }

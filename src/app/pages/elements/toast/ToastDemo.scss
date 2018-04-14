@@ -1,25 +1,25 @@
 toast-demo {
-    .example {
-        padding: 20px;
+  .example {
+    padding: rem(20px);
+  }
+
+  .fake-card {
+    border-radius: rem(3px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    background: #fff;
+
+    .content {
+      padding: rem(20px);
+    }
+  }
+
+  form {
+    > * {
+      display: block;
     }
 
-    .fake-card {
-        border-radius: 3px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
-        background: #fff;
-
-        .content {
-            padding: 20px;
-        }
+    label {
+      padding: rem(10px) 0;
     }
-
-    form {
-        > * {
-            display: block;
-        }
-
-        label {
-            padding: 10px 0;
-        }
-    }
+  }
 }

@@ -1,7 +1,7 @@
-$switch-width: 36px !default;
-$switch-height: 24px !default;
-$switch-bar-height: 14px !default;
-$switch-thumb-size: 20px !default;
+$switch-width: rem(36px) !default;
+$switch-height: rem(24px) !default;
+$switch-bar-height: rem(14px) !default;
+$switch-thumb-size: rem(20px) !default;
 @mixin novo-switch-style($thumb, $track) {
     .novo-switch-thumb {
         background-color: $light;
@@ -22,7 +22,7 @@ $switch-thumb-size: 20px !default;
 novo-switch {
     display: flex;
     align-items: center;
-    margin: 15px;
+    margin: rem(15px);
     white-space: nowrap;
     cursor: pointer;
     outline: none;
@@ -41,7 +41,7 @@ novo-switch {
         height: $switch-height;
         position: relative;
         user-select: none;
-        margin-right: 8px;
+        margin-right: rem(8px);
     }
     &:not([disabled]) {
         &.novo-switch-dragging .novo-switch-container,
@@ -53,11 +53,11 @@ novo-switch {
         border: 0 transparent;
     }
     .novo-switch-bar {
-        left: 1px;
-        width: $switch-width - 2px;
+        left: rem(1px);
+        width: $switch-width - rem(2px);
         top: $switch-height / 2 - $switch-bar-height / 2;
         height: $switch-bar-height;
-        border-radius: 8px;
+        border-radius: rem(8px);
         position: absolute;
     }
     .novo-switch-thumb-container {
@@ -138,7 +138,7 @@ novo-switch {
     }
     &:focus {
         .novo-switch-label:not(:empty) {
-            border: 1px dotted $light;
+            border: rem(1px) dotted $light;
         }
     }
 }

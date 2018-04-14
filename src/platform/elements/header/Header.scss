@@ -1,4 +1,4 @@
-$header-height: 54px;
+$header-height: rem(54px);
 header[theme] {
     &>section {
         height: $header-height;
@@ -6,9 +6,9 @@ header[theme] {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 8px;
+        padding: rem(8px);
         i.header-icon {
-            padding: 12px;
+            padding: rem(12px);
         }
         div.header-title {
             display: flex;
@@ -17,9 +17,9 @@ header[theme] {
         .header-titles {
             display: flex;
             flex-direction: column;
-            padding: 0px 8px;
+            padding: 0 rem(8px);
             h1 {
-                font-size: 1.7em;
+                font-size: 1.7rem;
                 margin: 0;
                 padding: 0;
                 display: inline-block;
@@ -27,19 +27,19 @@ header[theme] {
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                padding-right: 20px;
+                padding-right: rem(20px);
             }
             header-spacer {
                 display: inline-block;
-                height: 1.8em;
-                width: 2px;
-                margin: 0 0.6em;
+                height: 1.8rem;
+                width: rem(2px);
+                margin: 0 0.6rem;
                 background-color: rgba(0, 0, 0, 0.25);
             }
         }
         >section {
-            flex: 2 2 250px;
-            min-width: 100px;
+            flex: 2 2 rem(250px);
+            min-width: rem(100px);
         }
         utils {
             display: flex;
@@ -63,29 +63,29 @@ header[theme] {
         color: $dark;
     }
     &>main {
-        padding: 4px 16px 4px 32px;
+        padding: rem(4px) rem(16px) rem(4px) rem(32px);
     }
     &>novo-nav {
-        padding-left: 16px;
+        padding-left: rem(16px);
         &.block {
             padding-left: 0;
         }
     }
     &.condensed {
         >section {
-            padding: 0 1em;
+            padding: 0 1rem;
             height: $header-height;
             i {
-                font-size: 1.2em;
+                font-size: 1.2rem;
             }
         }
         novo-icon>i {
-            font-size: 1.4em;
+            font-size: 1.4rem;
         }
         button[theme][theme="icon"] {
-            width: 30px !important;
-            height: 30px !important;
-            padding: 5px;
+            width: rem(30px) !important;
+            height: rem(30px) !important;
+            padding: rem(5px);
         }
     }
 }

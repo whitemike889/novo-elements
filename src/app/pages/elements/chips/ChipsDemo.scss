@@ -1,9 +1,9 @@
 chips-demo {
     .chips-demo {
-        padding: 10px;
-        padding-bottom: 30px;
+        padding: rem(10px);
+        padding-bottom: rem(30px);
     }
     div.selected-value {
-        margin-bottom: 10px;
+        margin-bottom: rem(10px);
     }
 }

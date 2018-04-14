@@ -1,14 +1,14 @@
 dropdown-demo {
     .example.dropdown-demo {
         background: $positive;
-        padding: 20px;
+        padding: rem(20px);
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
     .example.dropdown-demo-scroll {
         background: $positive;
-        padding: 20px;
+        padding: rem(20px);
         overflow: auto;
     }
 }
