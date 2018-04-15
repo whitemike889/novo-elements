@@ -1,3 +1,7 @@
+// Sizes
+// --------------------------------------------------
+$header-height: 4.3rem;
+$header-height-px: rem-to-px($header-height);
 // Colors
 // --------------------------------------------------
 $black: #000000;
@@ -7,7 +11,8 @@ $off-white: #f4f4f4;
 $dark: #3d464d;
 $light: #d9dadc;
 $navy: #0d2d42;
-$pulse: #3bafda; // Analytics Colors
+$pulse: #3bafda;
+// Analytics Colors
 $aqua: #3bafda;
 $ocean: #4a89dc;
 $mint: #37bc9b;
@@ -16,7 +21,8 @@ $sunflower: #f6b042;
 $bittersweet: #eb6845;
 $grapefruit: #da4453;
 $carnation: #d770ad;
-$lavender: #967adc; // Entity Colors
+$lavender: #967adc;
+// Entity Colors
 $company: #3399dd;
 $candidate: #44bb77;
 $navigation: #2f384f;
@@ -27,7 +33,8 @@ $job: #bb5566;
 $submission: #a9adbb;
 $sendout: #747884;
 $placement: #0b344f;
-$note: #747884; // Color Applications
+$note: #747884;
+// Color Applications
 $positive: $ocean;
 $success: $grass;
 $negative: $grapefruit;
@@ -36,12 +43,9 @@ $background: $off-white;
 $background-dark: #e2e2e2;
 $neutral: #4f5361;
 $empty: #cccdcc;
-/*
-===================
-    Color Maps
-===================
-*/
 
+// Color Maps
+// --------------------------------------------------
 // Analytics Color Map
 $analytics-colors: (
   aqua: $aqua,
@@ -53,7 +57,8 @@ $analytics-colors: (
   grapefruit: $grapefruit,
   carnation: $carnation,
   lavender: $lavender
-); // Entity Color Map
+);
+// Entity Color Map
 $entity-colors: (
   star: $placement,
   person: $contact,
@@ -73,7 +78,8 @@ $entity-colors: (
   credential: $neutral,
   user: $neutral,
   corporateuser: $neutral
-); // Generic Color Map
+);
+// Generic Color Map
 $app-colors: (
   positive: $ocean,
   success: $grass,
@@ -88,7 +94,8 @@ $app-colors: (
   light: $light,
   pulse: $pulse,
   neutral: $neutral
-); // Loading Dot Color Map
+);
+// Loading Dot Color Map
 $dot-colors: (
   ocean: $ocean,
   lavender: $lavender,
@@ -96,6 +103,7 @@ $dot-colors: (
   sunflower: $sunflower,
   mint: $mint
 );
+// Dark map
 $dark-colors: (
   company: $company,
   candidate: $candidate,
@@ -130,6 +138,7 @@ $dark-colors: (
   neutral: $neutral,
   navy: $navy
 );
+// Light map
 $light-colors: (
   submission: $submission,
   note: $note,
@@ -139,12 +148,18 @@ $light-colors: (
   off-white: $off-white,
   light: $light
 );
-$all-colors: map-merge($dark-colors, $light-colors); // -------------------------
-$base-font-size: 0.625rem;
+// All colors
+$all-colors: map-merge($dark-colors, $light-colors);
+
+// Typography
+// --------------------------------------------------
+$base-font-size: 62.5%;
 $base-font-family: 'Roboto', sans-serif;
 $base-font-color: $dark;
 $base-line-height: 1rem;
-$alt-font-family: Georgia, 'Times New Roman', Times, serif; // Whiteframes
+$alt-font-family: Georgia, 'Times New Roman', Times, serif;
+
+// Whiteframes
 // -------------------------
 $whiteframe-shadow-z1: 0px 2px 5px 0 rgba(0, 0, 0, 0.26) !default;
 $whiteframe-zindex-z1: 1 !default;
@@ -155,7 +170,9 @@ $whiteframe-zindex-z3: 3 !default;
 $whiteframe-shadow-z4: 0px 16px 28px 0 rgba(0, 0, 0, 0.22) !default;
 $whiteframe-zindex-z4: 4 !default;
 $whiteframe-shadow-z5: 0px 27px 24px 0 rgba(0, 0, 0, 0.2) !default;
-$whiteframe-zindex-z5: 5 !default; // Z-indexes
+$whiteframe-zindex-z5: 5 !default;
+
+// Z-indexes
 // -------------------------
 // Function to call z-indexes.
 // Usage: z-index: z('modal');
@@ -178,7 +195,9 @@ $whiteframe-zindex-z5: 5 !default; // Z-indexes
     @warn 'No layer found for `#{$layer}` in $z-layers map. Property omitted.';
   }
   @return map-get($z-layers, $layer);
-} // Easing Curves
+}
+
+// Easing Curves
 // -------------------------
 // Usage: html-tag { @include ease('all', 'swift-ease-in-out'); }
 $easing-curves: (
@@ -197,7 +216,9 @@ $easing-curves: (
   $duration: map-deep-get($easing-curves, $curve-name, 'duration');
   $curve: map-deep-get($easing-curves, $curve-name, 'curve');
   transition: #{$target $duration $curve};
-} // Animations
+}
+
+// Animations
 // -------------------------
 @keyframes rotate {
   0% {
@@ -210,7 +231,6 @@ $easing-curves: (
     transform: rotateZ(180deg);
   }
 }
-
 @keyframes half-rotate {
   0% {
     transform: rotateZ(45deg);
@@ -222,7 +242,6 @@ $easing-curves: (
     transform: rotateZ(90deg);
   }
 }
-
 @keyframes rotateBack {
   0% {
     transform: rotateZ(90deg);
@@ -231,7 +250,6 @@ $easing-curves: (
     transform: rotateZ(0deg);
   }
 }
-
 @keyframes show {
   0% {
     opacity: 0;
