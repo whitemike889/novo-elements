@@ -1,1 +1,3 @@
-<novo-tip-well name="Demo" [tip]="demoTip"></novo-tip-well>
+<novo-tip-well name="Demo" [tip]="demoTip" #tip>
+  <button theme="dialogue" (click)="tip.hideTip()">Ok, Got it!</button>
+</novo-tip-well>

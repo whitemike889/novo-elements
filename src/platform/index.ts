@@ -168,6 +168,7 @@ export { FieldInteractionApi } from './elements/form/FieldInteractionApi';
 export { NovoCheckListElement } from './elements/form/extras/checkbox/CheckList';
 
 // Utils
+export { Deprecated } from './utils/Decorators';
 export { OutsideClick } from './utils/outside-click/OutsideClick';
 export { KeyCodes } from './utils/key-codes/KeyCodes';
 export { Deferred } from './utils/deferred/Deferred';
