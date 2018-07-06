@@ -47,7 +47,14 @@ $background: $off-white;
 $background-dark: #e2e2e2;
 $neutral: #4f5361;
 $empty: #cccdcc;
-
+// Color Blind Patterns
+$diagonal-right: linear-gradient(to bottom right,hsla(0,0%,100%,.5) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.5) 0,hsla(0,0%,100%,.5) 75%,transparent 0,transparent);
+$diagonal-left: linear-gradient(to bottom left,hsla(0,0%,100%,.5) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.5) 0,hsla(0,0%,100%,.5) 75%,transparent 0,transparent);
+$checkered: linear-gradient(135deg,hsla(0,0%,100%,.5) 25%,transparent 0),linear-gradient(225deg,hsla(0,0%,100%,.5) 25%,transparent 0),linear-gradient(315deg,hsla(0,0%,100%,.5) 25%,transparent 0),linear-gradient(45deg,hsla(0,0%,100%,.5) 25%,transparent 0);
+$stripes-vertical: linear-gradient(90deg,hsla(0,0%,100%,.5) 50%,transparent 0,transparent);
+$stripes-horizontal: linear-gradient(180deg,hsla(0,0%,100%,.5) 50%,transparent 0,transparent);
+$plaid: linear-gradient(180deg,hsla(0,0%,100%,.5) 50%,transparent 0,transparent), linear-gradient(90deg,hsla(0,0%,100%,.5) 50%,transparent 0,transparent);
+$window-pane: linear-gradient(180deg,hsla(0,0%,100%,.5) 25%,transparent 0,transparent), linear-gradient(90deg,hsla(0,0%,100%,.5) 25%,transparent 0,transparent);
 // Color Maps
 // --------------------------------------------------
 // Analytics Color Map
@@ -86,6 +93,15 @@ $entity-colors: (
   contract: $contract,
   jobCode: $jobCode,
   earnCode: $earnCode
+);
+// Entity Color Blind Map
+$entity-color-blind: (
+ contact: $stripes-vertical,
+ candidate: $diagonal-left,
+ lead: $diagonal-right,
+ job: $checkered,
+ opportunity: $stripes-horizontal,
+ company: $window-pane
 );
 // Generic Color Map
 $app-colors: (

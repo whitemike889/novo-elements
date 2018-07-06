@@ -41,12 +41,17 @@
 
     <article class="color-blocks entity-colors">
         <div *ngFor="let color of entityColors" class="block {{color.name}}-cb">
-            <div class="color-square" (click)="copyLink(color)"></div>
+            <div class="color-square" [ngClass]="{'color-blind': isColorBlind }" (click)="copyLink(color)"></div>
             <h3 class="color-text" (click)="copyLink(color)"><span>#</span>{{color.hex}}</h3>
             <h6>{{color.name}}</h6>
             <span class="vars" *ngFor="let variable of color.variables">${{variable}}</span>
         </div>
+        <div class="toggle">
+            <h6>Enable color blind mode</h6>
+            <novo-tiles [options]="colorBlindMode" (onChange)="colorBlindToggle($event)" [(ngModel)]="value"></novo-tiles>
+        </div>
     </article>
+    
 
     <h2>Analytics Colors</h2>
     <p>This palette features vibrant, bold colors for use in data visualization.</p>

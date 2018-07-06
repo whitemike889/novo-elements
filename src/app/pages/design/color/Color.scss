@@ -207,6 +207,14 @@ color {
                         }
                     }
                 }
+                @each $entity, $background in $entity-color-blind {
+                    &.#{$entity}-cb {
+                        .color-blind{
+                            background-image: $background;
+                            background-size:25px 25px;
+                        }
+                    }
+                }
                 @each $analytics, $color in $analytics-colors {
                     &.#{$analytics}-cb {
                         .color-square {
@@ -215,6 +223,21 @@ color {
                     }
                 }
             }
+        }
+    }
+    .toggle {
+        margin-right: 0;
+        margin-left: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: baseline;
+        h6 {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        novo-tiles {
+            display: inline-block;
         }
     }
 }
@@ -243,7 +266,7 @@ color {
                     color: #fff;
                 }
                 background: $color !important;
-
+                
                 .background-boxes {
                     background: $color !important;
                 }

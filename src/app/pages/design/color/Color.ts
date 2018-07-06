@@ -40,12 +40,12 @@ export class ColorComponent {
         {
             name: 'lead',
             variables: ['lead'],
-            hex: 'AA6699'
+            hex: 'AA6699'        
         },
         {
             name: 'contact',
             variables: ['contact'],
-            hex: 'FFAA44'
+            hex: 'FFAA44'        
         },
         {
             name: 'company',
@@ -126,6 +126,18 @@ export class ColorComponent {
         }
     ];
     options: any;
+    private colorBlindMode: Array<any> = [
+        {
+            label: 'Disabled',
+            value: 'Disabled'
+        },
+        {
+            label: 'Enabled',
+            value: 'Enabled'
+        }
+    ];
+    public value: string = 'Disabled';
+    public isColorBlind: boolean;
 
     constructor(private toaster: NovoToastService) {
     }
@@ -161,5 +173,13 @@ export class ColorComponent {
 
         // Fire toast
         this.toaster.alert(this.options);
+    }
+
+    colorBlindToggle(value) {
+        if (value === 'Enabled') {
+            this.isColorBlind = true;
+        } else {
+            this.isColorBlind = false;
+        }
     }
 }
