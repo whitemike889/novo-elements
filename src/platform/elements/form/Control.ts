@@ -26,6 +26,7 @@ import { FieldInteractionApi } from './FieldInteractionApi';
 export interface IMaskOptions {
   mask: any;
   keepCharPositions: boolean;
+  pipe?: any;
   guide: boolean;
 }
 
@@ -176,7 +177,7 @@ export class NovoCustomControlContainerElement {
                             </div>
                             <!--Date-->
                             <div class="novo-control-input-container" *ngSwitchCase="'date'" [tooltip]="tooltip" [tooltipPosition]="tooltipPosition" [tooltipSize]="tooltipSize" [tooltipPreline]="tooltipPreline">
-                                <novo-date-picker-input [attr.id]="control.key" [name]="control.key" [formControlName]="control.key" [format]="form.controls[control.key].dateFormat" [allowInvalidDate]="form.controls[control.key].allowInvalidDate" [textMaskEnabled]="form.controls[control.key].textMaskEnabled" [placeholder]="form.controls[control.key].placeholder" (blurEvent)="handleBlur($event)" (focusEvent)="handleFocus($event)"></novo-date-picker-input>
+                                <novo-date-picker-input [attr.id]="control.key" [name]="control.key" [formControlName]="control.key" [format]="form.controls[control.key].dateFormat" [allowInvalidDate]="form.controls[control.key].allowInvalidDate" [textMaskEnabled]="form.controls[control.key].textMaskEnabled" [placeholder]="form.controls[control.key].placeholder" [maskOptions]="maskOptions" (blurEvent)="handleBlur($event)" (focusEvent)="handleFocus($event)"></novo-date-picker-input>
                             </div>
                             <!--Date and Time-->
                             <div class="novo-control-input-container" *ngSwitchCase="'date-time'" [tooltip]="tooltip" [tooltipPosition]="tooltipPosition" [tooltipSize]="tooltipSize" [tooltipPreline]="tooltipPreline">
@@ -255,6 +256,7 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
   @Input() form: NovoFormGroup;
   @Input() condensed: boolean = false;
   @Input() autoFocus: boolean = false;
+  @Input() maskOptions: any;
   @Output() change: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
   @Output() save: EventEmitter<any> = new EventEmitter();
@@ -288,7 +290,6 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
   private focusedField: string;
   private characterCountField: string;
   private maxLengthMetErrorfields: string[] = [];
-  maskOptions: IMaskOptions;
 
   constructor(
     element: ElementRef,
@@ -388,6 +389,14 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
             this.executeInteraction(interaction);
           }
         }
+      }
+      // Subscribe to control maskOptions
+      if (
+        this.form.controls[this.control.key].controlType === 'date' &&
+        this.control.textMaskEnabled &&
+        this.control.__config.maskOptions
+      ) {
+        this.maskOptions = this.control.__config.maskOptions;
       }
     }
     if (this.form.controls[this.control.key] && this.form.controls[this.control.key].subType === 'percentage') {

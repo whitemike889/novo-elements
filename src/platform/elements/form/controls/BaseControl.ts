@@ -4,6 +4,7 @@ import { EventEmitter } from '@angular/core';
 // APP
 import { Helpers } from '../../../utils/Helpers';
 import { NovoControlGroupAddConfig } from '../ControlGroup';
+import { IMaskOptions } from '../Control';
 import { notify } from '../../../utils/notifier/notifier.util';
 
 export interface NovoGroupedControlConfig {
@@ -54,7 +55,15 @@ export interface NovoControlConfig {
   tooltipPosition?: string;
   tooltipSize?: string;
   tooltipPreline?: boolean;
-  layoutOptions?: { order?: string, download?: boolean, edit?: boolean, customActions?: boolean, labelStyle?: string, draggable?: boolean, iconStyle?: string };
+  layoutOptions?: {
+    order?: string;
+    download?: boolean;
+    edit?: boolean;
+    customActions?: boolean;
+    labelStyle?: string;
+    draggable?: boolean;
+    iconStyle?: string;
+  };
   customControl?: any;
   customControlConfig?: any;
   military?: boolean;
@@ -62,14 +71,15 @@ export interface NovoControlConfig {
   textMaskEnabled?: boolean;
   allowInvalidDate?: boolean;
   tipWell?: {
-    tip: string,
-    icon?: string,
+    tip: string;
+    icon?: string;
     button?: boolean;
   };
   width?: number;
   startupFocus?: boolean;
   fileBrowserImageUploadUrl?: string;
   isEmpty?: Function;
+  maskOptions?: IMaskOptions;
 }
 
 export class BaseControl {
@@ -114,7 +124,7 @@ export class BaseControl {
   tooltipPosition?: string;
   tooltipSize?: string;
   tooltipPreline?: boolean;
-  layoutOptions?: { order?: string, download?: boolean, labelStyle?: string, draggable?: boolean, iconStyle?: string };
+  layoutOptions?: { order?: string; download?: boolean; labelStyle?: string; draggable?: boolean; iconStyle?: string };
   customControl?: any;
   customControlConfig?: any;
   military?: boolean;
@@ -122,8 +132,8 @@ export class BaseControl {
   textMaskEnabled?: boolean;
   allowInvalidDate?: boolean;
   tipWell?: {
-    tip: string,
-    icon?: string,
+    tip: string;
+    icon?: string;
     button?: boolean;
   };
   width: number;
