@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.14.4"></a>
+## [2.14.4](https://github.com/bullhorn/novo-elements/compare/v2.14.2...v2.14.4) (2018-08-02)
+
+
+### Features
+
+* **entity-picker:** Adding more fields to picker results ([18a38cf](https://github.com/bullhorn/novo-elements/commit/18a38cf))
+
+
+
 <a name="2.14.2"></a>
 ## [2.14.2](https://github.com/bullhorn/novo-elements/compare/v2.14.1...v2.14.2) (2018-07-31)
 
