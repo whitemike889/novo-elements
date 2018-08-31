@@ -173,12 +173,12 @@ export class NovoChipsElement implements ControlValueAccessor, OnInit, OnDestroy
     public element: ElementRef,
     private componentUtils: ComponentUtils,
     public labels: NovoLabelService,
-    private InputStateService: InputStateService,
+    private inputStateService: InputStateService,
   ) {}
 
   ngOnInit(): void {
     this.actualPlaceholder = this.placeholder;
-    this.InputStateService.chipsStateChange.subscribe((state: INPUT_STATE) => {
+    this.inputStateService.stateChange.subscribe((state: INPUT_STATE) => {
       if (state === 'LOADING') {
         this.pickerLoadingState = true;
         this.actualPlaceholder = this.labels.loading;
@@ -191,7 +191,7 @@ export class NovoChipsElement implements ControlValueAccessor, OnInit, OnDestroy
   }
 
   ngOnDestroy(): void {
-    this.InputStateService.chipsStateChange.unsubscribe();
+    this.inputStateService.stateChange.unsubscribe();
   }
 
   //get accessor
@@ -241,10 +241,10 @@ export class NovoChipsElement implements ControlValueAccessor, OnInit, OnDestroy
       }
       if (noLabels.length > 0 && this.source && this.source.getLabels && typeof this.source.getLabels === 'function') {
         loadingSet = true;
-        this.InputStateService.updateState('LOADING');
+        this.inputStateService.updateState('LOADING');
         this.source.getLabels(noLabels).then(
           (result) => {
-            this.InputStateService.updateState('STABLE');
+            this.inputStateService.updateState('STABLE');
             for (let value of result) {
               if (value.hasOwnProperty('label')) {
                 this.items.push({ value, label: value.label });
@@ -257,25 +257,25 @@ export class NovoChipsElement implements ControlValueAccessor, OnInit, OnDestroy
             this._items.next(this.items);
           },
           (err: any) => {
-            this.InputStateService.updateState('STABLE');
+            this.inputStateService.updateState('STABLE');
             console.warn(err);
           },
         );
       }
     } else if (this.source.getData && typeof this.source.getData === 'function') {
-      this.InputStateService.updateState('LOADING');
+      this.inputStateService.updateState('LOADING');
       loadingSet = true;
       this.source.getData().then((result: any) => {
         this.items = result;
         this._items.next(this.items);
         this.value = this.items.map((i) => i.value);
-        this.InputStateService.updateState('STABLE');
+        this.inputStateService.updateState('STABLE');
       });
     }
     this.changed.emit({ value: this.model, rawValue: this.items });
     this._items.next(this.items);
     if (!loadingSet) {
-      this.InputStateService.updateState('STABLE');
+      this.inputStateService.updateState('STABLE');
     }
     this._items.next(this.items);
   }

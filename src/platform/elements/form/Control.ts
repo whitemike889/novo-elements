@@ -24,6 +24,8 @@ import { KeyCodes } from '../../utils/key-codes/KeyCodes';
 import { DateFormatService } from '../../services/date-format/DateFormat';
 import { FieldInteractionApi } from './FieldInteractionApi';
 import { NovoTemplateService } from '../../services/template/NovoTemplateService';
+import { FormStateService, FORM_STATE } from '../../services/form-state/FormStateService';
+import { INPUT_STATE } from '../../services/input-state/InputStateService';
 
 export interface IMaskOptions {
   mask: any;
@@ -130,19 +132,9 @@ export class NovoAutoSize implements AfterContentInit {
                     <!--Tip Wel-->
                     <novo-tip-well *ngIf="form.controls[control.key].tipWell" [name]="control.key" [tip]="form.controls[control.key]?.tipWell?.tip" [icon]="form.controls[control.key]?.tipWell?.icon" [button]="form.controls[control.key]?.tipWell?.button"></novo-tip-well>
                 </div>
-                <i *ngIf="form.controls[control.key].fieldInteractionloading" class="loading">
-                    <svg version="1.1"
-                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-                     x="0px" y="0px" width="18.2px" height="18.5px" viewBox="0 0 18.2 18.5" style="enable-background:new 0 0 18.2 18.5;"
-                     xml:space="preserve">
-                    <style type="text/css">
-                        .spinner { fill:#FFFFFF; }
-                    </style>
-                        <path class="spinner" d="M9.2,18.5C4.1,18.5,0,14.4,0,9.2S4.1,0,9.2,0c0.9,0,1.9,0.1,2.7,0.4c0.8,0.2,1.2,1.1,1,1.9
-                            c-0.2,0.8-1.1,1.2-1.9,1C10.5,3.1,9.9,3,9.2,3C5.8,3,3,5.8,3,9.2s2.8,6.2,6.2,6.2c2.8,0,5.3-1.9,6-4.7c0.2-0.8,1-1.3,1.8-1.1
-                            c0.8,0.2,1.3,1,1.1,1.8C17.1,15.7,13.4,18.5,9.2,18.5z"/>
-                    </svg>
-                </i>
+                <ng-container *ngIf="form.controls[control.key].fieldInteractionloading" class="loading">
+                    <novo-simple-spinner fillColor="#FFFFFF"></novo-simple-spinner>
+                </ng-container>
             </div>
         </div>
     `,
@@ -183,6 +175,9 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
     return this._focusEmitter.asObservable();
   }
 
+  @Output()
+  controlInputState: EventEmitter<INPUT_STATE> = new EventEmitter();
+
   private _blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
   private _focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
   private _focused: boolean = false;
@@ -202,6 +197,7 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
   private maxLengthMetErrorfields: string[] = [];
   private statusChangeSubscription: any;
   private invokeOnInitInteractions: any[] = [];
+  private formStateChangeSubscription: any;
 
   maskOptions: IMaskOptions;
   templates: any = {};
@@ -215,6 +211,7 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
     private fieldInteractionApi: FieldInteractionApi,
     private templateService: NovoTemplateService,
     private changeDetectorRef: ChangeDetectorRef,
+    private formStateService: FormStateService,
   ) {
     super(element);
   }
@@ -285,18 +282,10 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
             break;
           case 'init':
             interaction.invokeOnInit = true;
+            this.invokeOnInitInteractions.push(interaction);
             break;
           default:
             break;
-        }
-        if (
-          interaction.invokeOnInit &&
-          !(this.form.controls[this.control.key].controlType === 'picker' &&
-          this.form.controls[this.control.key].multiple === true)
-        ) {
-          this.executeInteraction(interaction);
-        } else {
-          this.invokeOnInitInteractions.push(interaction);
         }
       }
     }
@@ -378,6 +367,17 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
         }
       });
     }
+    if (!(this.form.controls[this.control.key].controlType === 'picker' && this.form.controls[this.control.key].multiple)) {
+      this.controlInputState.emit('STABLE');
+    }
+    this.formStateChangeSubscription = this.formStateService.stateChange.subscribe((event: FORM_STATE) => {
+      if (event === 'STABLE') {
+        for (let interaction of this.invokeOnInitInteractions) {
+          this.executeInteraction(interaction);
+        }
+        this.invokeOnInitInteractions = [];
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -401,6 +401,9 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
     }
     if (this.statusChangeSubscription) {
       this.statusChangeSubscription.unsubscribe();
+    }
+    if (this.formStateChangeSubscription) {
+      this.formStateChangeSubscription.unsubscribe();
     }
     super.ngOnDestroy();
   }
@@ -583,11 +586,8 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
 
   handleChipsPickerStableState(event: any): void {
     if (event === 'STABLE') {
+      this.controlInputState.emit(event);
       this.templateContext.$implicit.markAsPristine();
-      for (let interaction of this.invokeOnInitInteractions) {
-        this.executeInteraction(interaction);
-      }
-      this.invokeOnInitInteractions = [];
     }
   }
 

@@ -1,10 +1,11 @@
 // NG2
-import { Component, Input, OnInit, OnChanges, SimpleChanges, ViewChild, ViewContainerRef, AfterViewInit, ElementRef, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, EventEmitter, ElementRef, ContentChildren, QueryList, AfterContentInit, Output } from '@angular/core';
 // APP
 import { Helpers } from './../../utils/Helpers';
 import { NovoFieldset, NovoFormGroup } from './FormInterfaces';
 import { NovoTemplateService } from '../../services/template/NovoTemplateService';
 import { NovoTemplate } from '../common/novo-template/novo-template.directive';
+import { FormStateService, FORM_STATE } from '../../services/form-state/FormStateService';
 
 @Component({
   selector: 'novo-fieldset-header',
@@ -24,20 +25,44 @@ export class NovoFieldsetHeaderElement {
             <novo-fieldset-header [icon]="icon" [title]="title" *ngIf="title"></novo-fieldset-header>
             <ng-container *ngFor="let control of controls;let controlIndex = index;">
                 <div class="novo-form-row" [class.disabled]="control.disabled" *ngIf="control.__type !== 'GroupedControl'">
-                    <novo-control [autoFocus]="autoFocus && index === 0 && controlIndex === 0" [control]="control" [form]="form"></novo-control>
+                    <novo-control [autoFocus]="autoFocus && index === 0 && controlIndex === 0" [control]="control" [form]="form" (controlInputState)="recordControlInputState($event, control)"></novo-control>
                 </div>
                 <div *ngIf="control.__type === 'GroupedControl'">TODO - GroupedControl</div>
             </ng-container>
         </div>
     `
 })
-export class NovoFieldsetElement {
+export class NovoFieldsetElement implements OnInit {
   @Input() controls: Array<any> = [];
   @Input() form: any;
   @Input() title: string;
   @Input() icon: string;
   @Input() index: number;
   @Input() autoFocus: boolean;
+  @Output() fieldsetState: EventEmitter<FORM_STATE> = new EventEmitter<FORM_STATE>();
+
+  private controlKeyStates: any = {};
+
+  ngOnInit(): void {
+    this.controls.forEach((ctrl: any) => {
+      this.controlKeyStates[ctrl.key] = 'LOADING';
+    });
+  }
+
+  private recordControlInputState(state: FORM_STATE, control: any): void {
+    let fieldsetIsStable: boolean = true;
+    if (state === 'STABLE') {
+      this.controlKeyStates[control.key] = state;
+      this.controls.forEach((ctrl: any) => {
+        if (this.controlKeyStates[ctrl.key] === 'LOADING') {
+          fieldsetIsStable = false;
+        }
+        if (fieldsetIsStable) {
+          this.fieldsetState.emit('STABLE');
+        }
+      });
+    }
+  }
 }
 
 @Component({
@@ -51,12 +76,12 @@ export class NovoFieldsetElement {
             </header>
             <form class="novo-form" [formGroup]="form">
                 <ng-container *ngFor="let fieldset of form.fieldsets;let i = index">
-                    <novo-fieldset *ngIf="fieldset.controls.length" [index]="i" [autoFocus]="autoFocusFirstField" [icon]="fieldset.icon" [controls]="fieldset.controls" [title]="fieldset.title" [form]="form"></novo-fieldset>
+                    <novo-fieldset *ngIf="fieldset.controls.length" [index]="i" [autoFocus]="autoFocusFirstField" [icon]="fieldset.icon" [controls]="fieldset.controls" [title]="fieldset.title" [form]="form" (controlInputState)="recordFieldsetState($event, fieldset)"></novo-fieldset>
                 </ng-container>
             </form>
         </div>
     `,
-  providers: [NovoTemplateService],
+  providers: [NovoTemplateService, FormStateService],
 })
 export class NovoDynamicFormElement implements OnChanges, OnInit, AfterContentInit {
   @Input()
@@ -79,11 +104,15 @@ export class NovoDynamicFormElement implements OnChanges, OnInit, AfterContentIn
   showingAllFields = false;
   showingRequiredFields = true;
   numControls = 0;
+  private fieldsetStates: any = {};
 
-  constructor(private element: ElementRef, private templates: NovoTemplateService) {}
+  constructor(private element: ElementRef, private templates: NovoTemplateService, private formStateService: FormStateService) {}
 
   public ngOnInit(): void {
     this.ngOnChanges();
+    this.fieldsets.forEach((fs: any) => {
+      this.fieldsetStates[fs.title] = 'LOADING';
+    });
   }
 
   public ngOnChanges(changes?: SimpleChanges): void {
@@ -202,5 +231,20 @@ export class NovoDynamicFormElement implements OnChanges, OnInit, AfterContentIn
         control.markAsTouched();
       }
     });
+  }
+
+  recordFieldsetState(state: FORM_STATE, fieldset: NovoFieldset): void {
+    let formIsStable: boolean = true;
+    if (state === 'STABLE') {
+      this.fieldsetStates[fieldset.title] = state;
+      this.fieldsets.forEach((fs: any) => {
+        if (this.fieldsetStates[fs.title] === 'LOADING') {
+          formIsStable = false;
+        }
+        if (formIsStable) {
+          this.formStateService.stateChange.next('STABLE');
+        }
+      });
+    }
   }
 }

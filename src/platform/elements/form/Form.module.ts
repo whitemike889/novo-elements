@@ -31,7 +31,8 @@ import { NovoControlGroup } from './ControlGroup';
 import { NovoControlTemplates } from './ControlTemplates';
 import { NovoTemplateService } from './../../services/template/NovoTemplateService';
 import { NovoCommonModule } from '../common/common.module';
-
+import { NovoLoadingModule } from './../loading/Loading.module';
+import { FormStateService} from './../../services/form-state/FormStateService'
 @NgModule({
   imports: [
     CommonModule,
@@ -56,20 +57,30 @@ import { NovoCommonModule } from '../common/common.module';
     NovoButtonModule,
     NovoAceEditorModule,
     NovoCommonModule,
+    NovoLoadingModule,
   ],
   declarations: [
-    NovoAutoSize, NovoControlElement, NovoDynamicFormElement, NovoFormElement,
-    NovoFieldsetElement, NovoFieldsetHeaderElement,
-    ControlConfirmModal, ControlPromptModal, NovoControlGroup, NovoControlTemplates
+    NovoAutoSize,
+    NovoControlElement,
+    NovoDynamicFormElement,
+    NovoFormElement,
+    NovoFieldsetElement,
+    NovoFieldsetHeaderElement,
+    ControlConfirmModal,
+    ControlPromptModal,
+    NovoControlGroup,
+    NovoControlTemplates,
   ],
   exports: [
-    NovoAutoSize, NovoDynamicFormElement, NovoControlElement, NovoFormElement,
+    NovoAutoSize,
+    NovoDynamicFormElement,
+    NovoControlElement,
+    NovoFormElement,
     NovoFieldsetHeaderElement,
     NovoControlGroup,
-    NovoControlTemplates
+    NovoControlTemplates,
   ],
   entryComponents: [ControlConfirmModal, ControlPromptModal],
-  providers: [NovoTemplateService]
+  providers: [NovoTemplateService, FormStateService],
 })
-export class NovoFormModule {
-}
+export class NovoFormModule {}
