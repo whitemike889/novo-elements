@@ -1,9 +1,10 @@
 // NG2
-import { Component, Input, OnInit, OnChanges, SimpleChanges, ViewChild, ViewContainerRef, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, ViewChild, ViewContainerRef, AfterViewInit, ElementRef, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
 // APP
 import { Helpers } from './../../utils/Helpers';
-import { ComponentUtils } from './../../utils/component-utils/ComponentUtils';
 import { NovoFieldset, NovoFormGroup } from './FormInterfaces';
+import { NovoTemplateService } from '../../services/template/NovoTemplateService';
+import { NovoTemplate } from '../common/novo-template/novo-template.directive';
 
 @Component({
   selector: 'novo-fieldset-header',
@@ -17,40 +18,13 @@ export class NovoFieldsetHeaderElement {
 }
 
 @Component({
-  selector: 'novo-control-custom',
-  template: `
-        <span #ref></span>
-    `
-})
-export class NovoControlCustom implements OnInit {
-  @Input() control: any;
-  @Input() form: any;
-
-  @ViewChild('ref', { read: ViewContainerRef }) referencePoint: ViewContainerRef;
-
-  controlComponent: any;
-
-  constructor(private componentUtils: ComponentUtils) { }
-
-  ngOnInit() {
-    this.controlComponent = this.componentUtils.appendNextToLocation(this.control.customControl, this.referencePoint);
-    this.controlComponent.instance.control = this.control;
-    this.controlComponent.instance.form = this.form;
-    if (this.control.customControlConfig) {
-      this.controlComponent.instance.config = this.control.customControlConfig;
-    }
-  }
-}
-
-@Component({
   selector: 'novo-fieldset',
   template: `
         <div class="novo-fieldset-container">
             <novo-fieldset-header [icon]="icon" [title]="title" *ngIf="title"></novo-fieldset-header>
             <ng-container *ngFor="let control of controls;let controlIndex = index;">
                 <div class="novo-form-row" [class.disabled]="control.disabled" *ngIf="control.__type !== 'GroupedControl'">
-                    <novo-control *ngIf="!control.customControl" [autoFocus]="autoFocus && index === 0 && controlIndex === 0" [control]="control" [form]="form"></novo-control>
-                    <novo-control-custom *ngIf="control.customControl" [control]="control" [form]="form"></novo-control-custom>
+                    <novo-control [autoFocus]="autoFocus && index === 0 && controlIndex === 0" [control]="control" [form]="form"></novo-control>
                 </div>
                 <div *ngIf="control.__type === 'GroupedControl'">TODO - GroupedControl</div>
             </ng-container>
@@ -69,6 +43,7 @@ export class NovoFieldsetElement {
 @Component({
   selector: 'novo-dynamic-form',
   template: `
+        <novo-control-templates></novo-control-templates>
         <div class="novo-form-container">
             <header>
                 <ng-content select="form-title"></ng-content>
@@ -80,15 +55,24 @@ export class NovoFieldsetElement {
                 </ng-container>
             </form>
         </div>
-    `
+    `,
+  providers: [NovoTemplateService],
 })
-export class NovoDynamicFormElement implements OnChanges, OnInit {
-  @Input() controls: Array<any> = [];
-  @Input() fieldsets: Array<NovoFieldset> = [];
-  @Input() form: NovoFormGroup;
-  @Input() layout: string;
-  @Input() hideNonRequiredFields: boolean = true;
-  @Input() autoFocusFirstField: boolean = false;
+export class NovoDynamicFormElement implements OnChanges, OnInit, AfterContentInit {
+  @Input()
+  controls: Array<any> = [];
+  @Input()
+  fieldsets: Array<NovoFieldset> = [];
+  @Input()
+  form: NovoFormGroup;
+  @Input()
+  layout: string;
+  @Input()
+  hideNonRequiredFields: boolean = true;
+  @Input()
+  autoFocusFirstField: boolean = false;
+  @ContentChildren(NovoTemplate)
+  customTemplates: QueryList<NovoTemplate>;
 
   allFieldsRequired = false;
   allFieldsNotRequired = false;
@@ -96,7 +80,7 @@ export class NovoDynamicFormElement implements OnChanges, OnInit {
   showingRequiredFields = true;
   numControls = 0;
 
-  constructor(private element: ElementRef) { }
+  constructor(private element: ElementRef, private templates: NovoTemplateService) {}
 
   public ngOnInit(): void {
     this.ngOnChanges();
@@ -106,20 +90,22 @@ export class NovoDynamicFormElement implements OnChanges, OnInit {
     this.form.layout = this.layout;
 
     if (!(this.fieldsets && this.fieldsets.length) && this.controls && this.controls.length) {
-      this.fieldsets = [{
-        controls: this.controls
-      }];
+      this.fieldsets = [
+        {
+          controls: this.controls,
+        },
+      ];
       this.numControls = this.controls.length;
     } else if (this.fieldsets) {
-      this.fieldsets.forEach(fieldset => {
+      this.fieldsets.forEach((fieldset) => {
         this.numControls = this.numControls + fieldset.controls.length;
       });
     }
 
     let requiredFields: Array<any> = [];
     let nonRequiredFields: Array<any> = [];
-    this.fieldsets.forEach(fieldset => {
-      fieldset.controls.forEach(control => {
+    this.fieldsets.forEach((fieldset) => {
+      fieldset.controls.forEach((control) => {
         if (control.required) {
           requiredFields.push(control);
         } else {
@@ -130,8 +116,8 @@ export class NovoDynamicFormElement implements OnChanges, OnInit {
     this.allFieldsRequired = requiredFields.length === this.numControls;
     this.allFieldsNotRequired = nonRequiredFields.length === this.numControls;
     if (this.allFieldsNotRequired && this.hideNonRequiredFields) {
-      this.fieldsets.forEach(fieldset => {
-        fieldset.controls.forEach(control => {
+      this.fieldsets.forEach((fieldset) => {
+        fieldset.controls.forEach((control) => {
           this.form.controls[control.key].hidden = false;
         });
       });
@@ -139,9 +125,17 @@ export class NovoDynamicFormElement implements OnChanges, OnInit {
     this.form.fieldsets = [...this.fieldsets];
   }
 
+  ngAfterContentInit() {
+    if (this.customTemplates && this.customTemplates.length) {
+      this.customTemplates.forEach((template: any) => {
+        this.templates.addCustom(template.name, template.template);
+      });
+    }
+  }
+
   public showAllFields(): void {
-    this.form.fieldsets.forEach(fieldset => {
-      fieldset.controls.forEach(control => {
+    this.form.fieldsets.forEach((fieldset) => {
+      fieldset.controls.forEach((control) => {
         this.form.controls[control.key].hidden = false;
       });
     });
@@ -150,15 +144,19 @@ export class NovoDynamicFormElement implements OnChanges, OnInit {
   }
 
   public showOnlyRequired(hideRequiredWithValue): void {
-    this.form.fieldsets.forEach(fieldset => {
-      fieldset.controls.forEach(control => {
+    this.form.fieldsets.forEach((fieldset) => {
+      fieldset.controls.forEach((control) => {
         // Hide any non-required fields
         if (!control.required) {
           this.form.controls[control.key].hidden = true;
         }
 
         // Hide required fields that have been successfully filled out
-        if (hideRequiredWithValue && !Helpers.isBlank(this.form.value[control.key]) && (!control.isEmpty || control.isEmpty && control.isEmpty(this.form.controls[control.key]))) {
+        if (
+          hideRequiredWithValue &&
+          !Helpers.isBlank(this.form.value[control.key]) &&
+          (!control.isEmpty || (control.isEmpty && control.isEmpty(this.form.controls[control.key])))
+        ) {
           this.form.controls[control.key].hidden = true;
         }
 
@@ -183,8 +181,8 @@ export class NovoDynamicFormElement implements OnChanges, OnInit {
 
   public updatedValues(): any {
     let ret = null;
-    this.form.fieldsets.forEach(fieldset => {
-      fieldset.controls.forEach(control => {
+    this.form.fieldsets.forEach((fieldset) => {
+      fieldset.controls.forEach((control) => {
         if (this.form.controls[control.key].dirty || control.dirty) {
           if (!ret) {
             ret = {};

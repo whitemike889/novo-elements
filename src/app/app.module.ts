@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpModule, Http } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 // Vendor
@@ -16,6 +16,7 @@ import {
   NovoModalService,
   AppBridgeService,
   DevAppBridgeService,
+  NovoTemplateService,
 } from './../platform/index';
 // APP
 import { CodeSnippet } from './elements/codesnippet/CodeSnippet';
@@ -165,7 +166,7 @@ export function provideAppBridgeService(http) {
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     ReactiveFormsModule,
     ScrollDispatchModule,
     // Vendor
@@ -175,17 +176,18 @@ export function provideAppBridgeService(http) {
     AppRoutingModule,
   ],
   providers: [
+    NovoTemplateService,
     FormUtils,
     NovoLabelService,
     {
       provide: FieldInteractionApi,
       useFactory: provideFieldInteractionAPI,
-      deps: [NovoToastService, NovoModalService, FormUtils, Http, NovoLabelService],
+      deps: [NovoToastService, NovoModalService, FormUtils, HttpClient, NovoLabelService],
     },
     {
       provide: AppBridgeService,
       useFactory: provideAppBridgeService,
-      deps: [Http],
+      deps: [HttpClient],
     },
   ],
   entryComponents: [
@@ -207,4 +209,4 @@ export function provideAppBridgeService(http) {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

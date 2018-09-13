@@ -5,6 +5,7 @@ import { EventEmitter } from '@angular/core';
 import { Helpers } from '../../../utils/Helpers';
 import { NovoControlGroupAddConfig } from '../ControlGroup';
 import { notify } from '../../../utils/notifier/notifier.util';
+import { IMaskOptions } from '../Control';
 
 export interface NovoGroupedControlConfig {
   label?: string;
@@ -54,22 +55,34 @@ export interface NovoControlConfig {
   tooltipPosition?: string;
   tooltipSize?: string;
   tooltipPreline?: boolean;
-  layoutOptions?: { order?: string, download?: boolean, edit?: boolean, customActions?: boolean, labelStyle?: string, draggable?: boolean, iconStyle?: string };
-  customControl?: any;
+  layoutOptions?: {
+    order?: string;
+    download?: boolean;
+    edit?: boolean;
+    customActions?: boolean;
+    labelStyle?: string;
+    draggable?: boolean;
+    iconStyle?: string;
+  };
+  template?: any;
   customControlConfig?: any;
   military?: boolean;
   dateFormat?: string;
   textMaskEnabled?: boolean;
+  maskOptions?: IMaskOptions;
   allowInvalidDate?: boolean;
   tipWell?: {
-    tip: string,
-    icon?: string,
+    tip: string;
+    icon?: string;
     button?: boolean;
   };
   width?: number;
   startupFocus?: boolean;
   fileBrowserImageUploadUrl?: string;
   isEmpty?: Function;
+  startDate?: Date | Number;
+  endDate?: Date | Number;
+  restrictFieldInteractions?: boolean;
 }
 
 export class BaseControl {
@@ -114,22 +127,26 @@ export class BaseControl {
   tooltipPosition?: string;
   tooltipSize?: string;
   tooltipPreline?: boolean;
-  layoutOptions?: { order?: string, download?: boolean, labelStyle?: string, draggable?: boolean, iconStyle?: string };
-  customControl?: any;
+  layoutOptions?: { order?: string; download?: boolean; labelStyle?: string; draggable?: boolean; iconStyle?: string };
+  template?: any;
   customControlConfig?: any;
   military?: boolean;
   dateFormat?: string;
   textMaskEnabled?: boolean;
+  maskOptions?: IMaskOptions;
   allowInvalidDate?: boolean;
   tipWell?: {
-    tip: string,
-    icon?: string,
+    tip: string;
+    icon?: string;
     button?: boolean;
   };
   width: number;
   startupFocus?: boolean;
   fileBrowserImageUploadUrl?: string;
   isEmpty?: Function;
+  startDate?: Date | Number;
+  endDate?: Date | Number;
+  restrictFieldInteractions?: boolean;
 
   constructor(type: string = 'BaseControl', config: NovoControlConfig = {}) {
     this.__type = type;
@@ -162,7 +179,11 @@ export class BaseControl {
     this.military = !!config.military;
     this.dateFormat = config.dateFormat;
     this.textMaskEnabled = config.textMaskEnabled;
+    this.maskOptions = config.maskOptions;
     this.allowInvalidDate = config.allowInvalidDate;
+    this.startDate = config.startDate;
+    this.endDate = config.endDate;
+    this.restrictFieldInteractions = !!config.restrictFieldInteractions;
 
     if (this.required) {
       this.validators.push(Validators.required);
@@ -190,7 +211,7 @@ export class BaseControl {
       this.tooltipSize = config.tooltipSize;
       this.tooltipPreline = config.tooltipPreline;
     }
-    this.customControl = config.customControl;
+    this.template = config.template;
     this.customControlConfig = config.customControlConfig;
     this.tipWell = config.tipWell;
     this.width = config.width;
