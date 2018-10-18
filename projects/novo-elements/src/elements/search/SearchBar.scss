@@ -1,0 +1,62 @@
+novo-search-bar {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 8px;
+  position: relative;
+  transition: background-color 250ms ease-in-out, opacity 150ms ease-in-out, 250ms width ease-in-out;
+  max-width: 400px;
+  min-width: 250px;
+  background: rgba($white, 0.2);
+  border: 1px solid rgba($light, 0.2);
+  border-radius: 2px;
+
+  &.focused {
+    background: $white;
+    border: 1px solid $light;
+
+    novo-icon i {
+      color: $dark;
+    }
+    input {
+      color: $dark;
+    }
+  }
+
+  novo-icon i {
+    color: $white;
+  }
+
+  > input {
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    display: block;
+    font-size: 1.4em;
+    color: $light;
+    z-index: 12;
+    outline: none;
+    background: none;
+    border: none;
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+    &::-webkit-input-placeholder {
+      color: $empty !important;
+    }
+  }
+}
+
+novo-advanced-search {
+  background-color: $white;
+  box-shadow: $whiteframe-shadow-z3;
+  border-bottom-left-radius: 0.4em;
+  border-bottom-right-radius: 0.4em;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-flow: column;
+  padding: 12px;
+}

@@ -1,0 +1,44 @@
+<header theme="candidate">
+  <utils>
+    <util-action icon="flag"></util-action>
+    <util-action icon="refresh"></util-action>
+    <util-action icon="times"></util-action>
+  </utils>
+  <novo-icon theme="candidate" [raised]="true">candidate</novo-icon>
+  <h1 novo-title>Candidates</h1>
+  <section class="header-functions">
+    <novo-search-bar [ngModel]="test" (ngModelChange)="search($event)">
+      <novo-list direction="vertical">
+          <novo-list-item *ngFor="let recent of recentSearches | async" (click)="onSelectMatch(recent)">
+              <item-header>
+                  <item-avatar icon="clock"></item-avatar>
+                  <item-title>{{recent.description}}</item-title>
+              </item-header>
+          </novo-list-item>
+          <!-- NEED DIVIDER LINE-->
+          <novo-list-item *ngFor="let favorite of favoriteSearches | async" (click)="onSelectMatch(favorite)">
+            <item-header>
+                <item-avatar icon="bookmark"></item-avatar>
+                <item-title>{{favorite.description}}</item-title>
+            </item-header>
+        </novo-list-item>
+      </novo-list>
+      <novo-advanced-search>
+        <novo-form [form]="textForm">
+            <div class="novo-form-row">
+                <novo-control [form]="textForm" [control]="includeControl"></novo-control>
+            </div>
+            <div class="novo-form-row">
+                <novo-control [form]="textForm" [control]="excludeControl"></novo-control>
+            </div>
+            <div class="novo-form-row">
+                <novo-control [form]="textForm" [control]="createdControl"></novo-control>
+            </div>
+            <div class="novo-form-row">
+                <novo-control [form]="textForm" [control]="ownerControl"></novo-control>
+            </div>
+        </novo-form>
+      </novo-advanced-search>
+    </novo-search-bar>
+  </section>
+</header>
