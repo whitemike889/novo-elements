@@ -20,6 +20,21 @@ import { NovoOverlayTemplateComponent } from '../overlay/Overlay';
 import { NovoLabelService } from '../../services/novo-label-service';
 
 @Component({
+  selector: 'novo-search-results',
+  template: '<ng-content></ng-content>',
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class NovoSearchResultsComponent {
+  @HostListener('click', ['$event'])
+  onClick(event) {
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+    event.preventDefault();
+  }
+}
+
+@Component({
   selector: 'novo-advanced-search',
   template: '<ng-content></ng-content>',
   preserveWhitespaces: false,
@@ -55,7 +70,7 @@ const SEARCH_BAR_VALUE_ACCESSOR = {
         <!-- SEARCH OVERLAY -->
         <novo-overlay-template [parent]="element" [closeOnSelect]="closeOnSelect" position="above-below" (select)="closePanel()" (closing)="onBlur()">
           <div [hidden]="advanced">
-            <ng-content select="novo-list"></ng-content>
+            <ng-content select="novo-search-results"></ng-content>
           </div>
           <div [hidden]="!advanced">
             <ng-content select="novo-advanced-search"></ng-content>
@@ -73,7 +88,7 @@ export class NovoSearchBarElement implements ControlValueAccessor {
   @Input()
   public theme: string = 'positive';
   @Input()
-  public closeOnSelect: boolean = true;
+  public closeOnSelect: boolean = false;
   @Input()
   public displayField: string;
   @Input()

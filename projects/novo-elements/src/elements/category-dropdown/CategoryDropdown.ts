@@ -25,13 +25,16 @@ import { NovoLabelService } from '../../services/novo-label-service';
                 <novo-nav-content *ngFor="let category of _categories">
                     <novo-list direction="vertical">
                         <novo-list-item *ngFor="let item of _categoryMap[category]" (click)="select($event, item)" [attr.data-automation-id]="item.label">
-                            <item-content>{{ item.label }}</item-content>
-                            <item-end class="novo-category-dropdown-hover" *ngIf="item.hoverText && !item.selected">{{ item.hoverText }}</item-end>
-                            <item-end class="novo-category-dropdown-hover" *ngIf="item.hoverIcon && !item.selected"><i class="bhi-{{ item.hoverIcon }}"></i></item-end>
-                            <item-end *ngIf="item.selected"><i class="bhi-check"></i></item-end>
+                            <div novo-line>
+                              <h4>{{ item.label }}</h4>
+                              <span flex></span>
+                              <span class="novo-category-dropdown-hover" *ngIf="item.hoverText && !item.selected">{{ item.hoverText }}</span>
+                              <novo-icon class="novo-category-dropdown-hover" *ngIf="item.hoverIcon && !item.selected">{{ item.hoverIcon }}</novo-icon>
+                              <novo-icon *ngIf="item.selected">check</novo-icon>
+                            </div>
                         </novo-list-item>
                         <novo-list-item *ngIf="_categoryMap[category].length === 0 && search" class="novo-category-dropdown-empty-item">
-                            <item-content>{{ search.emptyMessage || labels.noItems }}</item-content>
+                          <h4 novo-line>{{ search.emptyMessage || labels.noItems }}</h4>
                         </novo-list-item>
                     </novo-list>
                 </novo-nav-content>

@@ -8,21 +8,32 @@
   <h1 novo-title>Candidates</h1>
   <section class="header-functions">
     <novo-search-bar [ngModel]="test" (ngModelChange)="search($event)">
-      <novo-list direction="vertical">
-          <novo-list-item *ngFor="let recent of recentSearches | async" (click)="onSelectMatch(recent)">
-              <item-header>
-                  <item-avatar icon="clock"></item-avatar>
-                  <item-title>{{recent.description}}</item-title>
-              </item-header>
+      <novo-search-results layout="column">
+        <div layout="row">
+          <!-- RECENT RECORDS LIST-->
+          <novo-list direction="vertical" flex>
+            <h5 novo-subheader>Recent Searches</h5>
+              <novo-list-item *ngFor="let recent of recentSearches | async" (click)="onSelectMatch(recent)">
+                  <novo-icon>clock</novo-icon>
+                  <h4 novo-line>{{recent.description}}</h4>
+              </novo-list-item>
+          </novo-list>
+          <!-- SAVED SEARCHES LIST-->
+          <novo-list direction="vertical" flex>
+            <h5 novo-subheader>Saved Searches</h5>
+            <novo-list-item *ngFor="let favorite of favoriteSearches | async" (click)="onSelectMatch(favorite)">
+                  <novo-icon>bookmark</novo-icon>
+                  <h4 novo-line>{{favorite.description}}</h4>
+            </novo-list-item>
+          </novo-list>
+        </div>
+        <novo-list direction="horizontal" flex>
+          <novo-list-item direction="column" *ngFor="let favorite of favoriteSearches | async" (click)="onSelectMatch(favorite)">
+              <novo-icon>person-circle</novo-icon>
+              <h4 novo-line>{{favorite.description}}</h4>
           </novo-list-item>
-          <!-- NEED DIVIDER LINE-->
-          <novo-list-item *ngFor="let favorite of favoriteSearches | async" (click)="onSelectMatch(favorite)">
-            <item-header>
-                <item-avatar icon="bookmark"></item-avatar>
-                <item-title>{{favorite.description}}</item-title>
-            </item-header>
-        </novo-list-item>
-      </novo-list>
+        </novo-list>
+      </novo-search-results>
       <novo-advanced-search>
         <novo-form [form]="textForm">
             <div class="novo-form-row">
@@ -37,6 +48,7 @@
             <div class="novo-form-row">
                 <novo-control [form]="textForm" [control]="ownerControl"></novo-control>
             </div>
+            <novo-control-group [add]="anotherAddConfig" remove="true" label="Advanced Criteria" key="advanced" description="..." [form]="textForm" [controls]="controls" [emptyMessage]="emptyMessage"></novo-control-group>
         </novo-form>
       </novo-advanced-search>
     </novo-search-bar>

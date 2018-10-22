@@ -61,7 +61,7 @@ export class QuickNotePage {}
 
 @Component({
   selector: 'search-page',
-  template: `<h1>Search Input <a href="https://github.com/bullhorn/novo-elements/blob/master/src/elements/switch">(source)</a></h1><p>Loading animations are used to help indicate to the user that some sort of progress is taking place. These are especially helpful for intensive operations that might take extra time.</p><h2>Types</h2><h5>Searches</h5><p>Searches are a binary toggle that allow the user to select one of two options. They are most frequently used for an on-off model.</p><p><code-example example="search-usage"></code-example></p>`,
+  template: `<h1>Search Input <a href="https://github.com/bullhorn/novo-elements/blob/master/src/elements/switch">(source)</a></h1><p>Loading animations are used to help indicate to the user that some sort of progress is taking place. These are especially helpful for intensive operations that might take extra time.</p><h2>Types</h2><h5>Search Bars</h5><p>Search Bars are good to use in headerss</p><p><code-example example="search-bar-usage"></code-example></p><h5>Searches</h5><p>Searches are a binary toggle that allow the user to select one of two options. They are most frequently used for an on-off model.</p><p><code-example example="search-usage"></code-example></p>`,
 })
 export class SearchPage {}
 
@@ -217,7 +217,7 @@ export class LayoutsPage {}
 
 @Component({
   selector: 'list-page',
-  template: `<h1>List / Item <a href="https://github.com/bullhorn/novo-elements/blob/master/src/elements/list">(source)</a></h1><p>Lists are used to display rows of information like entities or entity data and appear on cards, our mobile app, and several other places across the Bullhorn platform.</p><h2>Basic Usage</h2><h5>Standard List</h5><p>This is an example of a standard list.</p><p><code-example example="basic-list"></code-example></p><h5>Themed List</h5><p>This is an example of a themed list.</p><p><code-example example="themed-list"></code-example></p>`,
+  template: `<h1>List / Item <a href="https://github.com/bullhorn/novo-elements/blob/master/src/elements/list">(source)</a></h1><p>Lists are used to display rows of information like entities or entity data and appear on cards, our mobile app, and several other places across the Bullhorn platform.</p><h2>Basic Usage</h2><h5>Standard List</h5><p>This is an example of a standard list.</p><p><code-example example="basic-list"></code-example></p><h5>Themed List</h5><p>This is an example of a themed list.</p><p><code-example example="themed-list"></code-example></p><h5>Themed List</h5><p>This is an example of a entity list.</p><p><code-example example="entity-list"></code-example></p><h5>Advanced List</h5><p>This is an example of a advanced list.</p><p><code-example example="advanced-list"></code-example></p>`,
 })
 export class ListPage {}
 

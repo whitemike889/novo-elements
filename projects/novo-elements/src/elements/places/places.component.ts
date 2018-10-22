@@ -47,11 +47,9 @@ export interface Settings {
   template: `
         <novo-list direction="vertical">
             <novo-list-item *ngFor="let data of queryItems;let $index = index" (click)="selectedListNode($event, $index)">
-                <item-header>
-                    <item-avatar icon="location"></item-avatar>
-                    <item-title>{{data.structured_formatting?.main_text ? data.structured_formatting.main_text : data.description}}</item-title>
-                </item-header>
-                <item-content>{{data.structured_formatting?.secondary_text}}</item-content>
+                <novo-icon>location</novo-icon>
+                <h4 novo-line>{{data.structured_formatting?.main_text ? data.structured_formatting.main_text : data.description}}</h4>
+                <p novo-line>{{data.structured_formatting?.secondary_text}}</p>
             </novo-list-item>
         </novo-list>
     `,

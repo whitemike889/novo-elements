@@ -18,12 +18,11 @@ import { NovoLabelService } from '../../../../services/novo-label-service';
                     [class.active]="selectedCategory?.value === 'all'"
                     data-automation-id="display-all"
                     [class.disabled]="isLoading">
-                    <item-content>
-                        <span data-automation-id="label">{{ labels.all }}</span>
-                    </item-content>
-                    <item-end>
-                        <i class="bhi-next"></i>
-                    </item-end>
+                    <div novo-line>
+                      <h4 data-automation-id="label">{{ labels.all }}<</h4>
+                      <span flex></span>
+                      <novo-icon>next</novo-icon>
+                    </div>
                 </novo-list-item>
                 <novo-list-item
                     *ngFor="let category of categories"
@@ -31,12 +30,11 @@ import { NovoLabelService } from '../../../../services/novo-label-service';
                     [class.active]="selectedCategory?.value === category.value"
                     [attr.data-automation-id]="category.label"
                     [class.disabled]="isLoading">
-                    <item-content>
-                        <span data-automation-id="label">{{ category.label }}</span>
-                    </item-content>
-                    <item-end>
-                        <i class="bhi-next"></i>
-                    </item-end>
+                    <div novo-line>
+                      <h4 data-automation-id="label">{{ category.label }}<</h4>
+                      <span flex></span>
+                      <novo-icon>next</novo-icon>
+                    </div>
                 </novo-list-item>
             </novo-list>
             <footer class="grouped-multi-picker-groups-footer" *ngIf="customFilterEnabled" data-automation-id="footer" [class.disabled]="isLoading">
@@ -60,9 +58,7 @@ import { NovoLabelService } from '../../../../services/novo-label-service';
                         [class.disabled]="preselected(match)"
                         [attr.data-automation-id]="match.label"
                         [class.disabled]="isLoading">
-                        <item-content>
-                            <span>{{ match.label }}</span>
-                        </item-content>
+                        <span>{{ match.label }}</span>
                     </novo-list-item>
                 </novo-list>
                 <div class="grouped-multi-picker-no-results" *ngIf="matches.length === 0 && !isLoading && selectedCategory" data-automation-id="empty-message">

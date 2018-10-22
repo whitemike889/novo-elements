@@ -28,8 +28,11 @@ const TIME_PICKER_VALUE_ACCESSOR = {
         <div class="increments" *ngIf="!analog">
             <novo-list direction="vertical" data-automation-id="novo-time-picker-increments">
                 <novo-list-item *ngFor="let increment of increments" (click)="setValue($event, increment)" [class.active]="increment==selected" [attr.data-automation-id]="increment">
-                    <item-content>{{increment}}</item-content>
-                    <i *ngIf="increment==selected" class="bhi-check"></i>
+                    <div novo-line>
+                      <h4>{{increment}}</h4>
+                      <span flex></span>
+                      <novo-icon *ngIf="increment==selected">check</novo-icon>
+                    </div>
                 </novo-list-item>
             </novo-list>
         </div>

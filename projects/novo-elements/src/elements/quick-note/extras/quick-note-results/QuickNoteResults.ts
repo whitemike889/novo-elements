@@ -20,9 +20,7 @@ import { NovoLabelService } from '../../../../services/novo-label-service';
                 (click)="selectMatch($event)"
                 [class.active]="match===activeMatch"
                 (mouseenter)="selectActive(match)">
-                <item-content>
                     <p [innerHtml]="highlight(match.label, term)"></p>
-                </item-content>
             </novo-list-item>
         </novo-list>
         <p class="picker-error" *ngIf="hasError">{{ labels.quickNoteError }}</p>

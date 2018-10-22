@@ -9,6 +9,8 @@
 @import './styles/global/layout';
 @import './styles/global/cdk';
 @include cdk-overlay();
+@include bullhorn-layout();
+
 // --------------------------------------------------
 // Plugins (Third-Party-Libraries)
 // --------------------------------------------------

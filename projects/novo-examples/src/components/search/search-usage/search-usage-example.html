@@ -10,10 +10,8 @@
 <novo-search [ngModel]="test" (ngModelChange)="search($event)">
     <novo-list direction="vertical">
         <novo-list-item *ngFor="let item of searchResults | async" (click)="onSelectMatch(item)">
-            <item-header>
-                <item-avatar [icon]="item.type"></item-avatar>
-                <item-title>{{item.name}}</item-title>
-            </item-header>
+          <novo-icon [name]="item.type"></novo-icon>
+          <h4 novo-line>{{item.name}}</h4>
         </novo-list-item>
     </novo-list>
 </novo-search>

@@ -21,12 +21,11 @@ import { MockData } from './mock-data';
       <section>
         <novo-list direction="vertical">
           <novo-list-item *ngFor="let column of columns">
-            <item-header>
-                  <item-title>{{ column.id }}</item-title>
-                  <item-header-end>
-                    <novo-checkbox [(ngModel)]="column.enabled"></novo-checkbox>
-                  </item-header-end>
-              </item-header>
+            <div novo-line>
+              <h4>{{ column.id }}</h4>
+              <span flex></span>
+              <novo-checkbox [(ngModel)]="column.enabled"></novo-checkbox>
+            </div>
           </novo-list-item>
         </novo-list>
       </section>

@@ -17,3 +17,15 @@ This is an example of a standard list.
 This is an example of a themed list.
 
 <code-example example="themed-list"></code-example>
+
+##### Themed List
+
+This is an example of a entity list.
+
+<code-example example="entity-list"></code-example>
+
+##### Advanced List
+
+This is an example of a advanced list.
+
+<code-example example="advanced-list"></code-example>

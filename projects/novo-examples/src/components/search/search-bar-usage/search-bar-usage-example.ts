@@ -1,5 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { NovoModalRef, FormUtils, TextBoxControl, PickerControl, PickerResults } from 'novo-elements';
+import { FormArray } from '@angular/forms';
+import {
+  NovoModalRef,
+  FormUtils,
+  TextBoxControl,
+  PickerControl,
+  PickerResults,
+  SelectControl,
+  BaseControl,
+  NovoControlGroupAddConfig,
+  NovoFormGroup,
+} from 'novo-elements';
 import { BehaviorSubject } from 'rxjs';
 
 /**
@@ -19,13 +30,19 @@ export class SearchBarUsageExample implements OnInit {
   public createdControl: any;
   public ownerControl: any;
   public textForm: any;
+  public formGroup: NovoFormGroup;
+  public controls: BaseControl[] = [];
+  public emptyMessage: string = 'There are no items...';
+  public anotherAddConfig: NovoControlGroupAddConfig = {
+    label: 'Add a field to search',
+  };
 
   public recentSearches: BehaviorSubject<any[]> = new BehaviorSubject([]);
   public favoriteSearches: BehaviorSubject<any[]> = new BehaviorSubject([]);
   public recentData: any[] = [
-    { description: '{ status: New Lead }' },
-    { description: '-{ status: Archived }' },
-    { description: '{ dateAdded:[ 30 to 90 ] }' },
+    { description: 'status:"New Lead"' },
+    { description: '-status:Archived' },
+    { description: 'dateAdded:[30 TO 90]' },
   ];
 
   public favoriteData: any[] = [
@@ -48,7 +65,7 @@ export class SearchBarUsageExample implements OnInit {
     this.ownerControl = new PickerControl({
       key: 'owner',
       multiple: true,
-      label: 'Picker',
+      label: 'Owned By:',
       required: true,
       config: {
         resultsTemplate: PickerResults,
@@ -57,6 +74,25 @@ export class SearchBarUsageExample implements OnInit {
     });
 
     this.textForm = this.formUtils.toFormGroup([this.includeControl, this.excludeControl, this.createdControl, this.ownerControl]);
+    this.setupGroupedFormDemo();
+  }
+
+  private setupGroupedFormDemo() {
+    this.formGroup = this.formUtils.emptyFormGroup();
+    let field = new SelectControl({
+      key: 'field',
+      label: 'Field',
+      options: [{ value: 'status', label: 'Status' }, { value: 'categories', label: 'Categories' }],
+    });
+    let operator = new SelectControl({
+      key: 'operator',
+      label: 'Operator',
+      options: [{ value: 'eq', label: 'Equals' }, { value: 'gt', label: 'Greater Than' }],
+    });
+    let searchValue = new TextBoxControl({ key: 'searchValue', label: 'Value', required: true });
+    this.controls.push(field);
+    this.controls.push(operator);
+    this.controls.push(searchValue);
   }
 
   public search(term: string): void {

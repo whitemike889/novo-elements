@@ -17,9 +17,7 @@ import { BasePickerResults } from '../base-picker-results/BasePickerResults';
                 [class.active]="match === activeMatch"
                 (mouseenter)="selectActive(match)"
                 [class.disabled]="preselected(match)">
-                <item-content>
-                    <span [innerHtml]="highlight(match.label, term)"></span>
-                </item-content>
+                <span [innerHtml]="highlight(match.label, term)"></span>
             </novo-list-item>
             <novo-loading *ngIf="isLoading && matches.length > 0" theme="line"></novo-loading>
         </novo-list>

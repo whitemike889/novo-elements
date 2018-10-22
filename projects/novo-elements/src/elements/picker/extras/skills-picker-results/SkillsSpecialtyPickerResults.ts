@@ -17,12 +17,10 @@ import { NovoLabelService } from '../../../../services/novo-label-service';
                 [class.active]="match === activeMatch"
                 (mouseenter)="selectActive(match)"
                 [class.disabled]="preselected(match)">
-                <item-content>
-                    <h6><span [innerHtml]="highlight(match.label, term)"></span></h6>
-                    <div class="category">
-                        <i class="bhi-category-tags"></i><span [innerHtml]="highlight(match.data.categories || match.data.parentCategory.name, term)"></span>
-                    </div>
-                </item-content>
+                <h6 novo-line><span [innerHtml]="highlight(match.label, term)"></span></h6>
+                <div novo-line class="category">
+                    <i class="bhi-category-tags"></i><span [innerHtml]="highlight(match.data.categories || match.data.parentCategory.name, term)"></span>
+                </div>
             </novo-list-item>
             <novo-list-item *ngIf="limitedTo"><div>{{labels.showingXofXResults(limit, total)}}</div></novo-list-item>
             <novo-loading theme="line" *ngIf="isLoading && matches.length > 0"></novo-loading>
