@@ -26,6 +26,7 @@ export class DynamicFormFieldSetsExample {
       {
         customfield: {
           template: 'custom-demo-component',
+          warning: 'custom-demo-component warning text',
         },
       },
     );
