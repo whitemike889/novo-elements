@@ -283,7 +283,7 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
   @HostListener('click', ['$event.target'])
   onClick(target: any) {
     if (Helpers.isFunction(this.form.controls[this.control.key].onClickAction)) {
-      this.form.controls[this.control.key].onClickAction(target);
+      this.form.controls[this.control.key].onClickAction(target, this.form.controls[this.control.key]);
     }
   }
 
