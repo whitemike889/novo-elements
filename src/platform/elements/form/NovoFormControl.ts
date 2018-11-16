@@ -63,6 +63,7 @@ export class NovoFormControl extends FormControl {
   restrictFieldInteractions?: boolean;
   warning?: string;
   private historyTimeout: any;
+  onClickAction?: Function;
 
   constructor(value: any, control: NovoControlConfig) {
     super(value, control.validators, control.asyncValidators);
@@ -121,6 +122,7 @@ export class NovoFormControl extends FormControl {
     this.tipWell = control.tipWell;
     this.customControlConfig = control.customControlConfig;
     this.warning = control.warning;
+    this.onClickAction = control.onClickAction;
 
     // Reactive Form, need to enable/disable, can't bind to [disabled]
     if (this.readOnly) {

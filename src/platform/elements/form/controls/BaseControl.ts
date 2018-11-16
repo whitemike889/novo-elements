@@ -88,6 +88,7 @@ export interface NovoControlConfig {
   endDate?: Date | Number;
   restrictFieldInteractions?: boolean;
   warning?: string;
+  onClickAction?: Function;
 }
 
 export class BaseControl {
@@ -163,7 +164,7 @@ export class BaseControl {
   endDate?: Date | Number;
   restrictFieldInteractions?: boolean;
   warning?: string;
-
+  onClickAction?: Function;
   constructor(type: string = 'BaseControl', config: NovoControlConfig = {}) {
     this.__type = type;
     this.__config = config;
@@ -244,6 +245,9 @@ export class BaseControl {
     }
     if (config.isEmpty) {
       this.isEmpty = config.isEmpty;
+    }
+    if (Helpers.isFunction(config.onClickAction)) {
+      this.onClickAction = config.onClickAction;
     }
   }
 }

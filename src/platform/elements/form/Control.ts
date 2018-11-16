@@ -280,6 +280,13 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
     this._showCount = value;
   }
 
+  @HostListener('click', ['$event.target'])
+  onClick(target: any) {
+    if (Helpers.isFunction(this.form.controls[this.control.key].onClickAction)) {
+      this.form.controls[this.control.key].onClickAction(target);
+    }
+  }
+
   ngAfterViewInit() {
     const DO_NOT_FOCUS_ME: string[] = ['picker', 'time', 'date', 'date-time'];
     if (this.autoFocus && !DO_NOT_FOCUS_ME.includes(this.control.controlType)) {
