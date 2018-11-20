@@ -1,5 +1,18 @@
 // NG2
-import { Component, Input, OnInit, OnChanges, SimpleChanges, ViewChild, ViewContainerRef, AfterViewInit, ElementRef, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+  ViewContainerRef,
+  AfterViewInit,
+  ElementRef,
+  ContentChildren,
+  QueryList,
+  AfterContentInit,
+} from '@angular/core';
 // APP
 import { Helpers } from './../../utils/Helpers';
 import { NovoFieldset, NovoFormGroup } from './FormInterfaces';
@@ -10,11 +23,13 @@ import { NovoTemplate } from '../common/novo-template/novo-template.directive';
   selector: 'novo-fieldset-header',
   template: `
         <h6><i [class]="icon || 'bhi-section'"></i>{{title}}</h6>
-    `
+    `,
 })
 export class NovoFieldsetHeaderElement {
-  @Input() title: string;
-  @Input() icon: string;
+  @Input()
+  title: string;
+  @Input()
+  icon: string;
 }
 
 @Component({
@@ -29,15 +44,21 @@ export class NovoFieldsetHeaderElement {
                 <div *ngIf="control.__type === 'GroupedControl'">TODO - GroupedControl</div>
             </ng-container>
         </div>
-    `
+    `,
 })
 export class NovoFieldsetElement {
-  @Input() controls: Array<any> = [];
-  @Input() form: any;
-  @Input() title: string;
-  @Input() icon: string;
-  @Input() index: number;
-  @Input() autoFocus: boolean;
+  @Input()
+  controls: Array<any> = [];
+  @Input()
+  form: any;
+  @Input()
+  title: string;
+  @Input()
+  icon: string;
+  @Input()
+  index: number;
+  @Input()
+  autoFocus: boolean;
 }
 
 @Component({
@@ -123,6 +144,7 @@ export class NovoDynamicFormElement implements OnChanges, OnInit, AfterContentIn
       });
     }
     this.form.fieldsets = [...this.fieldsets];
+    console.log('NovoDynamicFormElement ngOnChanges'); // tslint:disable-line
   }
 
   ngAfterContentInit() {

@@ -7,6 +7,7 @@ import {
   ElementRef,
   EventEmitter,
   OnInit,
+  OnChanges,
   OnDestroy,
   Directive,
   HostListener,
@@ -156,7 +157,7 @@ export class NovoAutoSize implements AfterContentInit {
     '[attr.data-control-key]': 'control.key',
   },
 })
-export class NovoControlElement extends OutsideClick implements OnInit, OnDestroy, AfterViewInit, AfterContentInit {
+export class NovoControlElement extends OutsideClick implements OnInit, OnChanges, OnDestroy, AfterViewInit, AfterContentInit {
   @Input()
   control: any;
   @Input()
@@ -412,6 +413,10 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
     }
 
     this.decimalSeparator = this.getDecimalSeparator();
+  }
+
+  ngOnChanges(): void {
+    console.log('NovoControlElement: ngOnChanges'); // tslint:disable-line
   }
 
   getDecimalSeparator(): string {
