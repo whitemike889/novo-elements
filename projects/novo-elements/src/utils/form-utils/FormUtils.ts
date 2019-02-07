@@ -20,6 +20,8 @@ import {
   TextBoxControl,
   TilesControl,
   TimeControl,
+  GroupedControl,
+  NovoGroupedControlConfig,
 } from '../../elements/form/FormControls';
 import { EntityPickerResult, EntityPickerResults } from '../../elements/picker/extras/entity-picker-results/EntityPickerResults';
 import { Helpers } from '../Helpers';
@@ -177,6 +179,8 @@ export class FormUtils {
       type = dataTypeToTypeMap[field.dataType];
     } else if (field.inputType === 'TEXTAREA') {
       type = 'textarea';
+    } else if (field.inputType === 'CONTROL_GROUP') {
+      type = 'grouped';
     } else if (field.options && Object.keys(inputTypeToTypeMap).indexOf(field.inputType) > -1 && !field.multiValue) {
       type = inputTypeToTypeMap[field.inputType];
     } else if (field.options && Object.keys(inputTypeMultiToTypeMap).indexOf(field.inputType) > -1 && field.multiValue) {
@@ -415,6 +419,9 @@ export class FormUtils {
         break;
       case 'custom':
         control = new CustomControl(controlConfig);
+        break;
+      case 'grouped':
+        control = new GroupedControl(controlConfig as NovoGroupedControlConfig);
         break;
       default:
         control = new TextBoxControl(controlConfig);
