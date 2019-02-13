@@ -334,7 +334,7 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
     setTimeout(() => {
       this.templates = this.templateService.getAll();
       this.loading = false;
-      // tslint: disable-next-line
+      // tslint:disable-next-line
       console.log('Novo-Control: Templates set up now');
       this.changeDetectorRef.markForCheck();
     });
