@@ -334,6 +334,8 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
     setTimeout(() => {
       this.templates = this.templateService.getAll();
       this.loading = false;
+      // tslint: disable-next-line
+      console.log('Novo-Control: Templates set up now');
       this.changeDetectorRef.markForCheck();
     });
   }
@@ -357,12 +359,12 @@ export class NovoControlElement extends OutsideClick implements OnInit, OnDestro
       // For Asynchronous validations
       this.statusChangeSubscription = this.form.controls[this.control.key].statusChanges.subscribe((validity) => {
         // tslint:disable-next-line
-        console.log('status Changed for ', this.control.key, validity);
+        console.log('Novo-control: status Changed for ', this.control.key, validity);
         // tslint:disable-next-line
-        console.log('this.templateContext.$implicit', this.templateContext.$implicit);
+        console.log('Novo-control: this.templateContext.$implicit', this.templateContext.$implicit);
         this.form.controls[this.control.key] = this.templateContext.$implicit;
         // tslint:disable-next-line
-        console.log('this.form.controls[this.control.key]', this.form.controls[this.control.key]);
+        console.log('Novo-control: this.form.controls[this.control.key]', this.form.controls[this.control.key]);
         if (validity !== 'PENDING' && this.form.updateValueAndValidity) {
           this.form.updateValueAndValidity();
         }
