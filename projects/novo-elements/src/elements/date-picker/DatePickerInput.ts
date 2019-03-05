@@ -48,7 +48,6 @@ const DATE_VALUE_ACCESSOR = {
 export class NovoDatePickerInputElement implements OnInit, ControlValueAccessor {
   public value: any;
   public formattedValue: string = '';
-  private userDefinedFormat: boolean;
 
   /** View -> model callback called when value changes */
   _onChange: (value: any) => void = () => {};
@@ -75,6 +74,8 @@ export class NovoDatePickerInputElement implements OnInit, ControlValueAccessor 
   @HostBinding('class.disabled')
   @Input()
   disabled: boolean = false;
+  @Input()
+  userDefinedFormat: boolean = false;
   @Output()
   blurEvent: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
   @Output()
@@ -93,7 +94,9 @@ export class NovoDatePickerInputElement implements OnInit, ControlValueAccessor 
   }
 
   ngOnInit() {
-    this.userDefinedFormat = this.format ? !this.format.match(/^(DD\/MM\/YYYY|MM\/DD\/YYYY)$/g) : false;
+    if (this.userDefinedFormat) {
+      this.userDefinedFormat = this.format ? !this.format.match(/^(MM\/DD\/YYYY)$/g) : false;
+    }
     if (!this.userDefinedFormat && this.textMaskEnabled && !this.allowInvalidDate) {
       this.maskOptions = this.maskOptions || {
         mask: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],

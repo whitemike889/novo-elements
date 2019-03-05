@@ -74,6 +74,7 @@ export interface NovoControlConfig {
   military?: boolean;
   dateFormat?: string;
   textMaskEnabled?: boolean;
+  userDefinedFormat?: boolean;
   maskOptions?: IMaskOptions;
   allowInvalidDate?: boolean;
   tipWell?: {
@@ -149,6 +150,7 @@ export class BaseControl {
   military?: boolean;
   dateFormat?: string;
   textMaskEnabled?: boolean;
+  userDefinedFormat?: boolean;
   maskOptions?: IMaskOptions;
   allowInvalidDate?: boolean;
   tipWell?: {
@@ -196,6 +198,7 @@ export class BaseControl {
     this.military = !!config.military;
     this.dateFormat = config.dateFormat;
     this.textMaskEnabled = config.textMaskEnabled;
+    this.userDefinedFormat = config.userDefinedFormat;
     this.maskOptions = config.maskOptions;
     this.allowInvalidDate = config.allowInvalidDate;
     this.startDate = config.startDate;

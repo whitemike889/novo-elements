@@ -50,6 +50,7 @@ export class NovoFormControl extends FormControl {
   startDate?: Date | Number;
   endDate?: Date | Number;
   textMaskEnabled?: boolean;
+  userDefinedFormat?: boolean;
   maskOptions: IMaskOptions;
   allowInvalidDate?: boolean;
   tipWell?: {
@@ -102,7 +103,7 @@ export class NovoFormControl extends FormControl {
     this.startDate = control.startDate;
     this.endDate = control.endDate;
     this.textMaskEnabled = control.textMaskEnabled;
-    this.textMaskEnabled = control.textMaskEnabled;
+    this.userDefinedFormat = control.userDefinedFormat;
     this.maskOptions = control.maskOptions;
     this.allowInvalidDate = control.allowInvalidDate;
     this.maxlength = control.maxlength;
