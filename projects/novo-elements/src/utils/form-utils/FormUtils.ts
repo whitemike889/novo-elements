@@ -220,7 +220,8 @@ export class FormUtils {
       label: field.label,
       placeholder: field.hint || '',
       required: field.required,
-      hidden: !field.required,
+      hidden: !field.required || field.hiddenButPresent,
+      hiddenButPresent: field.hiddenButPresent || false,
       encrypted: this.isFieldEncrypted(field.name ? field.name.toString() : ''),
       value: field.value || field.defaultValue,
       sortOrder: field.sortOrder,
@@ -445,7 +446,7 @@ export class FormUtils {
         if (
           field.name !== 'id' &&
           (field.dataSpecialization !== 'SYSTEM' || ['address', 'billingAddress', 'secondaryAddress'].indexOf(field.name) !== -1) &&
-          !field.readOnly
+          (!field.readOnly || field.hiddenButPresent)
         ) {
           let control = this.getControlForField(field, http, config, overrides, forTable);
           // Set currency format
@@ -629,14 +630,18 @@ export class FormUtils {
 
   forceShowAllControls(controls: Array<NovoControlConfig>) {
     controls.forEach((control) => {
-      control.hidden = false;
+      if (!control.hiddenButPresent) {
+        control.hidden = false;
+      }
     });
   }
 
   forceShowAllControlsInFieldsets(fieldsets: Array<NovoFieldset>) {
     fieldsets.forEach((fieldset) => {
       fieldset.controls.forEach((control) => {
-        control.hidden = false;
+        if (!control.hiddenButPresent) {
+          control.hidden = false;
+        }
       });
     });
   }

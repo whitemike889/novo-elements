@@ -40,6 +40,7 @@ class ControlConfig {
   forceClear: EventEmitter<any>;
   headerConfig: any;
   hidden: boolean;
+  hiddenButPresent: boolean;
   interactions: Array<Object>;
   isEmpty?: Function;
   key: string;
@@ -111,6 +112,7 @@ export class BaseControl extends ControlConfig {
     this.name = config.name || '';
     this.required = !!config.required;
     this.hidden = !!config.hidden;
+    this.hiddenButPresent = !!config.hiddenButPresent;
     this.encrypted = !!config.encrypted;
     this.sortOrder = config.sortOrder === undefined ? 1 : config.sortOrder;
     this.controlType = config.controlType || '';
