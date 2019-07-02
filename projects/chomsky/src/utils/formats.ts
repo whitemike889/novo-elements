@@ -88,8 +88,7 @@ export class Formats {
       obj[part.type] = part.value;
       return obj;
     }, {});
-    const dayPeriodPropertyName = Object.keys(timeParts).find(n => n.toLowerCase() === 'dayperiod');
-    const dayperiod = timeParts[dayPeriodPropertyName] || '';
+    const dayperiod = timeParts.dayperiod ? timeParts.dayperiod : '';
     return `${timeParts.hour}:${timeParts.minute}${dayperiod}`;
   }
 
