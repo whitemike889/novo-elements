@@ -9,7 +9,7 @@ import { FormUtils } from '../../utils/form-utils/FormUtils';
 import { NovoLabelService } from '../../services/novo-label-service';
 import { ComponentUtils } from '../../utils/component-utils/ComponentUtils';
 import { OptionsService } from '../../services/options/OptionsService';
-import { ModifyPickerConfigArgs, OptionsFunction } from './FieldInteractionApiTypes';
+import { ModifyPickerConfigArgs, OptionsFunction, CustomHttp } from './FieldInteractionApiTypes';
 
 describe('FieldInteractionApi', () => {
   let service: FieldInteractionApi;
@@ -46,22 +46,34 @@ describe('FieldInteractionApi', () => {
     setProperty = spyOn(service as any, 'setProperty');
   }));
 
+  describe('Function: mutatePickerConfig', () => {
+    it('respects the picker config\'s existing format', () => {
+      spyOn(service, 'getControl').and.returnValue({ config: { format: 'originalFormat' } });
+      const params = ({ optionsPromise: () => {} } as unknown) as ModifyPickerConfigArgs;
+
+      service.mutatePickerConfig('key', params);
+      const [key, propertyName, newConfig] = setProperty.calls.mostRecent().args;
+
+      expect(newConfig.format).toEqual('originalFormat');
+    });
+  });
+
   describe('Function: addPropertiesToPickerConfig', () => {
     it('adds properties to a picker config without deleting any', () => {
       service.form.controls.doughnuts.config = { oldProperty: 'old!' };
 
-      service.addPropertiesToPickerConfig('doughnuts', {newProperty: 'new!'});
+      service.addPropertiesToPickerConfig('doughnuts', { newProperty: 'new!' });
 
       expect(setProperty).toBeCalledWith('doughnuts', 'config', { newProperty: 'new!', oldProperty: 'old!' });
-      expect(triggerEvent).toBeCalledWith({controlKey: 'doughnuts', prop: 'pickerConfig', value: {newProperty: 'new!'} });
+      expect(triggerEvent).toBeCalledWith({ controlKey: 'doughnuts', prop: 'pickerConfig', value: { newProperty: 'new!' } });
     });
     it('overrides pre-existing properties', () => {
-      service.form.controls.doughnuts.config = { oldProperty: 'old!'};
+      service.form.controls.doughnuts.config = { oldProperty: 'old!' };
 
-      service.addPropertiesToPickerConfig('doughnuts', {oldProperty: 'new!'});
+      service.addPropertiesToPickerConfig('doughnuts', { oldProperty: 'new!' });
 
-      expect(setProperty).toBeCalledWith('doughnuts', 'config', {oldProperty: 'new!'});
-      expect(triggerEvent).toBeCalledWith({controlKey: 'doughnuts', prop: 'pickerConfig', value: {oldProperty: 'new!'} });
+      expect(setProperty).toBeCalledWith('doughnuts', 'config', { oldProperty: 'new!' });
+      expect(triggerEvent).toBeCalledWith({ controlKey: 'doughnuts', prop: 'pickerConfig', value: { oldProperty: 'new!' } });
     });
     it('does not allow picker modifications if restrictFieldInteractions is true for that control', () => {
       service.form = { controls: { doughnuts: { restrictFieldInteractions: true } } };
