@@ -52,10 +52,10 @@ export class NovoTabbedGroupPickerElement implements OnInit {
   constructor(public labelService: NovoLabelService) {}
 
   ngOnInit(): void {
-    this.validateData();
+    // this.validateData();
     this.displayData = this.data;
     if (this.quickSelectConfig) {
-      this.validateQuickSelectConfig();
+      // this.validateQuickSelectConfig();
     }
     this.setActiveSchema(this.schemata[0]);
     this.loading = false;
@@ -213,7 +213,7 @@ export class NovoTabbedGroupPickerElement implements OnInit {
     (this.displayData = this.schemata.reduce(
       (accumulator, { labelField, typeName }) => ({
         ...accumulator,
-        [typeName]: this.data[typeName] && this.data[typeName].filter((item) => item[labelField].toLowerCase().includes(searchTerm.toLowerCase())),
+        [typeName]: this.data[typeName] && this.data[typeName].filter((item) => item && item[labelField] && item[labelField].toLowerCase().includes(searchTerm.toLowerCase())),
       }),
       {},
     ));
