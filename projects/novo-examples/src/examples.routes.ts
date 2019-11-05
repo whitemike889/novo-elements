@@ -274,14 +274,14 @@ export class TabsPage {}
 
 @Component({
   selector: 'patterns-page',
-  template: `<h1>Design Patterns</h1><p>The following are examples of know composition patterns to create a common user exeperience.  The component library is design to be used in these patterns.</p><h2>Activity Sections</h2><p>Displaying a series of list data in ... blah, blah, blah</p><p><code-example example="activity-section"></code-example></p><h2>Record Headers</h2><p>Entity Record Headers Patterns.</p><p><code-example example="record-header"></code-example></p>`
+  template: `<h1>Design Patterns</h1><p>The following are examples of know composition patterns to create a common user experience.  The component library is design to be used in these patterns.</p><h2>Activity Sections</h2><p>Displaying a series of lists in expandable sections, like in the activity tab.</p><p><code-example example="activity-section"></code-example></p><h2>Record Headers</h2><p>Entity Record Headers Patterns.</p><p><code-example example="record-header"></code-example></p>`
 })
 export class PatternsPage {}
 
 
 @Component({
   selector: 'templates-page',
-  template: `<h2>Bullhorn Application Templates</h2><h2>Example starter templates for your application</h2><h3>Email</h3><p>List App</p><p>TODO: Add linked image</p><h3>Form App</h3><p>form-based app template</p><p>TODO: Add linked image</p><h3>Custom Card Starter Template</h3><p>empty starter template</p><p>TODO: Add linked image</p><h3>Dashboard</h3><p>dashboard template</p><p>TODO: Add linked image</p>`
+  template: `<h2>Bullhorn Application Templates</h2><p>Bullhorn provides customization of the user experience with custom tabs, custom cards, custom actions and more.</p><p>The <a href="https://github.com/bullhorn/extension-samples">Bullhorn Extension Samples</a> repoprovides several examples for getting started building custom apps using Novo Elements.</p>`
 })
 export class TemplatesPage {}
 
