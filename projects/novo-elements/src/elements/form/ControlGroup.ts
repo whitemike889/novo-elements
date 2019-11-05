@@ -105,6 +105,9 @@ export class NovoControlGroup implements AfterContentInit, OnChanges {
   @Input() canRemove: Function;
   // Template for custom row rendering
   @Input() rowTemplate: TemplateRef<any>;
+  // Keys to associate this group to another group
+  @Input() associatedKeyName: string;
+  @Input() associatedKeyValue: string | number | boolean;
 
   @Output() onRemove: EventEmitter<any> = new EventEmitter<any>();
   @Output() onEdit: EventEmitter<any> = new EventEmitter<any>();
@@ -194,6 +197,9 @@ export class NovoControlGroup implements AfterContentInit, OnChanges {
       this.formUtils.setInitialValues(newControls, value);
     }
     const ctrl: NovoFormGroup = this.formUtils.toFormGroup(newControls);
+    if (this.associatedKeyName && this.associatedKeyValue) {
+      ctrl.associatedKey = { name: this.associatedKeyName, value: this.associatedKeyValue };
+    }
     return ctrl;
   }
 

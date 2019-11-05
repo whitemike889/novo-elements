@@ -13,9 +13,9 @@ import { ControlConfirmModal, ControlPromptModal } from './FieldInteractionModal
 import { Helpers } from '../../utils/Helpers';
 import { AppBridge } from '../../utils/app-bridge/AppBridge';
 import { NovoLabelService } from '../../services/novo-label-service';
-import { IFieldInteractionEvent } from './FormInterfaces';
+import { IFieldInteractionEvent, NovoFormGroup } from './FormInterfaces';
 import { ModifyPickerConfigArgs, OptionsFunction, CustomHttp } from './FieldInteractionApiTypes';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 class CustomHttpImpl implements CustomHttp {
   url: string;
@@ -153,6 +153,21 @@ export class FieldInteractionApi {
     return control as NovoFormControl;
   }
 
+  public getAssoicatedFormControl(associatedForm: NovoFormGroup, key: string): NovoFormControl {
+    if (!key) {
+      console.error('[FieldInteractionAPI] - invalid or missing "key"'); // tslint:disable-line
+      return null;
+    }
+
+    let control = associatedForm.controls[key];
+    if (!control) {
+      console.error('[FieldInteractionAPI] - could not find a control in the form by the key --', key); // tslint:disable-line
+      return null;
+    }
+
+    return control as NovoFormControl;
+  }
+
   public getValue(key: string): any {
     let control = this.getControl(key);
     if (control) {
@@ -188,6 +203,23 @@ export class FieldInteractionApi {
     },
   ): void {
     let control = this.getControl(key);
+    if (control && !control.restrictFieldInteractions) {
+      control.setValue(value, options);
+      this.triggerEvent({ controlKey: key, prop: 'value', value: value });
+    }
+  }
+
+  public setAssociatedFormValue(associatedForm: NovoFormGroup,
+    key: string,
+    value: any,
+    options?: {
+      onlySelf?: boolean;
+      emitEvent?: boolean;
+      emitModelToViewChange?: boolean;
+      emitViewToModelChange?: boolean;
+    },
+  ): void {
+    let control = this.getAssoicatedFormControl(associatedForm, key);
     if (control && !control.restrictFieldInteractions) {
       control.setValue(value, options);
       this.triggerEvent({ controlKey: key, prop: 'value', value: value });

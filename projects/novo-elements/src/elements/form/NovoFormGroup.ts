@@ -13,6 +13,7 @@ export class NovoFormGroup extends FormGroup {
   public currentEntityId: string;
   public associations: object;
   public _value: any;
+  public associatedKey?: { name: string, value: string | number | boolean };
 
   get value() {
     return this.getRawValue();
