@@ -142,6 +142,15 @@ novo-control-group {
           font-size: 1.2em;
         }
       }
+      .novo-control-group-row.novo-control-group-child-row {
+        .novo-control-group-control {
+          > .novo-control-container:first-of-type {
+            .novo-control-inner-container {
+              margin-left: 1em;
+            }
+          }
+        }
+      }
     }
   }
 }

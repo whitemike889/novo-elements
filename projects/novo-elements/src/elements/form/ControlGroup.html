@@ -7,20 +7,32 @@
   <label class="novo-control-group-description" *ngIf="description" [attr.data-automation-id]="'novo-control-group-description-' + key">{{ description }}</label>
 </h6>
 <div class="novo-control-group-controls" [class.vertical]="vertical" [class.horizontal]="!vertical" [class.hidden]="collapsible && !toggled">
+  <ng-template #groupedControlTemplate let-index="index" let-form="form" let-key="key">
+      <div class="novo-control-group-control">
+          <div *ngFor="let c of controls" class="novo-control-container {{c.key}}" [class.is-label]="c.controlType === 'read-only'" [style.max-width.px]="c.width">
+            <novo-control (change)="onChange($event)" [form]="(form?.controls)[key]['controls'][index]" [control]="c" [condensed]="!vertical || c.controlType === 'read-only'"></novo-control>
+          </div>
+          <div class="novo-control-container last" *ngIf="edit && !vertical">
+            <button [disabled]="!isActionDisabled(key, index, 'edit')" type="button" *ngIf="edit && !vertical" theme="icon" icon="edit" (click)="editControl(key, index)" [attr.data-automation-id]="'novo-control-group-edit-' + key" index="-1"></button>
+          </div>
+          <div class="novo-control-container last" *ngIf="remove && !vertical">
+            <button [disabled]="!isActionDisabled(key, index, 'remove')" type="button" *ngIf="remove && !vertical" theme="icon" icon="delete-o" (click)="removeControl(key, index)" [attr.data-automation-id]="'novo-control-group-delete-' + key" index="-1"></button>
+          </div>
+        </div>
+        <button [disabled]="!isActionDisabled(key, index, 'edit')" type="button" *ngIf="edit && vertical" theme="icon" icon="edit" (click)="editControl(key, index)" [attr.data-automation-id]="'novo-control-group-edit-' + key" index="-1"></button>
+        <button [disabled]="!isActionDisabled(key, index, 'remove')" type="button" *ngIf="remove && vertical" theme="icon" icon="delete-o" (click)="removeControl(key, index)" [attr.data-automation-id]="'novo-control-group-delete-' + key" index="-1"></button>
+  </ng-template>
   <ng-template #defaultTemplate let-index="index" let-form="form" let-key="key">
-    <div class="novo-control-group-control">
-      <div *ngFor="let c of controls" class="novo-control-container {{c.key}}" [class.is-label]="c.controlType === 'read-only'" [style.max-width.px]="c.width">
-        <novo-control (change)="onChange($event)" [form]="(form?.controls)[key]['controls'][index]" [control]="c" [condensed]="!vertical || c.controlType === 'read-only'"></novo-control>
-      </div>
-      <div class="novo-control-container last" *ngIf="edit && !vertical">
-        <button [disabled]="!disabledArray[index].edit" type="button" *ngIf="edit && !vertical" theme="icon" icon="edit" (click)="editControl(index)" [attr.data-automation-id]="'novo-control-group-edit-' + key" index="-1"></button>
-      </div>
-      <div class="novo-control-container last" *ngIf="remove && !vertical">
-        <button [disabled]="!disabledArray[index].remove" type="button" *ngIf="remove && !vertical" theme="icon" icon="delete-o" (click)="removeControl(index)" [attr.data-automation-id]="'novo-control-group-delete-' + key" index="-1"></button>
-      </div>
+    <div>
+        <ng-template [ngTemplateOutlet]="groupedControlTemplate" [ngTemplateOutletContext]="{ form: form, index: index, key: key, controls: controls }">
+        </ng-template>
     </div>
-    <button [disabled]="!disabledArray[index].edit" type="button" *ngIf="edit && vertical" theme="icon" icon="edit" (click)="editControl(index)" [attr.data-automation-id]="'novo-control-group-edit-' + key" index="-1"></button>
-    <button [disabled]="!disabledArray[index].remove" type="button" *ngIf="remove && vertical" theme="icon" icon="delete-o" (click)="removeControl(index)" [attr.data-automation-id]="'novo-control-group-delete-' + key" index="-1"></button>
+    <ng-container *ngIf="hasNestedRecords && billMasterIds.length && (form?.controls)[key + '-' + billMasterIds[index]]">
+      <div class="novo-control-group-row novo-control-group-child-row" *ngFor="let control of (form?.controls)[key + '-' + billMasterIds[index]].controls; let i = index">
+        <ng-template [ngTemplateOutlet]="groupedControlTemplate" [ngTemplateOutletContext]="{ form: form, index: i, key: key + '-' + billMasterIds[index], controls: controls }">
+        </ng-template>
+      </div>
+    </ng-container>
   </ng-template>
   <div class="novo-control-group-labels" *ngIf="!vertical && (form?.controls)[key] && (form?.controls)[key]['controls'].length !== 0">
     <div class="novo-control-group-control-label {{ label.key }}" *ngFor="let label of controlLabels" [style.max-width.px]="label.width" [class.column-required]="label.required">

@@ -1,12 +1,10 @@
 // NG
 import {
   Component,
-  Directive,
   TemplateRef,
   Input,
   Output,
   AfterContentInit,
-  ViewContainerRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   EventEmitter,
@@ -28,6 +26,8 @@ export interface NovoControlGroupAddConfig {
 }
 
 export interface NovoControlGroupRowConfig {
+  key?: string;
+  index?: number;
   edit: boolean;
   remove: boolean;
 }
@@ -76,6 +76,15 @@ export class NovoControlGroup implements AfterContentInit, OnChanges {
     return this._collapsible;
   }
   private _collapsible: boolean = false;
+  // Hides/shows nested records
+  @Input()
+  set hasNestedRecords(v: boolean) {
+    this._hasNestedRecords = coerceBooleanProperty(v);
+  }
+  get hasNestedRecords() {
+    return this._hasNestedRecords;
+  }
+  private _hasNestedRecords: boolean = false;
   // Main form group
   @Input() form: NovoFormGroup;
   // Controls for each item in the control group
@@ -108,6 +117,7 @@ export class NovoControlGroup implements AfterContentInit, OnChanges {
   // Keys to associate this group to another group
   @Input() associatedKeyName: string;
   @Input() associatedKeyValue: string | number | boolean;
+  @Input() nestedRecordPropertyName: string;
 
   @Output() onRemove: EventEmitter<any> = new EventEmitter<any>();
   @Output() onEdit: EventEmitter<any> = new EventEmitter<any>();
@@ -116,9 +126,11 @@ export class NovoControlGroup implements AfterContentInit, OnChanges {
 
   public controlLabels: { value: string; width: number; required: boolean; key: string }[] = [];
   public toggled: boolean = false;
-  public disabledArray: { edit: boolean; remove: boolean }[] = [];
+  public disabledArray: { key: string; index: number; edit: boolean; remove: boolean }[] = [];
+  public billMasterIds: number[] = [];
 
   currentIndex = 0;
+  currentNestedIndex = 0;
 
   constructor(private formUtils: FormUtils, private fb: FormBuilder, private ref: ChangeDetectorRef, private labels: NovoLabelService) {}
 
@@ -140,7 +152,19 @@ export class NovoControlGroup implements AfterContentInit, OnChanges {
     if (this.initialValue && Array.isArray(this.initialValue)) {
       if (this.initialValue.length !== 0) {
         this.currentIndex = 0;
-        this.initialValue.forEach((value) => this.addNewControl(value));
+        this.initialValue.forEach((value) => {
+          this.addNewControl(value);
+          if (value.hasOwnProperty('id')) {
+            this.billMasterIds.push(value['id']);
+            if (this.hasNestedRecords && value.hasOwnProperty(this.nestedRecordPropertyName)) {
+              this.currentNestedIndex = 0;
+              const nestedRecords = Array.isArray(value[this.nestedRecordPropertyName]) ? value[this.nestedRecordPropertyName] : [value[this.nestedRecordPropertyName]];
+              nestedRecords.forEach((nestedItem) => {
+                this.addNewNestedControl(value['id'], nestedItem);
+              });
+            }
+          }
+        });
       }
     } else if (this.initialValue) {
       // If value is an object, just add one control
@@ -164,10 +188,10 @@ export class NovoControlGroup implements AfterContentInit, OnChanges {
     this.change.emit(this);
   }
 
-  public resetAddRemove(): void {
-    this.disabledArray.forEach((item: NovoControlGroupRowConfig, idx: number) => {
-      item.edit = this.checkCanEdit(idx);
-      item.remove = this.checkCanRemove(idx);
+  public resetAddRemove(key: string): void {
+    this.disabledArray.filter((item: NovoControlGroupRowConfig) => item.key === key).forEach((item: NovoControlGroupRowConfig, idx: number) => {
+      item.edit = this.checkCanEdit(key, idx);
+      item.remove = this.checkCanRemove(key, idx);
     });
   }
 
@@ -180,10 +204,12 @@ export class NovoControlGroup implements AfterContentInit, OnChanges {
       this.form.addControl(this.key, this.fb.array([newCtrl]));
     }
     this.disabledArray.push({
+      key: this.key,
+      index: this.currentIndex,
       edit: true,
       remove: true,
     });
-    this.resetAddRemove();
+    this.resetAddRemove(this.key);
     if (!value) {
       this.onAdd.emit();
     }
@@ -191,31 +217,58 @@ export class NovoControlGroup implements AfterContentInit, OnChanges {
     this.ref.markForCheck();
   }
 
-  public buildControl(value?: {}): NovoFormGroup {
+  public addNewNestedControl(parentId: number | string, value?: {}): void {
+    const nestedKey = `${this.key}-${parentId}`;
+    const control: FormArray = <FormArray>this.form.controls[nestedKey];
+    const newCtrl: NovoFormGroup = this.buildControl(value);
+    newCtrl.associatedKey = { name: 'parent', value: parentId };
+    if (control) {
+      control.push(newCtrl);
+    } else {
+      this.form.addControl(nestedKey, this.fb.array([newCtrl]));
+    }
+    this.disabledArray.push({
+      key: nestedKey,
+      index: this.currentNestedIndex,
+      edit: true,
+      remove: true,
+    });
+    this.resetAddRemove(nestedKey);
+    if (!value) {
+      this.onAdd.emit();
+    }
+    this.currentNestedIndex++;
+    this.ref.markForCheck();
+  }
+
+  public buildControl(value?: {id?: number | string}): NovoFormGroup {
     const newControls = this.getNewControls(this.controls);
     if (value) {
       this.formUtils.setInitialValues(newControls, value);
     }
     const ctrl: NovoFormGroup = this.formUtils.toFormGroup(newControls);
+    if (value.id) {
+      ctrl.currentEntityId = value.id.toString();
+    }
     if (this.associatedKeyName && this.associatedKeyValue) {
       ctrl.associatedKey = { name: this.associatedKeyName, value: this.associatedKeyValue };
     }
     return ctrl;
   }
 
-  public removeControl(index: number, emitEvent: boolean = true): void {
+  public removeControl(key: string, index: number, emitEvent: boolean = true): void {
     const control: FormArray = <FormArray>this.form.controls[this.key];
     if (emitEvent) {
       this.onRemove.emit({ value: control.at(index).value, index: index });
     }
     control.removeAt(index);
-    this.disabledArray = this.disabledArray.filter((value: NovoControlGroupRowConfig, idx: number) => idx !== index);
-    this.resetAddRemove();
+    this.disabledArray = this.disabledArray.filter((value: NovoControlGroupRowConfig, idx: number) => idx !== index && ((value.key && value.key !== key) || !value.key));
+    this.resetAddRemove(key);
     this.currentIndex--;
     this.ref.markForCheck();
   }
 
-  public editControl(index: number): void {
+  public editControl(key: string, index: number): void {
     const control: FormArray = <FormArray>this.form.controls[this.key];
     this.onEdit.emit({ value: control.at(index).value, index: index });
   }
@@ -228,27 +281,31 @@ export class NovoControlGroup implements AfterContentInit, OnChanges {
     }
   }
 
+  public isActionDisabled(key: string, index: number, action: 'edit' | 'remove'): boolean {
+    return this.disabledArray.filter((d) => d.key === key && d.index === index)[0][action];
+  }
+
   private clearControls() {
     const control: FormArray = <FormArray>this.form.controls[this.key];
     if (control) {
       for (let i: number = control.controls.length; i >= 0; i--) {
-        this.removeControl(i, false);
+        this.removeControl(this.key, i, false);
       }
       this.currentIndex = 0;
     }
   }
 
-  private checkCanEdit(index: number): boolean {
+  private checkCanEdit(key: string, index: number): boolean {
     if (this.canEdit) {
-      const control: FormArray = <FormArray>this.form.controls[this.key];
+      const control: FormArray = <FormArray>this.form.controls[key];
       return this.canEdit(control.at(index).value, index);
     }
     return true;
   }
 
-  private checkCanRemove(index: number): boolean {
+  private checkCanRemove(key: string, index: number): boolean {
     if (this.canRemove) {
-      const control: FormArray = <FormArray>this.form.controls[this.key];
+      const control: FormArray = <FormArray>this.form.controls[key];
       return this.canRemove(control.at(index).value, index);
     }
     return true;
