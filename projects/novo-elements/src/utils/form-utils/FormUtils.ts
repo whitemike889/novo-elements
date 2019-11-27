@@ -610,7 +610,7 @@ export class FormUtils {
   }
 
   private insertHeaderToFieldsets(fieldsets, field) {
-    if (field.name && field.name.startsWith("customObject")) {
+    if (field.name && field.name.startsWith('customObject')) {
       fieldsets.push({
         title: field.associatedEntity.label,
         icon: field.icon || 'bhi-section',
